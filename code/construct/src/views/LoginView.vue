@@ -20,6 +20,7 @@
 <input type="text" class="border border-gray-300 w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  bg-white" placeholder="Code verification">
 <div class="mt-3">
 <a href="#" class="text-sm font-medium ">Mot de passe oublié?</a>
+<a href="/signup" class="text-sm font-medium text-primary underline block">créer un nouveau compte </a>
 </div>
 <div>
     <button class="bg-black text-white px-32 rounded mt-8 font-medium  py-2">Me connecter</button>

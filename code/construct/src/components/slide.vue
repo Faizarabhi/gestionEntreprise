@@ -7,11 +7,11 @@
 
 <div class="overflow-hidden relative h-48  sm:h-64 xl:h-80 2xl:h-80" style="height:32rem">
 
-<div class="duration-700 ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10 " data-carousel-item="">
+<div class="duration-700 bg-black  ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10 " data-carousel-item="">
 <img src="../assets/images/slide1.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
 </div>
 
-<div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="active">
+<div class="duration-700  ease-in-out absolute inset-0 transition-all transform translate-x-0 z-10" data-carousel-item="active">
 <img src="../assets/images/slide2.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
 </div>
 
@@ -20,8 +20,8 @@
 </div>
 
 </div>
-<div class="relative ">
-    <div class=" bg-black p-12 px-18 absolute z-50 right-36 bottom-12 text-white">
+<div class="relative bg-white h-full">
+    <div class=" bg-black pr-20 pl-24  py-14 absolute z-40 right-28 bottom-12 text-white">
     <h1>Feature Projects</h1>
     <p>The National University of Architecture</p></div>
 <button type="button" class="  flex absolute bottom-7 right-80 z-30 justify-center items-center px-4 h-full cursor-pointer group" data-carousel-prev="">
