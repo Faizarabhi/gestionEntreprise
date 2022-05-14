@@ -2,7 +2,7 @@
     <div class="flex">
     <sidebar/>
     <div class="bg-bg-bleu w-full h-screen p-20">
-      klzezd
+      
     </div>
     </div>
 </template>
