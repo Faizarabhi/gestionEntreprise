@@ -102,7 +102,7 @@
       </div>
     </div>
   </div>
-  <coop />
+  <coop/>
 </template>
 
 <script>
