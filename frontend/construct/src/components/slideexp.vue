@@ -1,6 +1,6 @@
 <template>
     <div class="flex h-max ">
-        <div class="flex-auto w-64 bg-gray  relative h-max bg-primary">
+        <div class="hidden md:block  flex-auto w-64 bg-gray  relative h-max bg-primary">
             <div class="p-5 shadow-lg w-40 absolute top-11 right-44">
                 <div class="relative">
                 <img src="../assets/images/illus-3.svg" class="absolute bottom-14 left-28 w-16">
@@ -32,7 +32,7 @@
             
             
         </div>
-        <div class="flex-1 text-left  p-6 pg-secondary">
+        <div class="hidden md:block  flex-1 text-left  p-6 pg-secondary">
             <h1 class="font-bold text-secondary mt-8 text-5xl">30 Years<br> Experience</h1>
             <p class="mt-14 w-80 font-thin">Our company has been the leading provided construction services to clients throughout the USA since 1988.</p>
             <button class="text-white bg-secondary p-2 px-6 mt-32">Contact Us</button>

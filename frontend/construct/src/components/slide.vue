@@ -5,7 +5,7 @@
     
 <div id="controls-carousel" class="relative" data-carousel="static">
 
-<div class="overflow-hidden relative h-48  sm:h-64 xl:h-80 2xl:h-80" style="height:32rem">
+<div class="overflow-hidden  relative h-48  sm:h-64 xl:h-80 2xl:h-80" style="height:32rem">
 
 <div class="duration-700 bg-black  ease-in-out absolute inset-0 transition-all transform -translate-x-full z-10 " data-carousel-item="">
 <img src="../assets/images/slide1.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
