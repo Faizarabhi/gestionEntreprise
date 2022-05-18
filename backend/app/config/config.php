@@ -8,8 +8,8 @@
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
-  define('URLROOT', 'http://localhost/filrouge/backend');
+  define('URLROOT', 'http://localhost/backend');
   // Site Name
-  define('SITENAME', 'ConstructRabhi');
+  define('SITENAME', 'jdid');
   // App Version
   define('APPVERSION', '1.0.0');
