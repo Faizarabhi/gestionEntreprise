@@ -45,7 +45,8 @@ export default {
     Slideexp,
     call,
     Product,
-    Opinion,maps
+    Opinion,
+    maps
 },
 };
 </script>

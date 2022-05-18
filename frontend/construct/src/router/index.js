@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import SigneupView from '../views/SigneupView.vue'
 import DashboardView from '../views/DashboardView.vue'
+// import profile from '../components/DashboardComponents/profile.vue'
+// import historique from '../components/DashboardComponents/historique.vue'
 
 
 const router = createRouter({
@@ -27,9 +29,32 @@ const router = createRouter({
     {
       path : '/admin',
       name : 'admin',
-      component: DashboardView
+      component: DashboardView,
+      children:[
+        {
+          path:'/profile',
+        component: ()=> import('../components/DashboardComponents/profile.vue')
+        },
+        {
+          path:'/historique',
+        component: ()=> import('../components/DashboardComponents/historique.vue')
+        }
+      ]
+
       
-    }
+    },
+    // {
+    //   path : '/profile',
+    //   name : 'profile',
+    //   component: profile
+      
+    // },
+    // {
+    //   path : '/historique',
+    //   name : 'historique',
+    //   component: historique
+      
+    // },
 
     
     

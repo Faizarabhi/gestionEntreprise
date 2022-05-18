@@ -1,34 +1,91 @@
 <template>
     <div >
-        <div  class="relative" id="resize" :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-4 ': 'w-20 h-screen bg-dash-bleu ' ">
-            <div class="absolute  right-0 top-4 z-50  rotate-90 "   v-on:click="show">
+        <div  class="relative fixed z-40 " :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-x-4 ': 'w-2/4 h-screen bg-dash-bleu ' ">
+            <div class="absolute  right-0 top-4 z-50  rotate-90 cursor-row-resize  sidebar"   v-on:click="show">
                 <i class="fa-solid fa-circle-chevron-down "   style="color:#F8F9FF !important; "></i>
             </div>
         <a href="/">
-        <img src="../../assets/images/logo1.svg" :class=" isShow? ' p-4 pt-16 w-36' : 'p-4 pt-16'" alt="Flowbite Logo">
+        <img src="../../assets/images/logo1.svg" :class=" isShow? ' p-4 pt-16 w-36' : 'p-4 pt-16'" alt="logo ">
         </a>  
-        <ul>
-            <li class="p-8"><i class="fa-solid fa-chart-line"  style="color:#F8F9FF !important; "></i> <span v-if="isShow"> Analytic </span></li>
-            <li class="p-8"><i class="fa-solid fa-magnifying-glass" style="color:#F8F9FF !important; "></i><span v-if="isShow"> Analytic </span></li>
+        <div class="menu-items flex flex-col ">
+            <router-link to ="/profile" class="side-btn " active-class="active" tag="button"> <div class="link-container pl-16"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > Analytic </span></div></router-link>
+            <router-link to ="/historique"  class="side-btn "  active-class="active" tag="button"> <div class="link-container pl-16 "> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > historique </span></div></router-link>
             
-        </ul> 
+            
+        </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            isShow : true
-        }
+    props:{
+        isShow:Boolean,
+        show: Function,
     },
-      methods: {
-        show : function(){
-          this.isShow =!this.isShow
-          
-        //   alert("mal7bek!")
 
         }
-  }}
 
 </script>
+
+<style scoped>
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-left: 6px;
+}
+.menu-items > * {
+    margin-top: 60px;
+}
+.side-btn {
+    border: none;
+    padding: 16px 0px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background-color: transparent;
+}
+.side-btn:focus {
+    outline: none;
+}
+.side-btn.active {
+    position: relative;
+    background-color: #ffffff60;
+    color : #081A51;
+    font-weight: 600;
+    margin-left: 10px;
+    border-radius: 30px 0 0 30px;
+}
+.side-btn.active::before {
+    top: -30px;
+}
+.side-btn.active::after {
+    bottom: -30px;
+}
+.side-btn.active::before, .side-btn.active::after {
+    position: absolute;
+    content: "";
+    right: 0;
+    height: 30px;
+    width: 30px;
+    background-color: #ffffff60;
+}
+.side-btn.active .link-container::before {
+    top: -60px;
+}
+.side-btn.active .link-container::after {
+    bottom: -60px;
+    z-index: 99;
+}
+.side-btn.active .link-container::before, .side-btn.active .link-container::after {
+    position: absolute;
+    content: "";
+    right: 0px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #081A51;
+}
+</style>
