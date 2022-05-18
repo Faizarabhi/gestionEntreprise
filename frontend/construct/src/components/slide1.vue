@@ -2,7 +2,7 @@
 <div class="container">
         <h2 class="font-bold text-secondary text-3xl my-5 text-center">Our Reputation</h2>
 
-    <div class="flex justify-evenly" >
+    <div class="flex  flex-col items-center md:justify-evenly md:flex-row   " >
         <div  class="p-6 max-w-xs bg-white rounded border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                
             <a href="#" class="">
