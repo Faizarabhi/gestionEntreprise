@@ -8,11 +8,12 @@
         public function __construct()
         {
             $this->getUrl();
-            $this->render();   
+            $this->render();
         }
 
         private function getUrl()
         {
+            // facebook.com/heyeeueu
             $url = $_GET['url'];
 
             if(!empty($url) && isset($_GET['url']))
@@ -46,7 +47,6 @@
                 }else{
                     require_once APPROOT . '/views/error404.php';
                 }
-
             }else{
                 require_once APPROOT . '/views/error404.php';
             }

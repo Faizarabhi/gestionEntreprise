@@ -1,38 +1,29 @@
 <?php
-
     class Admin {
-
         private $db;
 
         public function __construct()
         {
-            $this->db = new Database;
+            $this->db = new Database();
         }
 
-        public function insertAll()
+        public function selectUser()
         {
-            $this->db->query("INSERT INTO TABLE (name, password, age) VALUES (:name, :password, :age)");
+            $this->db->query("SELECT * FROM user");
+            $this->db->single();
+        }
+        
+        public function insertUser($name, $password)
+        {
+            $this->db->query("INSERT INTO user (name, password) VALUES (:name, :password)");
 
             // Bind Values
-            $this->db->bind(':name', $_POST['name']);
-            $this->db->bind(':password', $_POST['password']);
-            $this->db->bind(':age', $_POST['age']);
+            $this->db->bind(':name', $name);
+            $this->db->bind(':password', $password);
 
             return $this->db->execute();
+
         }
         
-        public function insert()
-        {
-            $this->db->query("INSERT INTO TABLE (name, password, age) VALUES (:name, :password, :age)");
 
-            // Bind Values
-            $this->db->bind(':name', $_POST['name']);
-            $this->db->bind(':password', $_POST['password']);
-            $this->db->bind(':age', $_POST['age']);
-
-            return $this->db->single();
-        }
-
-        
-        
     }
