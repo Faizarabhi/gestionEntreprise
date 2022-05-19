@@ -113,7 +113,7 @@ export default {
                                 
                             router.push('/admin');}
                             else{
-                              console.log('hello')
+                              alert('rak ghalet')
                             }
                             
                         })
