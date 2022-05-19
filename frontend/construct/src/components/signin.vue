@@ -34,6 +34,7 @@
                 id="email-address-icon"
                 class="w-48 md:w-96 mt-8 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="name@flowbite.com"
+                v-model = "form.email"
               />
             </div>
 
@@ -41,6 +42,7 @@
               type="text"
               class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
               placeholder="Mot de passe"
+              v-model = "form.password"
             />
             <!-- <input
               type="text"
@@ -69,23 +71,34 @@
   </div>
 </template>
 <script>
-const formdata = {
-    email :"",
-    password: ""
-}
-export default{
-    data () {
-        return{
-            form:formdata,
-        }
+const formInfo = {
+  email: "",
+  password: "",
+};
+
+export default {
+  data() {
+    return {
+      form: formInfo,
+    };
+  },
+  methods: {
+        checkUser() {
+          console.log("hello")
+          fetch("http://localhost/filrouge/backend/public/adminController/check_admin",
+        {
+            method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
     },
-    methods: {
-        checkUser(){
-            fetch("http://localhost/filrouge/backend/Admin/check_admin",{
-                method: 'POST'
-                body : JSON
-            })
+          body: JSON.stringify(this.form),
         }
+      ).then(res=> res.json()).then(out=>console.log(out))
+      
+                    
+      }
+      
     },
-}
+  }
 </script>

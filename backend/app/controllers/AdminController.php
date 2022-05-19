@@ -23,6 +23,7 @@ class AdminController extends Controller
             if($result){
                 echo json_encode(["message" => "success", "data" => $result]);
             }else{
+              // die("error mn hna");
                 echo json_encode(["message" => "error not created"]);
             }
         }
