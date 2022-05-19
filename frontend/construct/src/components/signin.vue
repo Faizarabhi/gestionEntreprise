@@ -71,6 +71,8 @@
   </div>
 </template>
 <script>
+import router from '../router';
+
 const formInfo = {
   email: "",
   password: "",
@@ -84,7 +86,7 @@ export default {
   },
   methods: {
         checkUser() {
-          console.log("hello")
+          // console.log("hello")
           fetch("http://localhost/filrouge/backend/public/adminController/check_admin",
         {
             method: 'POST',
@@ -94,7 +96,28 @@ export default {
     },
           body: JSON.stringify(this.form),
         }
-      ).then(res=> res.json()).then(out=>console.log(out))
+      ).then(res => {
+                    if(res.status == 200)
+                    {res.json()
+                        .then(out => {
+                            let data = out.data;
+                            // Cookies.set('id',data.id)
+                            // Cookies.set('name',data.name);
+                            // console.log(data.name)
+                            // console.log(data.id)
+                            
+                            console.log(out)
+                              if(data){
+                                this.$cookies.set('id',data.id);
+                                this.$cookies.set('name',data.name);
+                                
+                            router.push('/admin');}
+                            else{
+                              console.log('hello')
+                            }
+                            
+                        })
+                    }})
       
                     
       }
