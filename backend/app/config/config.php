@@ -8,7 +8,7 @@
   // App Root
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
-  define('URLROOT', 'http://localhost/backend');
+  define('URLROOT', 'http://localhost/filrouge/backend');
   // Site Name
   define('SITENAME', 'jdid');
   // App Version

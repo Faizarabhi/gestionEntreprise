@@ -5,11 +5,14 @@ class Admin
 
     public function __construct()
     {
+        // die("hello from admin model");
         $this->db = new Database;
     }
     public function checkAdmin($data)
     {
-        die("hello from admin model");
+        // die("hello hibaaaaaaaaaaaaaaaaaaaaaa from admin model");
+
+        // print_r($data);
         $this->db->query("SELECT * FROM admin WHERE password = :password and  email = :email");
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
