@@ -63,8 +63,15 @@ export default {
   },
   methods:{
     addUser (){
-      console.log("add user")
-    }
+     
+            fetch("http://localhost/filrouge/backend/public/CustomerController/add_customer", {
+                method: 'POST',
+                body: JSON.stringify(this.form),
+            }).then(res => res.json())
+            .then(user => this.showAlert("This is your email for this website :<br/> "+user.data.email+" <br/>save it!!"))
+            router.push('sign_in')
+            this.form = initialFormState;
+        },
   }
 };
 </script>

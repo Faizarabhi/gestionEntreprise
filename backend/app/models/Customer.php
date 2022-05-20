@@ -35,11 +35,9 @@ class Customer
         $this->db->bind(':photo', $data['photo']);
         $this->db->bind(':type', $data['type']);
         try {
-            return $this->db->single();
+            return $this->db->execute() ? $data : false;
         } catch (PDOException $e) {
             return $e->getMessage();
         }
     }
-   
-    
 }
