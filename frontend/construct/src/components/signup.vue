@@ -56,21 +56,28 @@
 
 <script>
 import router from "@/router";
-
+const formadduser = {
+    name: "",
+        tel: "",
+        photo: "",
+        type: "",
+        email: "",
+        password: ""
+}
 export default {
   data(){
-    return 
+    return {form : formadduser}
   },
   methods:{
     addUser (){
      
             fetch("http://localhost/filrouge/backend/public/CustomerController/add_customer", {
                 method: 'POST',
-                body: JSON.stringify(this.jj),
+                body: JSON.stringify(this.form),
             }).then(res => res.json())
             .then(user => this.showAlert("This is your email for this website :<br/> "+user.data.email+" <br/>save it!!"))
             router.push('sign_in')
-            this.form = initialFormState;
+            this.form = formadduser;
         },
   }
 };
