@@ -10,27 +10,31 @@
             >Votre espace client
             <span class="font-medium text-sm">Rabhi Construction</span></label
           >
-          <form  @submit.prevent="addUser">
+          <form @submit.prevent="addUser">
             <div class="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Taper name"
+                v-model="form.name"
               />
               <input
                 type="email"
                 class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Taper Email Verfication"
+                v-model="form.email"
               />
               <input
                 type="password"
                 class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Mot de passe"
+                v-model="form.password"
               />
               <input
                 type="tel"
                 class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Votr numero de telephone"
+                v-model="form.tel"
               />
               <input
                 type="password"
@@ -43,7 +47,10 @@
                 >Avez vous déja un compte ?
               </a>
 
-              <button class="bg-black text-white md:px-32 rounded mt-8 py-2">
+              <button
+                type="submit"
+                class="bg-black text-white md:px-32 rounded mt-8 py-2"
+              >
                 Me connecter
               </button>
             </div>
@@ -57,28 +64,33 @@
 <script>
 import router from "@/router";
 const formadduser = {
-    name: "",
-        tel: "",
-        photo: "",
-        type: "",
-        email: "",
-        password: ""
-}
+  name: "",
+  tel: "",
+  photo: "",
+  type: "",
+  email: "",
+  password: "",
+};
 export default {
-  data(){
-    return {form : formadduser}
+  data() {
+    return { form: formadduser };
   },
-  methods:{
-    addUser (){
-     
-            fetch("http://localhost/filrouge/backend/public/CustomerController/add_customer", {
-                method: 'POST',
-                body: JSON.stringify(this.form),
-            }).then(res => res.json())
-            .then(user => this.showAlert("This is your email for this website :<br/> "+user.data.email+" <br/>save it!!"))
-            router.push('sign_in')
-            this.form = formadduser;
-        },
-  }
+  methods: {
+    addUser() {
+      fetch(
+        "http://localhost/filrouge/backend/public/CustomerController/add_customer",
+        {
+          method: "POST",
+          body: JSON.stringify(this.form),
+        }
+      )
+        .then((res) => res.json())
+        .then((user) =>
+         console.log("user addede")
+        );
+      router.push("login");
+      this.form = formadduser;
+    },
+  },
 };
 </script>

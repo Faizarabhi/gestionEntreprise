@@ -28,8 +28,10 @@ public function check_customer(){
         // die("error mn methode customer hna");
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = json_decode(file_get_contents("php://input"), true);
+            $email ="CL-".$data['email'];
+            // $result = $this->userModel->newClient([...$data, "id" => $id]);
 
-            $result = $this->customerModel->add_customer($data);
+            $result = $this->customerModel->add_customer([...$data, "email" => $email]);
             if ($result) {
                 echo json_encode(["message" => "success", "data" => $result]);
             } else {
