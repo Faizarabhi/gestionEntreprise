@@ -34,7 +34,7 @@
                 id="email-address-icon"
                 class="w-48 md:w-96 mt-8 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="name@flowbite.com"
-                v-model = "form.email"
+                v-model="form.email"
               />
             </div>
 
@@ -42,7 +42,7 @@
               type="text"
               class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
               placeholder="Mot de passe"
-              v-model = "form.password"
+              v-model="form.password"
             />
             <!-- <input
               type="text"
@@ -71,10 +71,11 @@
   </div>
 </template>
 <script>
-import router from '../router';
+import router from "../router";
 
 const formInfo = {
   email: "",
+  name: "",
   password: "",
 };
 
@@ -85,43 +86,79 @@ export default {
     };
   },
   methods: {
-        checkUser() {
-          // console.log("hello")
-          fetch("http://localhost/filrouge/backend/public/adminController/check_admin",
-        {
-            method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-          body: JSON.stringify(this.form),
-        }
-      ).then(res => {
-                    if(res.status == 200)
-                    {res.json()
-                        .then(out => {
-                            let data = out.data;
-                            // Cookies.set('id',data.id)
-                            // Cookies.set('name',data.name);
-                            // console.log(data.name)
-                            // console.log(data.id)
-                            
-                            console.log(out)
-                              if(data){
-                                this.$cookies.set('id',data.id);
-                                this.$cookies.set('name',data.name);
-                                
-                            router.push('/admin');}
-                            else{
-                              alert('rak ghalet')
-                            }
-                            
-                        })
-                    }})
-      
-                    
+    checkUser() {
+      // console.log("hello")
+      let email =formInfo.email 
+            let check = email.slice(0,2)
+      if (check === "cl" ||check === "CL") {
+        fetch(
+          "http://localhost/filrouge/backend/public/CustomerController/check_customer",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.form),
+          }).then(res => {
+            if(res.status == 200 ){
+              // console.log("hello api customer")
+                res.json().then((out) => {
+              let data = out.data;
+              // Cookies.set('id',data.id)
+              // Cookies.set('name',data.name);
+              // console.log(data.name)
+              // console.log(data.id)
+
+              console.log(out);
+              if (data) {
+                this.$cookies.set("idcustomer", data.id);
+                // this.$cookies.set("name", data.name);
+                this.$cookies.set("email", data.email);
+
+                router.push("/Customer");
+              } else {
+                
+                alert("rak ghalet");
+              }
+            });
+              
+            }
+          });
+      } else {
+        fetch(
+          "http://localhost/filrouge/backend/public/adminController/check_admin",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.form),
+          }
+        ).then((res) => {
+          if (res.status == 200) {
+            res.json().then((out) => {
+              let data = out.data;
+              // Cookies.set('id',data.id)
+              // Cookies.set('name',data.name);
+              // console.log(data.name)
+              // console.log(data.id)
+
+              console.log(out);
+              if (data) {
+                this.$cookies.set("idadmin", data.id);
+                this.$cookies.set("email", data.name);
+
+                router.push("/admin");
+              } else {
+                alert("rak ghalet");
+              }
+            });
+          }
+        });
       }
-      
     },
-  }
+  },
+};
 </script>

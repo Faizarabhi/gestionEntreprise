@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import SigneupView from '../views/SigneupView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import CustomerView from '../views/CustomerView.vue'
 // import profile from '../components/DashboardComponents/profile.vue'
 // import historique from '../components/DashboardComponents/historique.vue'
 
@@ -27,6 +28,12 @@ const router = createRouter({
       
     },
     {
+      path : '/Customer',
+      name : 'Customer',
+      component: CustomerView
+      
+    },
+    {
       path : '/admin',
       name : 'admin',
       component: DashboardView,
@@ -38,7 +45,16 @@ const router = createRouter({
         {
           path:'/historique',
         component: ()=> import('../components/DashboardComponents/historique.vue')
+        },
+        {
+          path:'/orders',
+        component: ()=> import('../components/DashboardComponents/orders.vue')
         }
+        ,
+        {
+          path:'/product',
+        component: ()=> import('../components/DashboardComponents/product.vue')
+        },
       ]
 
       

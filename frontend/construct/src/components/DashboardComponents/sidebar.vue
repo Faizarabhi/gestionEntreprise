@@ -9,8 +9,10 @@
         <img src="../../assets/images/logo1.svg" :class=" isShow? ' p-4 pt-36 w-36' : 'p-4 pt-36'" alt="logo ">
         </a>  
         <div class="menu-items flex flex-col ">
-            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > Analytic </span></div></router-link>
-            <router-link to ="/historique" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > Analytic </span></div></router-link>
+            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-user-tag" style="color:black !important; "></i>  <span v-if="isShow" class="" > user  </span></div></router-link>
+            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-truck-ramp-box" style="color:black !important; "></i>  <span v-if="isShow" class="" > cmd  </span></div></router-link>
+            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > Product </span></div></router-link>
+            <router-link to ="/historique" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > statistic </span></div></router-link>
             
             
         </div>

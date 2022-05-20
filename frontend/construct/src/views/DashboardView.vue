@@ -28,8 +28,8 @@ export default {
       },
       beforeMount() {
 
-      let id_check = this.$cookies.get("id");
-      console.log(id_check)
+      let id_check = this.$cookies.get("idadmin");
+      // console.log(id_check)
       if(!id_check) router.push('/login')
 
       
