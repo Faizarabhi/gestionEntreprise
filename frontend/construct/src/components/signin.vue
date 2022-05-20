@@ -113,6 +113,7 @@ export default {
               console.log(out);
               if (data) {
                 this.$cookies.set("idcustomer", data.id);
+                this.$cookies.set("name", data.name);
                 // this.$cookies.set("name", data.name);
                 this.$cookies.set("email", data.email);
 

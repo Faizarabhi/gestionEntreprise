@@ -8,7 +8,7 @@
 <script>
 export default {
     data (){
-        name: ""
+       return {name: ""} 
     },
 mounted(){
         this.name = this.$cookies.get("name");
