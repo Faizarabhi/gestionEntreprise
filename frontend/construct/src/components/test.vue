@@ -25,6 +25,7 @@
             <a href="#services" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 text-lg font-normal md:hover:text-primary md:p-0 ">Services</a>
             </li>
             <li>
+
             <a href="/login" class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:text-secondary md:p-0 text-lg font-normal dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact Us</a>
             </li>
             </ul>
@@ -33,3 +34,6 @@
             </nav>
         </div>
 </template>
+<script>
+
+</script>

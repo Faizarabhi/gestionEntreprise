@@ -35,11 +35,11 @@ export default {
 .menu-items {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     margin-left: 6px;
 }
 .menu-items > * {
-    margin-top: 60px;
+    margin-top: 40px;
 }
 .side-btn {
     border: none;
