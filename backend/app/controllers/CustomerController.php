@@ -35,7 +35,7 @@
                 } else {
                     echo json_encode(["message" => "error not select"]);
                 }
-                    
+                // // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
             }
             public function get_customer()
             {
