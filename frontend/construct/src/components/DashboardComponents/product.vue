@@ -102,8 +102,9 @@
                 v-model="form.categorie"
                 />
             </div>
-            <div class="modal-action">
-                <button type="submite" @click="pushproduct"  class="btn bg-dash-bleu hover:bg-scroll-bleu">ADD 
+            <div class="modal-action" >
+                <button 
+                type="submite" v-on:click="getAllProduct"   class="btn bg-dash-bleu hover:bg-scroll-bleu" >ADD 
                 </button>
             </div>
             </form>
@@ -158,10 +159,10 @@
         ).then((res) => res.json());
         router.push("/product");
         },
-        pushproduct: function () {
-        this.product.push(this.form.product);
-        console.log(this.form.product);
-        },
+            pushproduct: function () {
+            this.product.push(this.form.product);
+            console.log(this.form.product);
+            },
         deleteProduct() {
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/delete_product",

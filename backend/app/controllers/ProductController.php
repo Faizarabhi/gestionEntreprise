@@ -38,6 +38,17 @@
                     echo json_encode(["message" => "error not select"]);
                 }
             }
+            public function get_product()
+            {
+
+                $id = json_decode(file_get_contents("php://input"), true);
+                $result = $this->productModel->get_product($id);
+                if ($result) {
+                    echo json_encode($result);
+                } else {
+                    echo json_encode(["message" => "error not select"]);
+                }
+            }
             public function update_product()
             {
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

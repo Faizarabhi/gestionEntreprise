@@ -22,6 +22,28 @@
                     return $e->getMessage();
                 }
             }
+            public function getAll_customer()
+            {
+                $this->db->query('SELECT * FROM customer  ');
+                try {
+                    return $this->db->resultSet();
+                } catch (PDOException $e) {
+                    return $e->getMessage();
+                }
+            }
+            public function get_customer($data)
+            {
+                // print_r($id);
+                // http://localhost/filrouge/backend/public/CustomerController/get_customer
+                $this->db->query('SELECT * FROM customer  Where id = :id');
+                $this->db->bind(':id', $data['id']);
+
+                try {
+                    return $this->db->single();
+                } catch (PDOException $e) {
+                    return $e->getMessage();
+                }
+            }
             public function add_customer($data)
             {
                 // die("hello hibaaaaaaaaaaaaaaaaaaaaaa from admin model");

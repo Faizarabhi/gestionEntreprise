@@ -42,6 +42,20 @@
                 } catch (PDOException $e) {
                     return $e->getMessage();
                 }
+                // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
+            }
+            public function get_product($data)
+            {
+                // print_r($id);
+                // http://localhost/filrouge/backend/public/ProductController/get_product
+                $this->db->query('SELECT * FROM produit  Where id = :id');
+                $this->db->bind(':id', $data['id']);
+
+                try {
+                    return $this->db->single();
+                } catch (PDOException $e) {
+                    return $e->getMessage();
+                }
             }
             public function update_product($data)
             {
