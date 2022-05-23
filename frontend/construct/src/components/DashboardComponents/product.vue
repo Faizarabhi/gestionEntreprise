@@ -17,48 +17,19 @@
             </svg>
             </a>
         </div>
-        <div class="overflow-x-auto">
-            <table class="table table-compact w-full">
-            <thead>
-                <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>company</th>
-                <th>location</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                </tr>
-            </thead>
-            <tbody v-for="index in 1" :key="index">
-                <tr v-for="pro in product" :key="pro">
-                <th>{{ pro.ref_prdt }}</th>
-                <td>{{ pro.designation }}</td>
-                <td>{{ pro.categorie }}</td>
-                <td>{{ pro.unite }}</td>
-                <td>{{ pro.unite }}</td>
-                <td>Edit</td>
-                <td>Update</td>
-                <td>Delete</td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-        </div>
+        <!-- The button to open modal -->
 
-        <!-- Put this part before </body> tag -->
-        <div class="modal" id="addproduct">
-        <div class="modal-box">
-            <a
-            href="#"
-            for="my-modal-3"
-            class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
-            >✕</a
+        <!--  Update Product! -->
+        
+        <div class="modal" id="update_product">
+            <div class="modal-box relative">
+            <label
+                for="my-modal-3"
+                class="btn btn-sm btn-circle absolute right-2 top-2"
+                >✕</label
             >
-            <h3 class="font-bold text-lg">Congratulations random Interner user!</h3>
-            <!-- `ref_prdt`, `designation`, `unite`, `categorie` -->
-            <form @submit.prevent="addProduct">
+            <h3 class="text-lg font-bold">Update Product!</h3>
+            <input v-model="form.id" disabled/>
             <div class="form-control w-full max-w-xs">
                 <label class="label">
                 <span class="label-text">Reference produit</span>
@@ -102,13 +73,119 @@
                 v-model="form.categorie"
                 />
             </div>
-            <div class="modal-action" >
-                <button 
-                type="submite" v-on:click="getAllProduct"   class="btn bg-dash-bleu hover:bg-scroll-bleu" >ADD 
-                </button>
+            <div class="modal-action">
+                <a 
+                
+                @click="updateProduct(form.id)"
+                href="#"
+                for="my-modal-3"
+                class="btn bg-dash-bleu hover:bg-scroll-bleu"
+                >Update
+                </a>
             </div>
-            </form>
-            <!-- <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p> -->
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
+            <thead>
+                <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Job</th>
+                <th>company</th>
+                <th>location</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody v-for="index in 1" :key="index">
+                <tr v-for="pro in product" :key="pro">
+                <th>{{pro.id}}</th>
+                <th>{{ pro.ref_prdt }}</th>
+                <td>{{ pro.designation }}</td>
+                <td>{{ pro.categorie }}</td>
+                <td>{{ pro.unite }}</td>
+                <td>{{ pro.unite }}</td>
+                
+                <td>
+                    <a
+            href="#update_product"
+            class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+            ></a>
+                </td>
+                <td><a @click="deleteProduct(pro.id)">  Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        </div>
+
+        <!-- ADD Product  -->
+        <div class="modal" id="addproduct">
+        <div class="modal-box">
+            <a
+            href="#"
+            for="my-modal-3"
+            class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
+            >✕</a
+            >
+            <h3 class="font-bold text-lg">ADD PRODUCT!</h3>
+            <!-- `ref_prdt`, `designation`, `unite`, `categorie` -->
+
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Reference produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.ref_prdt"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Designation produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">unite produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.unite"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Categorie produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.categorie"
+            />
+            </div>
+            <div class="modal-action">
+            <a
+                @click="addProduct"
+                href="#"
+                for="my-modal-3"
+                class="btn bg-dash-bleu hover:bg-scroll-bleu"
+                >ADD
+            </a>
+            </div>
         </div>
         </div>
     </div>
@@ -121,7 +198,9 @@
     data() {
         return {
         product: [],
+        title:"",
         form: {
+            id: "",
             ref_prdt: "",
             designation: "",
             unite: "",
@@ -147,9 +226,13 @@
             body: JSON.stringify(this.form),
             }
         ).then((res) => res.json());
+        this.product.push(this.form);
         router.push("/product");
         },
-        updateProduct() {
+        updateProduct(id) {
+        // console.log($id);
+            this.form.id = id;
+            // console.log(this.form.id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/update_product",
             {
@@ -159,19 +242,24 @@
         ).then((res) => res.json());
         router.push("/product");
         },
-            pushproduct: function () {
-            this.product.push(this.form.product);
-            console.log(this.form.product);
-            },
-        deleteProduct() {
+        pushproduct: function () {
+        // this.product.push(this.form.product);
+        this.getAllProduct();
+        console.log(this.form.product);
+        },
+        deleteProduct(id) {
+            // console.log(id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/delete_product",
             {
             method: "POST",
-        body: JSON.stringify(id),
-      })
-        .then((res) => res.json())
-        .then((out) => console.log(out));
+            body: JSON.stringify(id),
+            }
+        )
+            .then((res) => res.json())
+            .then((out) => console.log(out));
+            this.getAllProduct();
+            
         },
     },
     };
