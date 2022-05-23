@@ -14,17 +14,21 @@
               <th>location</th>
               <th>Last Login</th>
               <th>Favorite Color</th>
+              <th>Favorite Color</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="index in 1" :key="index">
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Littel, Schaden and Vandervort</td>
-              <td>Canada</td>
-              <td>12/16/2020</td>
-              <td>Blue</td>
+            <!-- <tr v-for="index in 1" :key="index"> -->
+            <tr v-for="order in order" :key="order">
+              <td>{{order.id}}</td>
+              <td>{{order.qte}}</td>
+              <td>{{order.type_mouvement}}</td>
+              <td>{{order.name}}</td>
+              <td>{{order.tel}}</td>
+              <td>{{order.ref_prdt}}</td>
+              <td>{{order.email}}</td>
+              <td>{{order.id_produit}}</td>
+              
             </tr>
           </tbody>
         </table>
@@ -32,3 +36,34 @@
     </div>
   </div>
 </template>
+<script>
+import router from "@/router";
+
+export default {
+  data() {
+    return {
+      order: [],
+      form: {
+        id: "",
+        qte: "",
+        type_mouvement: "",
+        id_customer: "",
+        id_produit: "",
+      },
+    };
+  },
+  mounted() {
+    this.getAllProduct();
+  },
+  methods: {
+    async getAllProduct() {
+      let respons = await fetch(
+        "http://localhost/filrouge/backend/public/OrderController/getAll_order"
+      );
+
+      this.order = await respons.json();
+      console.log(this.order);
+    },
+  },
+};
+</script>
