@@ -20,7 +20,7 @@
         <!-- The button to open modal -->
 
         <!--  Update Product! -->
-        
+
         <div class="modal" id="update_product">
             <div class="modal-box relative">
             <label
@@ -29,7 +29,7 @@
                 >✕</label
             >
             <h3 class="text-lg font-bold">Update Product!</h3>
-            <input v-model="form.id" disabled/>
+            <input v-model="form.id" disabled />
             <div class="form-control w-full max-w-xs">
                 <label class="label">
                 <span class="label-text">Reference produit</span>
@@ -74,8 +74,7 @@
                 />
             </div>
             <div class="modal-action">
-                <a 
-                
+                <a
                 @click="updateProduct(form.id)"
                 href="#"
                 for="my-modal-3"
@@ -101,21 +100,20 @@
             </thead>
             <tbody v-for="index in 1" :key="index">
                 <tr v-for="pro in product" :key="pro">
-                <th>{{pro.id}}</th>
+                <th>{{ pro.id }}</th>
                 <th>{{ pro.ref_prdt }}</th>
                 <td>{{ pro.designation }}</td>
                 <td>{{ pro.categorie }}</td>
                 <td>{{ pro.unite }}</td>
                 <td>{{ pro.unite }}</td>
-                
+
                 <td>
                     <a
-            href="#update_product"
-            class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
-            ></a>
+                    href="#update_product"
+                    class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+                    ></a>
                 </td>
-                <td><a @click="deleteProduct(pro.id)">  Delete</a>
-                    </td>
+                <td><a @click="deleteProduct(pro.id)"> Delete</a></td>
                 </tr>
             </tbody>
             </table>
@@ -193,12 +191,12 @@
 
     <script>
     import router from "@/router";
-
+    import add from "@/DashboardComponents/buttons/add.vue";
     export default {
     data() {
         return {
         product: [],
-        title:"",
+        title: "",
         form: {
             id: "",
             ref_prdt: "",
@@ -207,6 +205,9 @@
             categorie: "",
         },
         };
+    },
+    components: {
+        add,
     },
     mounted() {
         this.getAllProduct();
@@ -231,8 +232,8 @@
         },
         updateProduct(id) {
         // console.log($id);
-            this.form.id = id;
-            // console.log(this.form.id)
+        this.form.id = id;
+        // console.log(this.form.id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/update_product",
             {
@@ -248,7 +249,7 @@
         console.log(this.form.product);
         },
         deleteProduct(id) {
-            // console.log(id)
+        // console.log(id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/delete_product",
             {
@@ -258,8 +259,7 @@
         )
             .then((res) => res.json())
             .then((out) => console.log(out));
-            this.getAllProduct();
-            
+        this.getAllProduct();
         },
     },
     };

@@ -53,10 +53,10 @@ export default {
     };
   },
   mounted() {
-    this.getAllProduct();
+    this.getAllOrder();
   },
   methods: {
-    async getAllProduct() {
+    async getAllOrder() {
       let respons = await fetch(
         "http://localhost/filrouge/backend/public/OrderController/getAll_order"
       );
@@ -64,6 +64,51 @@ export default {
       this.order = await respons.json();
       console.log(this.order);
     },
+    
   },
+  addOrder() {
+        fetch(
+            "http://localhost/filrouge/backend/public/OrderController/add_order",
+            {
+            method: "POST",
+            body: JSON.stringify(this.form),
+            }
+        ).then((res) => res.json());
+        this.Order.push(this.form);
+        router.push("/Order");
+        },
+        updateOrder(id) {
+        // console.log($id);
+            this.form.id = id;
+            // console.log(this.form.id)
+        fetch(
+            "http://localhost/filrouge/backend/public/OrderController/update_order",
+            {
+            method: "POST",
+            body: JSON.stringify(this.form),
+            }
+        ).then((res) => res.json());
+        router.push("/Order");
+        },
+        pushOrder: function () {
+        // this.Order.push(this.form.Order);
+        this.getAllOrder();
+        console.log(this.form.Order);
+        },
+        deleteOrder(id) {
+            // console.log(id)
+        fetch(
+            "http://localhost/filrouge/backend/public/OrderController/delete_order",
+            {
+            method: "POST",
+            body: JSON.stringify(id),
+            }
+        )
+            .then((res) => res.json())
+            .then((out) => console.log(out));
+            this.getAllOrder();
+            
+        },
+  
 };
 </script>

@@ -41,8 +41,8 @@
                         $data = json_decode(file_get_contents("php://input"), true);
                         
                         // $result = $this->userModel->newClient([...$data, "id" => $id]);
-
                         $result = $this->orderModel->add_order($data);
+                        // die($result);
                         if ($result) {
                             echo json_encode(["message" => "success", "data" => $result]);
                         } else {

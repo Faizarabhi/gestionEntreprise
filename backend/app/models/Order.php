@@ -31,6 +31,7 @@ class Order
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+
     }
 
 
@@ -38,13 +39,45 @@ class Order
 
 
 
+public function add_order($data)
+            {
+                
+                $this->db->query("INSERT INTO `orderclient`(`qte`, `type_mouvement`, `id_customer`, `id_produit`) VALUES (:qte,:type_mouvement,:id_customer,:id_produit)");
+                $this->db->bind(':qte', $data['qte']);
+                $this->db->bind(':type_mouvement', $data['type_mouvement']);
+                $this->db->bind(':id_customer', $data['id_customer']);
+                $this->db->bind(':id_produit', $data['id_produit']);
+               
+                try {
+                    return $this->db->execute() ? $data : false;
+                } catch (PDOException $e) {
+                    return $e->getMessage();
+                }
+            }
 
 
 
 
 
+            public function update_order($data)
+            {   
+                // $data['id']=42;
+                
+                $this->db->query("UPDATE orderclient SET qte = :qte, type_mouvement = :type_mouvement, id_customer =:id_customer, id_produit = :id_produit  WHERE id= :id");
+                $this->db->bind(':id', $data['id']);
+                $this->db->bind(':qte', $data['qte']);
+                $this->db->bind(':type_mouvement', $data['type_mouvement']);
+                $this->db->bind(':id_customer', $data['id_customer']);
+                $this->db->bind(':id_produit', $data['id_produit']);
 
-
+                try {
+                    
+                    return $this->db->execute();
+                } catch (PDOException $e) {
+                    die($e->getMessage());
+                    return $e->getMessage();
+                }
+            }
 
 
 
