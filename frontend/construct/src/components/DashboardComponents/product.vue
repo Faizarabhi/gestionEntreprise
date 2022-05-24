@@ -19,71 +19,6 @@
         </div>
         <!-- The button to open modal -->
 
-        <!--  Update Product! -->
-
-        <div class="modal" id="update_product">
-            <div class="modal-box relative">
-            <label
-                for="my-modal-3"
-                class="btn btn-sm btn-circle absolute right-2 top-2"
-                >✕</label
-            >
-            <h3 class="text-lg font-bold">Update Product!</h3>
-            <input v-model="form.id" disabled />
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Reference produit</span>
-                </label>
-                <input
-                type="text"
-                placeholder="Type here"
-                class="input input-bordered w-full max-w-xs"
-                v-model="form.ref_prdt"
-                />
-            </div>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Designation produit</span>
-                </label>
-                <input
-                type="text"
-                placeholder="Type here"
-                class="input input-bordered w-full max-w-xs"
-                />
-            </div>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">unite produit</span>
-                </label>
-                <input
-                type="text"
-                placeholder="Type here"
-                class="input input-bordered w-full max-w-xs"
-                v-model="form.unite"
-                />
-            </div>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Categorie produit</span>
-                </label>
-                <input
-                type="text"
-                placeholder="Type here"
-                class="input input-bordered w-full max-w-xs"
-                v-model="form.categorie"
-                />
-            </div>
-            <div class="modal-action">
-                <a
-                @click="updateProduct(form.id)"
-                href="#"
-                for="my-modal-3"
-                class="btn bg-dash-bleu hover:bg-scroll-bleu"
-                >Update
-                </a>
-            </div>
-            </div>
-        </div>
         <div class="overflow-x-auto">
             <table class="table table-compact w-full">
             <thead>
@@ -109,6 +44,7 @@
 
                 <td>
                     <a
+                    @click="handleUpdate(pro)"
                     href="#update_product"
                     class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
                     ></a>
@@ -186,12 +122,81 @@
             </div>
         </div>
         </div>
+
+
+
+        <!--  Update Product! -->
+
+        <div class="modal" id="update_product">
+        <div class="modal-box relative">
+            <a
+            href="#"
+            for="my-modal-3"
+            class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
+            >✕</a
+            >
+            <h3 class="text-lg font-bold">Update Product!</h3>
+            <input v-model="form.id" disabled />
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Reference produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.ref_prdt"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Designation produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">unite produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.unite"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Categorie produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.categorie"
+            />
+            </div>
+            <div class="modal-action">
+            <a
+                @click="updateProduct(form.id)"
+                href="#"
+                for="my-modal-3"
+                class="btn bg-dash-bleu hover:bg-scroll-bleu"
+                >Update
+            </a>
+            </div>
+        </div>
+        </div>
     </div>
     </template>
 
     <script>
     import router from "@/router";
-    import add from "@/DashboardComponents/buttons/add.vue";
+
     export default {
     data() {
         return {
@@ -205,9 +210,6 @@
             categorie: "",
         },
         };
-    },
-    components: {
-        add,
     },
     mounted() {
         this.getAllProduct();
@@ -230,9 +232,16 @@
         this.product.push(this.form);
         router.push("/product");
         },
+        handleUpdate(product) {
+        this.form.id = product.id;
+        this.form.ref_prdt = product.ref_prdt;
+        this.form.designation = product.designation;
+        this.form.unite = product.unite;
+        this.form.categorie = product.categorie;
+        },
         updateProduct(id) {
         // console.log($id);
-        this.form.id = id;
+        // this.form.id = $id;
         // console.log(this.form.id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/update_product",
@@ -241,7 +250,8 @@
             body: JSON.stringify(this.form),
             }
         ).then((res) => res.json());
-        router.push("/product");
+        this.getAllProduct();
+        // router.push("/product");
         },
         pushproduct: function () {
         // this.product.push(this.form.product);

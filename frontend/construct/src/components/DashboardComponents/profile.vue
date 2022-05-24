@@ -3,6 +3,20 @@
     <div
       class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
     >
+      <div class="py-8">
+        <a
+          href="#adduser"
+          class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+            <path
+              d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+              clip-rule="evenodd"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </a>
+      </div>
       <table class="table w-full">
         <!-- head -->
         <thead>
@@ -15,6 +29,7 @@
             <th>Name</th>
             <th>Job</th>
             <th>Favorite Color</th>
+            <th></th>
             <th></th>
           </tr>
         </thead>
@@ -42,13 +57,7 @@
                 </div>
               </div>
             </td>
-            <!-- email: "ahmad@gmail.com"
-id: 1
-metier: "Job"
-name: "ahmad"
-password: "1234"
-photo: "[value-6]"
-tel: "+88 06 77 99" -->
+
             <td>
               {{ perso.metier }}
               <br />
@@ -59,6 +68,13 @@ tel: "+88 06 77 99" -->
             <td>{{ perso.tel }}</td>
             <th>
               <button class="btn btn-ghost btn-xs">details</button>
+            </th>
+            <th>
+              <a
+                v-on:click="handleUpdate(perso)"
+                href="#update_personnel"
+                class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+              ></a>
             </th>
           </tr>
           <!-- row 2 -->
@@ -71,9 +87,189 @@ tel: "+88 06 77 99" -->
             <th>Job</th>
             <th>Favorite Color</th>
             <th></th>
+            <th></th>
           </tr>
         </tfoot>
       </table>
+    </div>
+
+    <!-- ADD Personnel  -->
+    <div class="modal" id="adduser">
+      <div class="modal-box">
+        <a
+          href="#"
+          for="my-modal-3"
+          class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
+          >✕</a
+        >
+        <h3 class="font-bold text-lg">ADD User!</h3>
+
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.name"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Tel</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.tel"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Email </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.email"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Password </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.password"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">photo </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.photo"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">metier </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.metier"
+          />
+        </div>
+
+        <div class="modal-action">
+          <button
+            @click="addPersonnel()"
+            for="my-modal-3"
+            class="btn bg-dash-bleu hover:bg-scroll-bleu"
+          >
+            ADD
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--  Update Product! -->
+
+    <div class="modal" id="update_personnel">
+      <div class="modal-box relative">
+        <a
+          href="#"
+          for="my-modal-3"
+          class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
+          >✕</a
+        >
+        <h3 class="text-lg font-bold">Update Personnel!</h3>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Name</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.name"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Tel</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.tel"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Email </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.email"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">Password </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.password"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">photo </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.photo"
+          />
+        </div>
+        <div class="form-control w-full max-w-xs">
+          <label class="label">
+            <span class="label-text">metier </span>
+          </label>
+          <input
+            type="text"
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+            v-model="form.metier"
+          />
+        </div>
+        <div class="modal-action">
+          <a
+            @click="updatePersonnel(form.id)"
+            href="#"
+            for="my-modal-3"
+            class="btn bg-dash-bleu hover:bg-scroll-bleu"
+            >Update
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -84,7 +280,7 @@ export default {
     return {
       personnel: [],
       form: {
-        id : "",
+        id: "",
         name: "",
         email: "",
         password: "",
@@ -98,6 +294,16 @@ export default {
     this.getAllPersonnel();
   },
   methods: {
+    handleUpdate(personnel) {
+      // console.log("hello")
+      this.form.id = personnel.id;
+      this.form.name = personnel.name;
+      this.form.email = personnel.email;
+      this.form.password = personnel.password;
+      this.form.tel = personnel.tel;
+      this.form.photo = personnel.photo;
+      this.form.metier = personnel.metier;
+    },
     async getAllPersonnel() {
       let respons = await fetch(
         " http://localhost/filrouge/backend/public/personnelController/getAll_personnel"
@@ -117,6 +323,7 @@ export default {
 
     // router.push("/Personnel");
     // },
+
     addPersonnel() {
       fetch(
         "http://localhost/filrouge/backend/public/PersonnelController/add_personnel",
@@ -125,13 +332,15 @@ export default {
           body: JSON.stringify(this.form),
         }
       ).then((res) => res.json());
-      this.Personnel.push(this.form);
+      // this.Personnel.push(this.form);
+      this.getAllPersonnel();
       router.push("/Personnel");
     },
-  },
+ 
+
   updatePersonnel(id) {
     // console.log($id);
-    this.form.id = id;
+    // this.form.id = id;
     // console.log(this.form.id)
     fetch(
       "http://localhost/filrouge/backend/public/PersonnelController/update_personnel",
@@ -140,13 +349,14 @@ export default {
         body: JSON.stringify(this.form),
       }
     ).then((res) => res.json());
+    this.getAllPersonnel();
     router.push("/Personnel");
   },
-  pushPersonnel: function () {
-    // this.Personnel.push(this.form.Personnel);
-    this.getAllPersonnel();
-    console.log(this.form.Personnel);
-  },
+  // pushPersonnel: function () {
+  //   // this.Personnel.push(this.form.Personnel);
+  //   this.getAllPersonnel();
+  //   console.log(this.form.Personnel);
+  // },
   deletePersonnel(id) {
     // console.log(id)
     fetch(
@@ -159,7 +369,7 @@ export default {
       .then((res) => res.json())
       .then((out) => console.log(out));
     this.getAllPersonnel();
-  },
+  }, },
   // http://localhost/filrouge/backend/public/PersonnelController/add_personnel
 };
 </script>
