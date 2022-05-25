@@ -17,6 +17,8 @@
             </svg>
             </a>
         </div>
+        <!-- The button to open modal -->
+
         <div class="overflow-x-auto">
             <table class="table table-compact w-full">
             <thead>
@@ -33,21 +35,28 @@
             </thead>
             <tbody v-for="index in 1" :key="index">
                 <tr v-for="pro in product" :key="pro">
+                <th>{{ pro.id }}</th>
                 <th>{{ pro.ref_prdt }}</th>
                 <td>{{ pro.designation }}</td>
                 <td>{{ pro.categorie }}</td>
                 <td>{{ pro.unite }}</td>
                 <td>{{ pro.unite }}</td>
-                <td>Edit</td>
-                <td>Update</td>
-                <td>Delete</td>
+
+                <td>
+                    <a
+                    @click="handleUpdate(pro)"
+                    href="#update_product"
+                    class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+                    ></a>
+                </td>
+                <td><a @click="deleteProduct(pro.id)"> Delete</a></td>
                 </tr>
             </tbody>
             </table>
         </div>
         </div>
 
-        <!-- Put this part before </body> tag -->
+        <!-- ADD Product  -->
         <div class="modal" id="addproduct">
         <div class="modal-box">
             <a
@@ -56,59 +65,130 @@
             class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
             >✕</a
             >
-            <h3 class="font-bold text-lg">Congratulations random Interner user!</h3>
+            <h3 class="font-bold text-lg">ADD PRODUCT!</h3>
             <!-- `ref_prdt`, `designation`, `unite`, `categorie` -->
-            <form @submit.prevent="addProduct">
+
             <div class="form-control w-full max-w-xs">
-                <label class="label">
+            <label class="label">
                 <span class="label-text">Reference produit</span>
-                </label>
-                <input
+            </label>
+            <input
                 type="text"
                 placeholder="Type here"
                 class="input input-bordered w-full max-w-xs"
                 v-model="form.ref_prdt"
-                />
+            />
             </div>
             <div class="form-control w-full max-w-xs">
-                <label class="label">
+            <label class="label">
                 <span class="label-text">Designation produit</span>
-                </label>
-                <input
+            </label>
+            <input
                 type="text"
                 placeholder="Type here"
                 class="input input-bordered w-full max-w-xs"
-                />
+            />
             </div>
             <div class="form-control w-full max-w-xs">
-                <label class="label">
+            <label class="label">
                 <span class="label-text">unite produit</span>
-                </label>
-                <input
+            </label>
+            <input
                 type="text"
                 placeholder="Type here"
                 class="input input-bordered w-full max-w-xs"
                 v-model="form.unite"
-                />
+            />
             </div>
             <div class="form-control w-full max-w-xs">
-                <label class="label">
+            <label class="label">
                 <span class="label-text">Categorie produit</span>
-                </label>
-                <input
+            </label>
+            <input
                 type="text"
                 placeholder="Type here"
                 class="input input-bordered w-full max-w-xs"
                 v-model="form.categorie"
-                />
+            />
             </div>
-            <div class="modal-action" >
-                <button 
-                type="submite" v-on:click="getAllProduct"   class="btn bg-dash-bleu hover:bg-scroll-bleu" >ADD 
-                </button>
+            <div class="modal-action">
+            <a
+                @click="addProduct"
+                href="#"
+                for="my-modal-3"
+                class="btn bg-dash-bleu hover:bg-scroll-bleu"
+                >ADD
+            </a>
             </div>
-            </form>
-            <!-- <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p> -->
+        </div>
+        </div>
+
+
+
+        <!--  Update Product! -->
+
+        <div class="modal" id="update_product">
+        <div class="modal-box relative">
+            <a
+            href="#"
+            for="my-modal-3"
+            class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2"
+            >✕</a
+            >
+            <h3 class="text-lg font-bold">Update Product!</h3>
+            <input v-model="form.id" disabled />
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Reference produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.ref_prdt"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Designation produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">unite produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.unite"
+            />
+            </div>
+            <div class="form-control w-full max-w-xs">
+            <label class="label">
+                <span class="label-text">Categorie produit</span>
+            </label>
+            <input
+                type="text"
+                placeholder="Type here"
+                class="input input-bordered w-full max-w-xs"
+                v-model="form.categorie"
+            />
+            </div>
+            <div class="modal-action">
+            <a
+                @click="updateProduct(form.id)"
+                href="#"
+                for="my-modal-3"
+                class="btn bg-dash-bleu hover:bg-scroll-bleu"
+                >Update
+            </a>
+            </div>
         </div>
         </div>
     </div>
@@ -121,7 +201,9 @@
     data() {
         return {
         product: [],
+        title: "",
         form: {
+            id: "",
             ref_prdt: "",
             designation: "",
             unite: "",
@@ -147,9 +229,20 @@
             body: JSON.stringify(this.form),
             }
         ).then((res) => res.json());
+        this.product.push(this.form);
         router.push("/product");
         },
-        updateProduct() {
+        handleUpdate(product) {
+        this.form.id = product.id;
+        this.form.ref_prdt = product.ref_prdt;
+        this.form.designation = product.designation;
+        this.form.unite = product.unite;
+        this.form.categorie = product.categorie;
+        },
+        updateProduct(id) {
+        // console.log($id);
+        // this.form.id = $id;
+        // console.log(this.form.id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/update_product",
             {
@@ -157,21 +250,26 @@
             body: JSON.stringify(this.form),
             }
         ).then((res) => res.json());
-        router.push("/product");
+        this.getAllProduct();
+        // router.push("/product");
         },
-            pushproduct: function () {
-            this.product.push(this.form.product);
-            console.log(this.form.product);
-            },
-        deleteProduct() {
+        pushproduct: function () {
+        // this.product.push(this.form.product);
+        this.getAllProduct();
+        console.log(this.form.product);
+        },
+        deleteProduct(id) {
+        // console.log(id)
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/delete_product",
             {
             method: "POST",
-        body: JSON.stringify(id),
-      })
-        .then((res) => res.json())
-        .then((out) => console.log(out));
+            body: JSON.stringify(id),
+            }
+        )
+            .then((res) => res.json())
+            .then((out) => console.log(out));
+        this.getAllProduct();
         },
     },
     };

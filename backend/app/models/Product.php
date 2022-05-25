@@ -58,8 +58,9 @@
                 }
             }
             public function update_product($data)
-            {
-
+            {   
+                // $data['id']=42;
+                
                 $this->db->query("UPDATE produit SET ref_prdt = :ref_prdt, designation = :designation, unite =:unite, categorie = :categorie  WHERE id= :id");
                 $this->db->bind(':id', $data['id']);
                 $this->db->bind(':ref_prdt', $data['ref_prdt']);
@@ -69,7 +70,7 @@
 
 
                 try {
-                    var_dump($data);
+                    
                     return $this->db->execute();
                 } catch (PDOException $e) {
                     die($e->getMessage());
@@ -81,14 +82,15 @@
 
                 // die($data);
                 // print_r($data);
-                $id = $data['id'];
-                // die($id);
-
+                // $id = $data['id'];
+                
                 $this->db->query('DELETE  FROM produit WHERE id = :id');
-                $this->db->bind(":id", $id);
+                $this->db->bind(":id", $data);
                 try {
+                    // die($data['id']);
                     return $this->db->execute();
                 } catch (PDOException $e) {
+                    // die($e->getMessage());
                     return $e->getMessage();
                 }
             }

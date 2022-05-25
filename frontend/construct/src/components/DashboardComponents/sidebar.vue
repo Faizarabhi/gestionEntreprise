@@ -68,7 +68,12 @@ export default {
     bottom: -30px;
 }
 .side-btn.active::before, .side-btn.active::after {
-    position: absolute;
+    position: a
+    
+    
+    
+    
+    bsolute;
     content: "";
     right: 0;
     height: 30px;

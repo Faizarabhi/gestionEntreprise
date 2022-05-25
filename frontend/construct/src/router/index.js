@@ -56,7 +56,7 @@ const router = createRouter({
         component: ()=> import('../components/DashboardComponents/product.vue')
         },
         {
-          path:'//addProduct',
+          path:'/addProduct',
         component: ()=> import('../components/DashboardComponents/addProduct.vue')
         },
       ]
