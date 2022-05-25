@@ -67,9 +67,8 @@
             public function delete_product()
             {
 
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-                    $id = json_decode(file_get_contents("php://input"), true); 
+            if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+            $id = json_decode(file_get_contents("php://input"), true); 
             $result = $this->productModel->delete_product($id);
             if($result){
                 echo json_encode(["message" => "success","data"=>$id]);

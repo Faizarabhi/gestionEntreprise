@@ -60,7 +60,7 @@
         public function delete_personnel()
         {
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
                 $id = json_decode(file_get_contents("php://input"), true); 
         $result = $this->personnelModel->delete_personnel($id);

@@ -1,18 +1,19 @@
 <template>
     <div >
-        <div  class="relative fixed z-40 " :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-x-4 ': 'w-2/4 h-screen bg-dash-bleu ' ">
-            <div class="absolute top-20 -right-4 top-4 z-50 border-2 border-zinc-500 rounded-full   rotate-90 cursor-row-resize  sidebar text-5xl"   v-on:click="show">
-                <i class="fa-solid fa-circle-chevron-down "   style="color:#F8F9FF !important; "></i>
+        <div  class="relative  " :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-x-4 ': 'w-12 h-screen ml-0 bg-dash-bleu ' ">
+            <div class="absolute top-12 -right-4    rotate-90 cursor-row-resize bg-bg-bleu rounded-full text-white  text-5xl" :class="isShow? 'z-50':'-rotate-90 z-50'"   v-on:click="show">
+                <i class="fa-solid fa-circle-chevron-down "   ></i>
+                
                 
             </div>
         <a href="/">
-        <img src="../../assets/images/logo1.svg" :class=" isShow? ' p-4 pt-36 w-36' : 'p-4 pt-36'" alt="logo ">
+        <img src="../../assets/images/logo1.svg" :class=" isShow? ' p-4 pt-16 w-36' : 'p-4 pt-16'" alt="logo ">
         </a>  
         <div class="menu-items flex flex-col ">
-            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-user-tag" style="color:black !important; "></i>  <span v-if="isShow" class="" > user  </span></div></router-link>
-            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-truck-ramp-box" style="color:black !important; "></i>  <span v-if="isShow" class="" > cmd  </span></div></router-link>
-            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > Product </span></div></router-link>
-            <router-link to ="/historique" class="side-btn " :active-class="isShow? 'active' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <i class="fa-solid fa-chart-line"  style="color:black !important; "></i> <span v-if="isShow" class="" > statistic </span></div></router-link>
+            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-user-tag" ></i> </span> <span v-if="isShow" class="" > User  </span></div></router-link>
+            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-truck-ramp-box" ></i></span>  <span v-if="isShow" class="" > Commande  </span></div></router-link>
+            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"><span class="pr-4"> <i class="fa-solid fa-chart-line"  ></i></span> <span v-if="isShow" class="" > Product </span></div></router-link>
+            <router-link to ="/historique" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  ></i></span> <span v-if="isShow" class="" > statistic </span></div></router-link>
             
             
         </div>
@@ -55,7 +56,7 @@ export default {
 }
 .side-btn.active {
     position: relative;
-    background-color: #ffffff60;
+    background-color: #E0E0FF;
     color : #081A51;
     font-weight: 600;
     margin-left: 10px;
@@ -68,21 +69,16 @@ export default {
     bottom: -30px;
 }
 .side-btn.active::before, .side-btn.active::after {
-    position: a
-    
-    
-    
-    
-    bsolute;
+    position: absolute;
     content: "";
     right: 0;
     height: 30px;
     width: 30px;
-    background-color: #ffffff60;
+    background-color: #E0E0FF;
 }
 .side-btn.active1 {
     position: relative;
-    background-color: #ffffff60;
+    background-color: #E0E0FF;
     color : #081A51;
     font-weight: 600;
     

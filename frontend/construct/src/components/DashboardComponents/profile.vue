@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-bg-bleu z-0 absolute pt-20 pl-60 h-screen w-screen">
+  <div class="w-full">
     <div
       class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
     >
@@ -366,8 +366,8 @@ export default {
       fetch(
         "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
         {
-          method: "POST",
-          body: JSON.stringify(id),
+          method: "DELETE",
+          body: JSON.stringify({id: id}),
         }
       )
         .then((res) => res.json())

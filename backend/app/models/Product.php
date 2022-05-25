@@ -80,17 +80,14 @@
             public function delete_product($data)
             {
 
-                // die($data);
-                // print_r($data);
-                // $id = $data['id'];
-                
+                // print_r($data['id']);
                 $this->db->query('DELETE  FROM produit WHERE id = :id');
-                $this->db->bind(":id", $data);
+                $this->db->bind(":id", $data['id']);
+                
                 try {
-                    // die($data['id']);
                     return $this->db->execute();
                 } catch (PDOException $e) {
-                    // die($e->getMessage());
+                    die($e->getMessage());
                     return $e->getMessage();
                 }
             }

@@ -6,7 +6,7 @@ class Order
     {
         $this->db = new Database;
     }
-
+ 
 
     // id_produit
     public function check_order($data)
