@@ -45,16 +45,32 @@
                 }
                 // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
             }
-            public function get_product($data)
+            public function get_productBycategorie($data)
             {
-                // print_r($id);
-                // http://localhost/filrouge/backend/public/ProductController/get_product
-                $this->db->query('SELECT * FROM produit  Where id = :id INNER JOIN categorie ON categorie.id = produit.id_categorie ');
+                // print_r($data);
+                // http://localhost/filrouge/backend/public/ProductController/get_productBycategorie
+                $this->db->query('SELECT produit.* FROM produit  Where id_categorie = :id');
                 $this->db->bind(':id', $data['id']);
 
                 try {
+                    return $this->db->resultSet();
+                } catch (PDOException $e) {
+                    return $e->getMessage();
+                }
+            }
+            public function get_product($data)
+            {
+                // http://localhost/filrouge/backend/public/ProductController/get_product
+                $this->db->query('SELECT * FROM produit  Where id = :id');
+                $this->db->bind(':id', $data['id']);
+                // die($data);
+                
+                // print_r($data);
+                try {
+                    // die("heelo");
                     return $this->db->single();
                 } catch (PDOException $e) {
+                    var_dump($e->getMessage()) ;
                     return $e->getMessage();
                 }
             }

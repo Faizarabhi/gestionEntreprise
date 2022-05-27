@@ -29,8 +29,6 @@
             }
             public function getAll_product()
             {
-
-
                 $result = $this->productModel->getAll_product();
                 if ($result) {
                     echo json_encode($result);
@@ -38,11 +36,23 @@
                     echo json_encode(["message" => "error not select"]);
                 }
             }
+            
+            
             public function get_product()
+            {
+                $id = json_decode(file_get_contents("php://input"), true);
+                $result = $this->productModel->get_product($id);
+                if ($result) {
+                    echo json_encode($result);
+                } else {
+                    echo json_encode(["message" => "error not select from controller"]);
+                }
+            }
+            public function get_productBycategorie()
             {
 
                 $id = json_decode(file_get_contents("php://input"), true);
-                $result = $this->productModel->get_product($id);
+                $result = $this->productModel->get_productBycategorie($id);
                 if ($result) {
                     echo json_encode($result);
                 } else {
