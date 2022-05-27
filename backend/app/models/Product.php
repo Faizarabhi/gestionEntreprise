@@ -36,7 +36,8 @@
             public function getAll_product()
             {
 
-                $this->db->query('SELECT * FROM produit  ');
+                $this->db->query('SELECT *,categorie.* FROM produit 
+                INNER JOIN categorie ON categorie.id = produit.id_categorie ');
                 try {
                     return $this->db->resultSet();
                 } catch (PDOException $e) {
@@ -48,7 +49,7 @@
             {
                 // print_r($id);
                 // http://localhost/filrouge/backend/public/ProductController/get_product
-                $this->db->query('SELECT * FROM produit  Where id = :id');
+                $this->db->query('SELECT * FROM produit  Where id = :id INNER JOIN categorie ON categorie.id = produit.id_categorie ');
                 $this->db->bind(':id', $data['id']);
 
                 try {

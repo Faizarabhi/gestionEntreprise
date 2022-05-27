@@ -7,27 +7,29 @@
         <table class="table table-compact w-full">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>company</th>
-              <th>location</th>
-              <th>Last Login</th>
-              <th>Favorite Color</th>
-              <th>Favorite Color</th>
+              <th>ID Order</th>
+              <th>Produit</th>
+              <th>Quantite</th>
+              <th>Type Order</th>
+              <th>Name </th>
+              <th>Client</th>
+              <th>Tel</th>
+              <th>email</th>
+              
             </tr>
           </thead>
           <tbody>
             <!-- <tr v-for="index in 1" :key="index"> -->
             <tr v-for="order in order" :key="order">
               <td>{{order.id}}</td>
+              <td>{{order.name}}</td>
+              <td>{{order.ref_prdt}}</td>
               <td>{{order.qte}}</td>
               <td>{{order.type_mouvement}}</td>
               <td>{{order.name}}</td>
               <td>{{order.tel}}</td>
-              <td>{{order.ref_prdt}}</td>
               <td>{{order.email}}</td>
-              <td>{{order.id_produit}}</td>
+              
               
             </tr>
           </tbody>

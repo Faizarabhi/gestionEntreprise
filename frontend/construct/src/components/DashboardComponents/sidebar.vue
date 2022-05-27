@@ -1,15 +1,15 @@
 <template>
     <div >
-        <div  class="relative  " :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-x-4 ': 'w-12 h-screen ml-0 bg-dash-bleu ' ">
-            <div class="absolute top-12 -right-4    rotate-90 cursor-row-resize bg-bg-bleu rounded-full text-white  text-5xl" :class="isShow? 'z-50':'-rotate-90 z-50'"   v-on:click="show">
+        <div  class="relative  " :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-x-4 ': 'w-16 h-screen  bg-dash-bleu ' ">
+            <div class="absolute top-20 -right-4    rotate-90 cursor-row-resize bg-bg-bleu rounded-full text-white  text-5xl" :class="isShow? 'z-50':'-rotate-90 z-50'"   v-on:click="show">
                 <i class="fa-solid fa-circle-chevron-down "   ></i>
                 
                 
             </div>
         <a href="/">
-        <img src="../../assets/images/logo1.svg" :class=" isShow? ' p-4 pt-16 w-36' : 'p-4 pt-16'" alt="logo ">
+        <img src="../../assets/images/logo.svg" :class=" isShow? ' p-20 pt-16 ' : 'pt-4 '" alt="logo ">
         </a>  
-        <div class="menu-items flex flex-col ">
+        <div class="menu-items flex flex-col mt-12">
             <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-user-tag" ></i> </span> <span v-if="isShow" class="" > User  </span></div></router-link>
             <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-truck-ramp-box" ></i></span>  <span v-if="isShow" class="" > Commande  </span></div></router-link>
             <router-link to ="/product" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"><span class="pr-4"> <i class="fa-solid fa-chart-line"  ></i></span> <span v-if="isShow" class="" > Product </span></div></router-link>
@@ -99,7 +99,26 @@ export default {
     
     background-color: #e7000000;
 }
+
+
+
 .side-btn.active .link-container::before {
+    top: -60px;
+}
+.side-btn.active .link-container::after {
+    bottom: -60px;
+    z-index: 99;
+}
+
+.side-btn.active .link-container::before, .side-btn.active .link-container::after {
+    position: absolute;
+    content: "";
+    right: 0px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #081A51;
+}.side-btn.active .link-container::before {
     top: -60px;
 }
 .side-btn.active .link-container::after {

@@ -117,7 +117,7 @@ export default {
                 // this.$cookies.set("name", data.name);
                 this.$cookies.set("email", data.email);
 
-                router.push("/Customer");
+                router.push("/facteur");
               } else {
                 
                 alert("rak ghalet");

@@ -30,7 +30,13 @@ const router = createRouter({
     {
       path : '/Customer',
       name : 'Customer',
-      component: CustomerView
+      component: CustomerView,
+      children: [
+        {
+          path: '/facteur',
+          component: ()=> import('../components/CustomerComponents/facteur.vue')
+        }
+      ]
       
     },
     {

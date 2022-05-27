@@ -208,6 +208,7 @@
             designation: "",
             unite: "",
             categorie: "",
+            prix_unitaire:""
         },
         };
     },

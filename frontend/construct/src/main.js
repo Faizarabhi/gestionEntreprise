@@ -1,10 +1,14 @@
 import { createApp } from 'vue'
 import VueCookies from 'vue-cookies';
+
+
+import 'material-icons/iconfont/material-icons.css';
 import App from './App.vue'
 import router from './router'
 import './index.css'
 import 'flowbite';
 const app = createApp(App)
+
 
 
 app.use(VueCookies);
