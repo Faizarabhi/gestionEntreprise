@@ -38,7 +38,7 @@
         <td><input v-model="infoproduct.unite" disabled /></td>
         <td>{{ infoproduct.prixunitaire }}</td>
         <td>{{ infoproduct.prixtotal }}</td>
-        <td @click="addcmd">add cmd</td>
+        <td v-if="i == 1" @click="addcmd">add cmd</td>
         </th>
         
     </template>
@@ -48,6 +48,7 @@
     props: {
         i: Number,
     },
+    
     data() {
         return {
         categorie: [],
@@ -95,7 +96,7 @@
             }
         );
         this.product = await res.json();
-        console.log(this.product);
+        // console.log(this.product);
         },
         async getproduct(event) {
         this.prod = event.target.value;
@@ -124,11 +125,11 @@
         prixTotal(event) {
         this.infoproduct.prixtotal = this.info.prix_unitaire * event.target.value;
         // console.log(event.target.value);
-        this.infoproduct.idform = this.i ;
-        this.infoarr = this.infoproduct 
+        
         },
         addcmd(){
-            
+            this.infoproduct.idform = this.i ;
+            this.infoarr = this.infoproduct 
             console.log(this.infoarr)
         }
     },
