@@ -1,50 +1,53 @@
     <template>
-    <div>
-        
-        <th>{{ i }}</th>
+    
+        <th>
+            <td>{{ i }}</td>
         <td>
-            <select
+        <select
             @change="getAllProduct($event)"
             name=""
             class="select select-bordered max-w-xs"
-            >
+        >
             <option disabled selected>Categorie</option>
             <option v-for="(cat, i) in categorie" :key="i" :value="cat.id">
-                {{ cat.name }}
+            {{ cat.name }}
             </option>
-            </select>
+        </select>
         </td>
         <td>
-            <select
+        <select v-model="infoproduct.productid"
+        
             @change="getproduct($event)"
             class="select select-bordered max-w-xs"
-            >
+        >
             <option disabled selected>Product</option>
-            <option v-for="(pro, i) in product" :key="i" :value="pro.id">
-                {{ pro.ref_prdt }}
+            <option v-for="(pro, i) in product" :key="i" :value="pro.id"
+            >
+            {{ pro.ref_prdt }}
             </option>
-            </select>
+        </select>
         </td>
         <td>
-            <input
+        <input
             @change="prixTotal($event)"
             type="number"
             placeholder="Type here"
             class="input input-bordered input-md max-w-xs"
-            />
+        />
         </td>
         <td><input v-model="infoproduct.unite" disabled /></td>
         <td>{{ infoproduct.prixunitaire }}</td>
         <td>{{ infoproduct.prixtotal }}</td>
+        <td @click="addcmd">add cmd</td>
+        </th>
         
-    </div>
     </template>
 
     <script>
     export default {
-        props: {
-            i:Number
-        },
+    props: {
+        i: Number,
+    },
     data() {
         return {
         categorie: [],
@@ -54,11 +57,13 @@
         infoproduct: {
             idform: "",
             unite: "",
+            productid : "",
             prixunitaire: "0",
-            prixtotal: "",
+            prixtotal: "0",
             multi: "",
         },
-        
+        infoarr : {"":  ""},
+
         multiple: "",
         info: {},
         };
@@ -118,9 +123,14 @@
         },
         prixTotal(event) {
         this.infoproduct.prixtotal = this.info.prix_unitaire * event.target.value;
-        console.log(event.target.value);
+        // console.log(event.target.value);
+        this.infoproduct.idform = this.i ;
+        this.infoarr = this.infoproduct 
         },
-        
+        addcmd(){
+            
+            console.log(this.infoarr)
+        }
     },
     };
     </script>
