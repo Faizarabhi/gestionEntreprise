@@ -33,58 +33,58 @@
                     class="input input-bordered input-md max-w-xs"
                 />
                 </td>
-                <td>prix {{prix}}</td>
-                <!-- <td>{{ infoproduct.prixunitaire }}</td>
-                <td>{{ infoproduct.prixtotal }}</td> -->
+                <td>prix unitaire {{this.product?.prix_unitaire ?? 0}}</td>
+                <td>prix Total {{prix}}</td>
+                
                 <td  @click="removeCmd(command.id)">remove cmd</td> 
                 </th>
                 
             </template>
 
             <script>
-        import { computed } from "vue";
-        export default {
-        props: ["command"],
-        inject: ["removeCmd", "updateCmd", "categorie"],
-        data() {
-            return {
-            category: undefined,
-            products: [],
-            product: undefined,
-            quantity: this.command.quantity,
-            prix: computed(() => this.quantity * this.command.prix),
-            };
-        },
-        watch: {
-            product() {
-            this.updateCmd(this.command.id, {
-                product_id: this.product.id,
-                prix: this.product.prix_unitaire,
-            });
-            },
-            quantity() {
-            this.updateCmd(this.command.id, {
-                quantity: this.quantity,
-            });
-            },
-        },
-        methods: {
-            async getAllProduct(event) {
-            this.category = event.target.value;
-            let res = await fetch(
-                "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
-                {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    id: this.category,
-                }),
-                }
-            );
-            this.products = await res.json();
-            },
-        },
-        };
-        </script>
+import { computed } from "vue";
+export default {
+  props: ["command"],
+  inject: ["removeCmd", "updateCmd", "categorie"],
+  data() {
+    return {
+      category: undefined,
+      products: [],
+      product: undefined,
+      quantity: this.command.quantity,
+      prix: computed(() => this.quantity * this.command.prix),
+    };
+  },
+  watch: {
+    product() {
+      this.updateCmd(this.command.id, {
+        product_id: this.product.id,
+        prix: this.product.prix_unitaire,
+      });
+    },
+    quantity() {
+      this.updateCmd(this.command.id, {
+        quantity: this.quantity,
+      });
+    },
+  },
+  methods: {
+    async getAllProduct(event) {
+      this.category = event.target.value;
+      let res = await fetch(
+        "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: this.category,
+          }),
+        }
+      );
+      this.products = await res.json();
+    },
+  },
+};
+</script>

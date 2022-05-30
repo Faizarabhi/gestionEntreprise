@@ -21,7 +21,7 @@
                                 </div>
             
                                 </div>
-
+                                    
                                     <p>{{id_fact}}</p>
                                 <div class="place-self-center col-span-2">
                                 <button @click="addrow()">add row</button>
