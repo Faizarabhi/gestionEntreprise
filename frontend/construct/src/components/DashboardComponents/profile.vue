@@ -1,23 +1,24 @@
 <template>
   <div class="w-full">
-    <div
-      class="relative  p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
-    >
-      <div class="py-8">
-        <a
-          href="#adduser"
-          class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+        <div
+        class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
         >
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-            <path
-              d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-              clip-rule="evenodd"
-              fill-rule="evenodd"
-            ></path>
-          </svg>
-        </a>
-      </div>
-      <table class="table w-full">
+        <div class="py-8">
+            <a
+            href="#adduser"
+            class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-dash-bleu rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+            >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                <path
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+                ></path>
+            </svg>
+            </a>
+        </div>
+      <div class="overflow-x-auto">
+            <table class="table table-compact w-full">
         <!-- head -->
         <thead>
           <tr>
@@ -78,7 +79,7 @@
               ></a>
             </th>
             <th>
-              <a @click="deletePersonnel(perso.id)"> Delete</a>
+              <a @click="deletePersonnel(perso.id)" key=""> Delete</a>
             </th>
           </tr>
           <!-- row 2 -->
@@ -97,7 +98,7 @@
         </tfoot>
       </table>
     </div>
-
+    </div>
     <!-- ADD Personnel  -->
     <div class="modal" id="adduser">
       <div class="modal-box">

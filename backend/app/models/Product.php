@@ -97,7 +97,7 @@
             public function delete_product($data)
             {
 
-                // print_r($data['id']);
+                // die($data['id']);
                 $this->db->query('DELETE  FROM produit WHERE id = :id');
                 $this->db->bind(":id", $data['id']);
                 

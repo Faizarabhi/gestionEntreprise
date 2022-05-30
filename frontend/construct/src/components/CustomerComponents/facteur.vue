@@ -47,7 +47,6 @@
                             
                         <tr>
                         
-                        
                             <th>
                             <td></td>
                             <td>Categorie</td>
@@ -70,18 +69,77 @@
                 <script>
                 import router from "@/router";
                 import rowfacteur from "../CustomerComponents/rowfacteur.vue";
+                import {computed} from"vue";
+
                 export default {
                 components: { rowfacteur },
+                provide(){
+                    return {
+                        addCmd: this.addCmd,
+                        updateCmd: this.updateCmd,
+                        removeCmd: this.removeCmd,
+                        categorie: computed(() => this.categorie),
+                        product: computed(() => this.product)
+                    }
+                },
                 data(){
                     return{
                         add: 1,
-                        date : ""
-                        }
+                        date : "",
+                        data: {
+                            list: []
+                        },
+                        categorie: [],
+                        product: [],
+                        } 
                 }, 
                 mounted() {
-                    this.date_function()
+                    this.getAll_categorie();
+                    this.date_function(),
+                    // console.log("idcustomer"),
+                    console.log(this.$cookies.get("idcustomer"))
                 },
                 methods: {
+                    async getAllProduct(event) {
+        // console.log("hhh");
+        this.categ = event.target.value;
+        let res = await fetch(
+            "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
+            {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                id: this.categ,
+            }),
+            }
+        );
+        this.product = await res.json();
+        // console.log(this.product);
+        },
+                    async getAll_categorie() {
+                        let respons = await fetch(
+                            "http://localhost/filrouge/backend/public/CategorieController/getAll_categorie"
+        );
+        this.categorie = await respons.json();
+        // this.getAllProduct(id_categorie);
+        },
+                    addCmd(cmd){
+                        this.data.list.push({...cmd, id: this.data.list.length})
+                        console.log(this.data.list);
+                    },
+                    updateCmd(index, updates){
+                        this.data.list = this.data.list.map((c, i) => {
+                            if(i === index){
+                                return {...c, ...updates};
+                            }
+                            return c;
+                        })
+                    },
+                    removeCmd(index){
+                        this.data.list = this.data.list.filter((cmd, i) =>  i !== index);
+                    },
                     addrow() {
                     this.add = this.add + 1;
                     console.log(this.add)

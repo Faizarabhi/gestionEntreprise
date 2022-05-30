@@ -9,8 +9,8 @@
             class="select select-bordered max-w-xs"
         >
             <option disabled selected>Categorie</option>
-            <option v-for="(cat, i) in categorie" :key="i" :value="cat.id">
-            {{ cat.name }}
+            <option v-for="(cat, i) in categorie?.value" :key="i" :value="cat?.id">
+            {{ cat?.name }}
             </option>
         </select>
         </td>
@@ -21,9 +21,8 @@
             class="select select-bordered max-w-xs"
         >
             <option disabled selected>Product</option>
-            <option v-for="(pro, i) in product" :key="i" :value="pro.id"
-            >
-            {{ pro.ref_prdt }}
+            <option v-for="(pro, i) in product?.value" :key="i" :value="pro?.id">
+            {{ pro?.ref_prdt }}
             </option>
         </select>
         </td>
@@ -38,23 +37,29 @@
         <td><input v-model="infoproduct.unite" disabled /></td>
         <td>{{ infoproduct.prixunitaire }}</td>
         <td>{{ infoproduct.prixtotal }}</td>
-        <td v-if="i == 1" @click="addcmd">add cmd</td>
+        <td  @click="addcmd">add cmd</td>
         </th>
         
     </template>
 
     <script>
+    import { v4 as uuidv4 } from 'uuid'
     export default {
     props: {
         i: Number,
     },
+    inject:["addCmd", "removeCmd",'updateCmd',"categorie"],
     
     data() {
         return {
-        categorie: [],
-        product: [],
+            
         categ: 0,
         prod: 0,
+        facturform:{
+            idfact : "",
+            idclient : this.$cookies.get("idcustomer"),
+
+        },
         infoproduct: {
             idform: "",
             unite: "",
@@ -70,34 +75,13 @@
         };
     },
     mounted() {
-        this.getAll_categorie();
+        this.facturform.idfact = uuidv4();
+        console.log(this.facturform.idfact)
+        console.log(this.facturform);
     },
     methods: {
-        async getAll_categorie(event) {
-        let respons = await fetch(
-            "http://localhost/filrouge/backend/public/CategorieController/getAll_categorie"
-        );
-        this.categorie = await respons.json();
-        // this.getAllProduct(id_categorie);
-        },
-        async getAllProduct(event) {
-        // console.log("hhh");
-        this.categ = event.target.value;
-        let res = await fetch(
-            "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
-            {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                id: this.categ,
-            }),
-            }
-        );
-        this.product = await res.json();
-        // console.log(this.product);
-        },
+        
+        
         async getproduct(event) {
         this.prod = event.target.value;
         // console.log(this.prod)
@@ -130,7 +114,7 @@
         addcmd(){
             this.infoproduct.idform = this.i ;
             this.infoarr = this.infoproduct 
-            console.log(this.infoarr)
+            this.addCmd(this.infoarr)
         }
     },
     };

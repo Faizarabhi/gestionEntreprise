@@ -116,6 +116,7 @@ export default {
                 this.$cookies.set("name", data.name);
                 // this.$cookies.set("name", data.name);
                 this.$cookies.set("email", data.email);
+                
 
                 router.push("/facteur");
               } else {

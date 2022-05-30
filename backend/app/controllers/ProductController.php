@@ -81,7 +81,7 @@
             $id = json_decode(file_get_contents("php://input"), true); 
             $result = $this->productModel->delete_product($id);
             if($result){
-                echo json_encode(["message" => "success","data"=>$id]);
+                echo json_encode(["message" => "success delete","data"=>$id]);
             }else{
                 echo json_encode(["message" => "failed"]);
             }
