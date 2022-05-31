@@ -31,14 +31,10 @@ class facture
                     return $e->getMessage();
                 }
             }
-            public function lastID(){
-                $this->db->query("SELECT LAST_INSERT_ID() INTO @facteur");
-                try {
-                    return $this->db->single();
-                } catch (PDOException $e) {
-                    return $e->getMessage();
-                }
-            }
 
+            public function lastId()
+            {
+                return $this->db->lastInsertedId("facteur");
+            }
 
 }

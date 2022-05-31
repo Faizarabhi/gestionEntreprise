@@ -95,6 +95,7 @@ export default {
             // data katjm3 hna kolha katruturna hna (id facteur) list katruturni tabl=>2 feh les cmds
             data: {
                 list: [],
+                customer_id: this.$cookies.get("idcustomer")
             },
             categorie: [],
             product: [],
@@ -103,14 +104,14 @@ export default {
     mounted() {
         this.getAll_categorie();
         this.date_function(),
-        console.log(this.$cookies.get("idcustomer"));
+            console.log(this.$cookies.get("idcustomer"));
     },
     methods: {
-        async submit(){
+        async submit() {
             // send this.data to backend
-            const res = await fetch("http://localhost/filrouge/backend/public/FactureController/create",{
+            const res = await fetch("http://localhost/filrouge/backend/public/FactureController/create", {
                 method: "POST",
-                headers:{
+                headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(this.data)

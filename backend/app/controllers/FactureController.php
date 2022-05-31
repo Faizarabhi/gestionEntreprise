@@ -3,10 +3,12 @@
                 {
 
                     private $factureModel;
+                    private $commandModel;
 
                     public function __construct()
                     {
                         $this->factureModel = $this->model('facture');
+                        $this->commandModel = $this->model('Command');
                     }
 
                     // public function add_facteur()
@@ -31,22 +33,18 @@
                         if ($this->isPostRequest()) {
                             $data = $this->getBody();
                             // 1 - insert fatcure into facture table
-                            
-                            var_dump($this->session());
-                            // http://localhost/filrouge/backend/FactureController/create
+                            $this->factureModel->create(["customer_id" => $data["customer_id"]]);
 
-                            // 2 - fetch fatcure id with lastInsertedId function in model  SELECT LAST_INSERT_ID()
+                            $factureId = $this->factureModel->lastId();
+                            $commands = [];
+                            foreach ($data["list"] as  $command) {
+                                $commands[] = ["facture_id" => $factureId, "product_id" => $command["product_id"], "quantity" => $command["quantity"]];
+                            }
 
-                            // 3 - loop over commands and assign facture id to all commands
+                            $created = $this->commandModel->createMany($commands);
+                            if(!$created) return $this->json(["message" => "cannot create facture"]);
 
-                            // 4 - insert command into commands table
-                            // done
-                            // $result = $this->factureModel->create($data[0]);
-                            // $lastID = $this->factureModel->lastID();
-
-                            // foreach ($arr as $item) {
-                            //     var_dump($item);
-                            //   }
+                            return $this->json(["message" => "success", "factureId" => $factureId]);
 
                         }
                     }

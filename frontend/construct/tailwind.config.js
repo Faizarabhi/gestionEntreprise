@@ -7,11 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#FFBD35',
+        'primary':'#FFAA4C',
         'secondary': '#1A5F7A',
         'white' : '#fff',
-        'dash-bleu': '#081A51',
-        'bg-bleu': '#E0E0FF',
+        'dash-bleu': '#001E6C',
+        'bg-bleu': '#F9F9F9',
         'scroll-bleu': '#657093',
         
       },
