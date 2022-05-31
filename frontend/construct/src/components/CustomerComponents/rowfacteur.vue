@@ -1,45 +1,32 @@
             <template>
-            
-                <th>
-                <td>
-                <select
-                    @change="getAllProduct($event)"
-                    name=""
-                    class="select select-bordered max-w-xs"
-                >
-                    <option disabled selected>Categorie</option>
-                    <option v-for="(cat, i) in categorie?.value" :key="i" :value="cat?.id">
-                    {{ cat?.name }}
-                    </option>
-                </select>
-                </td>
-                <td>
-                <select 
-                    v-model="product"
-                    class="select select-bordered max-w-xs"
-                >
-                    <option disabled selected>Product</option>
-                    <option v-for="product in products" :key="product.id" :value="product"
-                    >
-                    {{ product.ref_prdt }}
-                    </option>
-                </select>
-                </td>
-                <td>
-                <input
-                    v-model="quantity"
-                    type="number"
-                    placeholder="Type here"
-                    class="input input-bordered input-md max-w-xs"
-                />
-                </td>
-                <td>prix unitaire {{this.product?.prix_unitaire ?? 0}}</td>
-                <td>prix Total {{prix}}</td>
-                
-                <td  @click="removeCmd(command.id)">remove cmd</td> 
-                </th>
-                
-            </template>
+
+  <th>
+  <td>
+    <select @change="getAllProduct($event)" name="" class="select select-bordered max-w-xs">
+      <option disabled selected>Categorie</option>
+      <option v-for="(cat, i) in categorie?.value" :key="i" :value="cat?.id">
+        {{ cat?.name }}
+      </option>
+    </select>
+  </td>
+  <td>
+    <select v-model="product" class="select select-bordered max-w-xs">
+      <option disabled selected>Product</option>
+      <option v-for="product in products" :key="product.id" :value="product">
+        {{ product.ref_prdt }}
+      </option>
+    </select>
+  </td>
+  <td>
+    <input v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs" />
+  </td>
+  <td>prix unitaire {{ this.product?.prix_unitaire ?? 0 }}</td>
+  <td>prix Total {{ prix }}</td>
+
+  <td @click="removeCmd(command.id)">remove cmd</td>
+  </th>
+
+</template>
 
             <script>
 import { computed } from "vue";
@@ -85,6 +72,7 @@ export default {
       );
       this.products = await res.json();
     },
+    
   },
 };
 </script>

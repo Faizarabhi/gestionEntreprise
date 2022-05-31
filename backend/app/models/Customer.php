@@ -46,9 +46,6 @@
             }
             public function add_customer($data)
             {
-                // die("hello hibaaaaaaaaaaaaaaaaaaaaaa from admin model");
-
-                // print_r($data);
                 $this->db->query("INSERT INTO `customer`(`name`, `tel`, `email`, `password`, `photo`, `type`) VALUES (:name,:tel,:email,:password,:photo,:type)");
                 $this->db->bind(':name', $data['name']);
                 $this->db->bind(':tel', $data['tel']);
