@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="md:flex p-6 bg-gray-50">
-      <div class="hidden md:block h-full h-full p-36">
-        <img src="../assets/images/slide1.jpg" class="w-96" alt="" />
+    <div class="flex h-screen  ">
+      <div class="flex-1 flex flex-col items-center justify-center   bg-bg-bleu">
+        <img src="../assets/images/slide1.svg" class="w-[]100%]" alt="" />
       </div>
-      <div class="h-full p-20 md:p-36">
+      <div class="flex-1 flex flex-col items-center justify-center ">
         <div class="">
           <form @submit.prevent="checkUser">
             <label class="block mb-2 text-3xl font-bold text-gray-900"
@@ -59,7 +59,7 @@
             </div>
             <div>
               <button
-                class="bg-black text-white px-12 md:px-32 rounded mt-8 font-medium py-2"
+                class="bg-secondary text-white px-12 md:px-32 rounded mt-8 font-medium w-full py-2"
               >
                 Me connecter
               </button>

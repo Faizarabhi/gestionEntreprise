@@ -20,8 +20,8 @@
 </div>
 
 </div>
-<div class="relative bg-white h-full">
-    <div class=" bg-black pr-20 pl-24  py-14 absolute z-40 right-28 bottom-12 text-white">
+<div class="relative ">
+    <div class=" bg-bg-bleu w-[28rem] h-28 bg-opacity-75  absolute z-40 right-28 bottom-12 text-center pt-7 font-bold text-xl text-secondary">
     <h1>Feature Projects</h1>
     <p>The National University of Architecture</p></div>
 <button type="button" class="  flex absolute bottom-7 right-80 z-30 justify-center items-center px-4 h-full cursor-pointer group" data-carousel-prev="">
