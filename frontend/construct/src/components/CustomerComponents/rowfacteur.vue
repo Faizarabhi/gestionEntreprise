@@ -8,7 +8,7 @@
         {{ cat?.name }}
       </option>
     </select>
-  </td> 
+  </td>
   <td>
     <select v-model="product" class="select select-bordered max-w-xs">
       <option disabled selected>Product</option>
@@ -23,14 +23,21 @@
   <td>prix unitaire {{ this.product?.prix_unitaire ?? 0 }}</td>
   <td>prix Total {{ prix }}</td>
 
-  <td @click="removeCmd(command.id)">remove cmd</td>
+  <td @click="removeCmd(command.id)">
+    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/trashV2.json" />
+  </td>
   </th>
 
 </template>
 
             <script>
 import { computed } from "vue";
+import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
 export default {
+    components: {
+        LottieAnimation
+    },
+    
   props: ["command"],
   inject: ["removeCmd", "updateCmd", "categorie"],
   data() {
@@ -72,7 +79,7 @@ export default {
       );
       this.products = await res.json();
     },
-    
+
   },
 };
 </script>

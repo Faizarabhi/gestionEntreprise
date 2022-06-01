@@ -1,12 +1,12 @@
                             <template>
     <div class="bg-bg-bleu">
-        <div class="grid grid-rows-2 place-content-center p-12">
+        <div class="grid grid-rows-2 place-content-center   p-12">
             <div class="grid grid-cols-2 gap-24 place-content-center bg-white p-16">
                 <div class="place-self-center">
                     <img src="../../assets/images/logo.svg" />
-                    <p>Alex Fernández </p>
-                    <p>+6 49 62 05 35</p>
-                    <p>afsprodesign@gmail.com</p>
+                    <p>{{ name }} </p>
+                    <p>+6 49 62 05 35 {{tel}}</p>
+                    <p>{{email}}</p>
                 </div>
                 <div class="place-self-center">
                     <h1 class="font-bold text-secondary">PRESUPUESTO</h1>
@@ -21,11 +21,13 @@
                     </div>
 
                 </div>
-                <button @click="submit">submit</button>
+                <button @click="submit">Send Order</button>
                 <p>{{ id_fact }}</p>
                 <div class="place-self-center col-span-2">
-                    <button @click="addrow()">add row</button>
-
+                    <label for="addrows">
+                    <button id="addrows" @click="addrow()"><lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
+                        path="lottie/plusToX.json" />Add Row</button>
+                        </label>
                     <table class="table table-compact">
                         <thead>
                             <tr>
@@ -74,12 +76,17 @@
 import router from "@/router";
 import rowfacteur from "../CustomerComponents/rowfacteur.vue";
 import { computed } from "vue";
-
+import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
 export default {
+    components: {
+        LottieAnimation
+    },
+    
     components: { rowfacteur },
     inject: ["id_fact"],
     provide() {
         return {
+
             addCmd: this.addCmd,
             updateCmd: this.updateCmd,
             removeCmd: this.removeCmd,
@@ -92,9 +99,15 @@ export default {
         return {
             add: 1,
             date: "",
+            id: "",
+            name: "",
+            tel: "",
+            email: "",
+            metier: "",
             // data katjm3 hna kolha katruturna hna (id facteur) list katruturni tabl=>2 feh les cmds
             data: {
                 list: [],
+
                 customer_id: this.$cookies.get("idcustomer")
             },
             categorie: [],
@@ -102,9 +115,13 @@ export default {
         };
     },
     mounted() {
-        this.getAll_categorie();
+        
+        this.getAll_categorie(),
         this.date_function(),
-            console.log(this.$cookies.get("idcustomer"));
+        this.name = this.$cookies.get("name"),
+        this.email = this.$cookies.get("email"),
+        this.tel = this.$cookies.get("tel")
+        // this.metier = $this.cookies.get("metier")
     },
     methods: {
         async submit() {

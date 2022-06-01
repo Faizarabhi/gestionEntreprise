@@ -150,7 +150,10 @@ export default {
               console.log(out);
               if (data) {
                 this.$cookies.set("idadmin", data.id);
-                this.$cookies.set("email", data.name);
+                this.$cookies.set("email", data.email);
+                this.$cookies.set("name", data.name);
+                this.$cookies.set("tel", data.tel);
+                this.$cookies.set("metier", data.metier);
 
                 router.push("/admin");
               } else {

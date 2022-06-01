@@ -6,15 +6,10 @@
         <div class="py-8">
           <a
             href="#addcmd"
-            class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-primary rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+            class="inline-flex items-center justify-center "
           >
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-              <path
-                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                clip-rule="evenodd"
-                fill-rule="evenodd"
-              ></path>
-            </svg>
+                                        <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/plusToX.json" />
+
           </a>
         </div>
         <table class="table table-compact w-full">
@@ -48,15 +43,17 @@
                 <a
                   @click="updatePersonnel(order.id)"
                   href="#update_product"
-                  class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-primary rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+                  class="inline-flex items-center justify-center  "
                 >
-                  update</a
+                                              <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/edit.json" />
+</a
                 >
               </td>
               <td>
-                <a @click="deleteOrder(order.id)" class="font-bold text-dash-bleu"
-                  >Delete</a
-                >
+                <a @click="deleteOrder(order.id)"  class="inline-flex items-center justify-center  ">
+                            <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/trashV2.json" />
+
+                </a>
               </td>
             </tr>
           </tbody>
@@ -200,8 +197,11 @@
   </template>
   <script>
   import router from "@/router";
-
-  export default {
+import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+export default {
+    components: {
+        LottieAnimation
+    },
     data() {
       return {
         order: [],

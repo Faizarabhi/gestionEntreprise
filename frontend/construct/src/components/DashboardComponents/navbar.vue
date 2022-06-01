@@ -45,7 +45,7 @@
 export default {
   data() {
     return {
-      name: "",
+      
       search: "",
     };
   },
@@ -55,6 +55,8 @@ export default {
   },
   mounted() {
     this.name = this.$cookies.get("name");
+    
+
   },
   methods: {
     search: function (e) {
