@@ -67,7 +67,12 @@
             >
             <h3 class="font-bold text-lg">ADD PRODUCT!</h3>
             <!-- `ref_prdt`, `designation`, `unite`, `categorie` -->
-
+    <select @click="getAll_categorie" name="" class="select select-bordered max-w-xs">
+      <option disabled selected>Categorie</option>
+      <option v-for="(cat, i) in categorie" :key="i">
+        {{ cat.name }}
+      </option>
+    </select>
             <div class="form-control w-full max-w-xs">
             <label class="label">
                 <span class="label-text">Reference produit</span>
@@ -223,6 +228,7 @@
         this.product = await respons.json();
         },
         addProduct() {
+            getAll_categorie()
         fetch(
             "http://localhost/filrouge/backend/public/ProductController/add_product",
             {
@@ -271,6 +277,13 @@
             .then((res) => res.json())
             .then((out) => console.log(out));
         this.getAllProduct();
+        },
+        async getAll_categorie() {
+            let respons = await fetch(
+                "http://localhost/filrouge/backend/public/CategorieController/getAll_categorie"
+            );
+            this.categorie = await respons.json();
+            // this.getAllProduct(id_categorie);
         },
     },
     };

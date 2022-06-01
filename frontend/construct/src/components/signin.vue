@@ -39,7 +39,7 @@
             </div>
 
             <input
-              type="text"
+              type="password"
               class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
               placeholder="Mot de passe"
               v-model="form.password"

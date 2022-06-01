@@ -22,7 +22,7 @@
                 $data = json_decode(file_get_contents("php://input"), true);
                 $email = "PR-" . $data['email'];
 
-
+                
                 $result = $this->personnelModel->add_personnel([...$data, "email" => $email]);
                 if ($result) {
                     echo json_encode(["message" => "success", "data" => $result]);
@@ -58,11 +58,11 @@
             }
         }
         public function delete_personnel()
-        {
-
+        {   
             if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
-
+                // die("hello");
                 $id = json_decode(file_get_contents("php://input"), true); 
+                
         $result = $this->personnelModel->delete_personnel($id);
         if($result){
             echo json_encode(["message" => "success","data"=>$id]);

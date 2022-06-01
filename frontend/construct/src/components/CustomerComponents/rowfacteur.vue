@@ -8,7 +8,7 @@
         {{ cat?.name }}
       </option>
     </select>
-  </td>
+  </td> 
   <td>
     <select v-model="product" class="select select-bordered max-w-xs">
       <option disabled selected>Product</option>

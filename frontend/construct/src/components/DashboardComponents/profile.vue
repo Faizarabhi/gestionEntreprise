@@ -6,15 +6,9 @@
         <div class="py-8">
             <a
             href="#adduser"
-            class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-primary rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+            class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors  duration-150 bg-primary rounded-lg  focus:shadow-outline hover:bg-dash-bleu"
             >
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                clip-rule="evenodd"
-                fill-rule="evenodd"
-                ></path>
-            </svg>
+           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
             </a>
         </div>
       <div class="overflow-x-auto">
@@ -29,7 +23,7 @@
             </th>
             <th>Name</th>
             <th>Job</th>
-            <th>Favorite Color</th>
+            <th>Phone</th>
             <th></th>
             <th></th>
             <th></th>
@@ -72,14 +66,21 @@
               <button class="btn btn-ghost btn-xs">details</button>
             </th>
             <th>
-              <a
+              <label for="edit"> 
+              <a 
+                id="edit" 
                 v-on:click="handleUpdate(perso)"
                 href="#update_personnel"
-                class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-primary rounded-lg focus:shadow-outline hover:bg-scroll-bleu"
+                class="inline-flex items-center justify-center w-10 h-10 mr-2 text-indigo-100 transition-colors duration-150 bg-primary rounded-lg focus:shadow-outline hover:bg-scroll-bleu "
               ></a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </label>
+            
             </th>
             <th>
-              <a @click="deletePersonnel(perso.id)" key=""> Delete</a>
+              <label for="delete">
+              <input id="delete" class="hidden" @click="deletePersonnel(perso.id)" > 
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></label>
             </th>
           </tr>
           <!-- row 2 -->
@@ -90,7 +91,7 @@
             <th></th>
             <th>Name</th>
             <th>Job</th>
-            <th>Favorite Color</th>
+            <th>Phone</th>
             <th></th>
             <th></th>
             <th></th>
@@ -312,7 +313,7 @@ export default {
     },
     async getAllPersonnel() {
       let respons = await fetch(
-        " http://localhost/filrouge/backend/public/personnelController/getAll_personnel"
+        "http://localhost/filrouge/backend/public/personnelController/getAll_personnel"
       );
       this.personnel = await respons.json();
       console.log(this.personnel);
@@ -363,7 +364,7 @@ export default {
     //   console.log(this.form.Personnel);
     // },
     deletePersonnel(id) {
-      // console.log(id)
+      console.log(id)
       fetch(
         "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
         {

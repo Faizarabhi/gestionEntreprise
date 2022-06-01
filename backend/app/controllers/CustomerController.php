@@ -54,10 +54,10 @@
                     // die("error mn methode customer hna");
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $data = json_decode(file_get_contents("php://input"), true);
-                        $email = "CL-" . $data['email'];
+                        $email = "CL-" . $data['email'];    
                         // $result = $this->userModel->newClient([...$data, "id" => $id]);
-
-                        $result = $this->customerModel->add_customer([...$data, "email" => $email]);
+                        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+                        $result = $this->customerModel->add_customer([...$data, "email" => $email,"password" => $password]);
                         if ($result) {
                             echo json_encode(["message" => "success", "data" => $result]);
                         } else {

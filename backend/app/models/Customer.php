@@ -6,16 +6,22 @@
             public function __construct()
             {
                 $this->db = new Database;
-                // die("hello from customer model");
+                
             }
             public function check_customer($data)
             {
-                // die("hello hibaaaaaaaaaaaaaaaaaaaaaa from admin model");
-
-                // print_r($data);
-                $this->db->query("SELECT * FROM customer WHERE password = :password and  email = :email");
+                
+                $this->db->query("SELECT * FROM customer WHERE   email = :email");
                 $this->db->bind(':email', $data['email']);
-                $this->db->bind(':password', $data['password']);
+                // $this->db->bind(':password', $data['password']);
+
+                $row = $this->db->single();
+                $hashed_password = $row->password;
+                if (password_verify($data['password'], $hashed_password)) {
+                    return $row;
+                } else {
+                    return false;
+                }
                 try {
                     return $this->db->single();
                 } catch (PDOException $e) {

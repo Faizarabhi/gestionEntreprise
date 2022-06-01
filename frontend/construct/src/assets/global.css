@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap'); */
+/* @import url('http://fonts.cdnfonts.com/css/typold'); */
+@import url('http://fonts.cdnfonts.com/css/typold?styles=21402,21392,21401,21389,21394,21387,21419,21430,21424');
 :root {  
     --clr-primary:   #FFBD35;
     --clr-secondary: #1A5F7A ;
@@ -10,7 +12,10 @@
   }
   
   body {
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Typold', sans-serif;
+font-family: 'Typold Condensed', sans-serif;
+font-family: 'Typold Extended', sans-serif;
     background: #fff;
     color: #000;
     

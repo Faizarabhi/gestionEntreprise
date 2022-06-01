@@ -11,21 +11,7 @@
                         $this->commandModel = $this->model('Command');
                     }
 
-                    // public function add_facteur()
-                    // {
-
-                    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    //         $data = json_decode(file_get_contents("php://input"), true);
-                    //         // print_r($data);
-                    //         $result = $this->factureModel->add_facteur($data);
-
-                    //         if ($result) {
-                    //             return $this->json(["message" => "success", "data" => $result]);
-                    //         } else {
-                    //             return $this->json(["message" => "error not created"]);
-                    //         }
-                    //     }
-                    // }
+                    
 
 
                     public function create()
