@@ -1,7 +1,7 @@
     <template>
 
     <tr v-for="index in 4" :key="index">
-        <th ><a @click="cmd">1</a> </th>
+        <th ><a @click="getAllCommande">1</a> </th>
         <td>Cy Ganderton</td>
         <td>Quality Control Specialist</td>
         <td>Littel, Schaden and Vandervort</td>
@@ -46,18 +46,8 @@ export default {
             const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
             el.anim.stop();
         },
-        // getAllCommande() {
-        //     // console.log("hello");
-        //     axios.get('http://localhost/filrouge/backend/public/FactureController/getAllCommande')
-        //         .then(res => {
-
-        //             this.orders = res.data
-        //             console.log(this.orders)
-        //             // this.factures.forEach(_ => this.showcmd.value.push(false))
-
-        //         })
-        // },
-        cmd(){
+        
+        getAllCommande(){
         // console.log("hello");
         axios.get('http://localhost/filrouge/backend/public/FactureController/getAllCommande')
                 .then(res => {

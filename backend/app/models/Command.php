@@ -41,7 +41,7 @@
                 return $this->db->execute($values);
             }
             public function getAllCommande(){
-                $this->db->query("SELECT * FROM `commande` WHERE facture_id = 20");
+                $this->db->query("SELECT * FROM `commande`");
                 
                 try{
                     return $this->db->resultSet();
