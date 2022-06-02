@@ -41,7 +41,7 @@
             {
                 // print_r($id);
                 // http://localhost/filrouge/backend/public/CustomerController/get_customer
-                $this->db->query('SELECT * FROM customer  Where id = :id');
+                $this->db->query('SELECT * FROM customer  WHERE id = :id');
                 $this->db->bind(':id', $data['id']);
 
                 try {
@@ -52,13 +52,13 @@
             }
             public function add_customer($data)
             {
-                $this->db->query("INSERT INTO `customer`(`name`, `tel`, `email`, `password`, `photo`, `type`) VALUES (:name,:tel,:email,:password,:photo,:type)");
+                $this->db->query("INSERT INTO `customer`(`name`, `tel`, `email`, `password`, `photo`, `metier`) VALUES (:name,:tel,:email,:password,:photo,:metier)");
                 $this->db->bind(':name', $data['name']);
                 $this->db->bind(':tel', $data['tel']);
                 $this->db->bind(':email', $data['email']);
                 $this->db->bind(':password', $data['password']);
                 $this->db->bind(':photo', $data['photo']);
-                $this->db->bind(':type', $data['type']);
+                $this->db->bind(':metier', $data['metier']);
                 try {
                     return $this->db->execute() ? $data : false;
                 } catch (PDOException $e) {

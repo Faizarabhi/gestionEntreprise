@@ -40,4 +40,16 @@
                 $this->db->query($query);
                 return $this->db->execute($values);
             }
+            public function getAllCommande(){
+                $this->db->query("SELECT * FROM `commande` WHERE facture_id = 20");
+                
+                try{
+                    return $this->db->resultSet();
+                }
+                catch(PDOException $e){
+                    return $e->getMessage();
+                }
+            }
+        
+        
         }

@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       local: "",
-      showcmd: [false, false, false]
+      showcmd: []
     }
   },
   components: {

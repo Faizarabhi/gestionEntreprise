@@ -12,23 +12,26 @@
           <form @submit.prevent="addUser">
             <div class="relative z-0 w-full mb-6 group">
               <input type="text"
-                class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Taper name" v-model="form.name" />
-              <input type="email"
-                class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                placeholder="Taper Email Verfication" v-model="form.email" />
-              <input type="tel"
-                class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                placeholder="Votr numero de telephone" v-model="form.tel" /> 
               
-
+              <input type="tel"
+                class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                placeholder="Votr numero de telephone" v-model="form.tel" />
+              <input type="text"
+                class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                placeholder="Votr  metier" v-model="form.metier" /> 
+              
+              <input type="email"
+                class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                placeholder="Taper Email " v-model="form.email" />
               <input type="password"
-                class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Mot de passe" v-model="form.password" />
               <input type="password"
-                class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Mot de passe veréfier" />
-                  <div  class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5">
+                  <div  class="border border-gray-300 w-48 md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5">
                   <label 
               for="dropzone-file"
               class="
@@ -84,7 +87,7 @@
               <a href="/login" class="text-sm font-medium text-primary underline block">Avez vous déja un compte ?
               </a>
 
-              <button type="submit" class="bg-secondary text-white md:px-32 rounded mt-8 w-full py-2">
+              <button type="submit" class="bg-secondary text-white md:px-32 rounded mt-4 w-full py-2">
                 Me connecter
               </button>
             </div>
@@ -101,7 +104,7 @@ const formadduser = {
   name: "",
   tel: "",
   photo: "",
-  type: "",
+  metier: "",
   email: "",
   password: "",
 };

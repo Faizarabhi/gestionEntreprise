@@ -9,31 +9,26 @@
         </a>
       </div>
       <div class="overflow-x-auto">
-        <table class="table table-compact w-full " >
-          <thead>
-            <!-- <tr>
-
-
-              <th>Ref : {{ order[0]?.id }}</th>
-              <th>Customer : {{ this.order[0] }}</th>
-              <th>Date Creation : {{ this.order[0] }}</th>
-
-
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th @click="showcmd.value[index] = !showcmd.value[index]">take it</th>
-            </tr> -->
-            <tr v-for="order in orders" :key="order.id">
-              <th>Ref: {{ order.id }}</th>
-              <th>Customer : {{ order.customer_id }}</th>
-              <th>Date Creation : {{ order.date_creation }}</th>
-              <th @click="showcmd.value[index] = !showcmd.value[index]">take it</th>
-            </tr>
-          </thead>
+        <table class="table table-compact w-full ">
           <tbody>
-            <command v-if="showcmd.value[index]" />
+            <tr v-for="(facture, index) in factures" :key="facture.id">
+              <table>
+                <thead>
+                  
+                  <td >Ref- {{ facture.id }}</td>
+                  <td>Customer- {{ facture.customer_id }}</td>
+                  <td>Date Creation : {{ facture.date_creation }}</td>
+                  <td @click="showcmd.value[index] = !showcmd.value[index]">take it</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </thead>
+                <tbody>
+                  <command v-if="showcmd.value[index]" />
+                </tbody>
+              </table>
+            </tr>
           </tbody>
           <tfoot>
             <tr>
@@ -67,33 +62,32 @@ export default {
 
   data() {
     return {
-      orders: [],
+      idfacture: "",
+      factures: [],
+      
 
     };
   },
   mounted() {
     this.getAllfacture();
+    
   },
   methods: {
-    // async getAllfactur() {
-    //   // http://localhost/filrouge/backend/public/FactureController/getAllfacture
-    //    let respons = await fetch(
-    //             "http://localhost/filrouge/backend/public/FactureController/getAllfacture"
-    //         );
-    //         let res= await respons.json();
-    //         console.log(res[0].id )
-    // },
+    
     getAllfacture() {
       // console.log("hello");
       axios.get('http://localhost/filrouge/backend/public/FactureController/getAllfacture')
         .then(res => {
 
-          this.orders = res.data
-          console.log(this.orders);
+          this.factures = res.data
+          this.factures.forEach( _ => this.showcmd.value.push(false))
 
         })
     },
+    
   },
+  
+  // http://localhost/filrouge/backend/public/FactureController/getAllCommande
 
 };
 </script>
