@@ -2,11 +2,12 @@
     <div class="bg-bg-bleu">
         <div class="grid grid-rows-2 place-content-center   p-12">
             <div class="grid grid-cols-2 gap-24 place-content-center bg-white p-16">
-                <div class="place-self-center">
+                <div class="place-self-center font-semibold">
                     <img src="../../assets/images/logo.svg" />
                     <p>{{ name }} </p>
-                    <p>+6 49 62 05 35 {{tel}}</p>
-                    <p>{{email}}</p>
+                    <p>{{ tel }} </p>
+                    <p>{{ email }} </p>
+
                 </div>
                 <div class="place-self-center">
                     <h1 class="font-bold text-secondary">PRESUPUESTO</h1>
@@ -21,13 +22,15 @@
                     </div>
 
                 </div>
-                <button @click="submit">Send Order</button>
+                
                 <p>{{ id_fact }}</p>
                 <div class="place-self-center col-span-2">
                     <label for="addrows">
-                    <button id="addrows" @click="addrow()"><lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
-                        path="lottie/plusToX.json" />Add Row</button>
-                        </label>
+                        <button id="addrows" @click="addrow()">
+                            <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
+                        path="lottie/plusToX.json" /> <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </label>
                     <table class="table table-compact">
                         <thead>
                             <tr>
@@ -63,10 +66,10 @@
                                 <td>Prix Total HT</td>
                                 </th>
                             </tr>
-
+                            
                         </tfoot>
                     </table>
-
+                        <div class=""><button @click="submit"> Send Order <i class="fa-solid fa-paper-plane"></i></button></div>
                 </div>
             </div>
         </div>
@@ -81,7 +84,7 @@ export default {
     components: {
         LottieAnimation
     },
-    
+
     components: { rowfacteur },
     inject: ["id_fact"],
     provide() {
@@ -115,12 +118,12 @@ export default {
         };
     },
     mounted() {
-        
+
         this.getAll_categorie(),
-        this.date_function(),
-        this.name = this.$cookies.get("name"),
-        this.email = this.$cookies.get("email"),
-        this.tel = this.$cookies.get("tel")
+            this.date_function(),
+            this.name = this.$cookies.get("name"),
+            this.email = this.$cookies.get("email"),
+            this.tel = this.$cookies.get("tel")
         // this.metier = $this.cookies.get("metier")
     },
     methods: {

@@ -62,7 +62,11 @@ class Database
 
     $this->stmt->bindValue($param, $value, $type);
   }
-
+  // Execute 
+  public function resultass() {
+    $this->execute();
+    return $this->statement->fetchAll(PDO::FETCH_ASSOC);
+}
   // Execute the prepared statement
   public function execute($data = null)
   {

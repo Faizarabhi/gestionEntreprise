@@ -22,5 +22,15 @@ class facture
             {
                 return $this->db->lastInsertedId("facteur");
             }
+            public function getAllfacture(){
+                $this->db->query('SELECT * FROM `facteur`');
+                try{
+                    return $this->db->resultSet();
+                }
+                catch(PDOException $e){
+                    return $e->getMessage();
+                }
+                
+            }
 
 }

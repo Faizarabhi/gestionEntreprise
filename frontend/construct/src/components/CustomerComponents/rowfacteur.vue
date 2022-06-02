@@ -30,7 +30,7 @@
 
 </template>
 
-            <script>
+<script>
 import { computed } from "vue";
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
 export default {

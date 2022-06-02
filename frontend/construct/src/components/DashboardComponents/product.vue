@@ -5,7 +5,7 @@
 
             <div class="py-8">
                 <a href="#addproduct" class="inline-flex items-center justify-center  ">
-                    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
+                    <lottie-animation @mouseover="start('add')" @mouseleave="stop('add')" ref="add" :speed="1" :autoPlay="false"
                         path="lottie/plusToX.json" />
 
                 </a>
@@ -26,25 +26,25 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody v-for="index in 1" :key="index">
-                        <tr v-for="pro in product" :key="pro">
+                    <tbody>
+                        <tr v-for="(pro, i) in product" :key="pro">
                             <th>{{ pro.id }}</th>
                             <th>{{ pro.ref_prdt }}</th>
                             <td>{{ pro.categorie }}</td>
-                            <td>{{ pro.designation}}</td>
+                            <td>{{ pro.designation }}</td>
                             <td>{{ pro.unite }}</td>
                             <td>{{ pro.prix_unitaire }}</td>
 
                             <td>
                                 <a @click="handleUpdate(pro)" href="#update_product"
                                     class="inline-flex items-center justify-center ">
-                                    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
-                                        path="lottie/edit.json"  />
+                                    <lottie-animation @mouseover="start('edit', i)" @mouseleave="stop('edit', i)"
+                                        ref="edit" :speed="1" :autoPlay="false" path="lottie/edit.json" />
                                 </a>
                             </td>
-                            <td><a @click="deleteProduct(pro.id)"  class="inline-flex items-center justify-center ">
-                                    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
-                                        path="lottie/trashV2.json" />
+                            <td><a @click="deleteProduct(pro.id)" class="inline-flex items-center justify-center ">
+                                    <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
+                                        ref="trash" :speed=".1" :autoPlay="false" path="lottie/trashV2.json" />
                                 </a></td>
                         </tr>
                     </tbody>
@@ -171,10 +171,13 @@ export default {
         this.getAllProduct();
     },
     methods: {
-        start() {
-            this.$refs.anim.play(),
-                this.autoPlay = "true"
-
+        start(refName, index) {
+            const el = index !== undefined ?  this.$refs[refName]?.[index] : this.$refs[refName];  
+            el.anim.play();
+        },
+        stop(refName, index) {
+            const el = index !== undefined ?  this.$refs[refName]?.[index] : this.$refs[refName];  
+            el.anim.stop();
         },
         async getAllProduct() {
             let respons = await fetch(

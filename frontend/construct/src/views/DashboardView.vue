@@ -1,12 +1,13 @@
 <template>
-    <div class="h-screen w-screen" >
-      
-    <bar/>
-    
-    </div>
+  <div class="h-screen w-screen">
+
+    <bar />
+
+  </div>
 </template>
 <script>
 
+import { computed } from 'vue';
 import bar from '../components/DashboardComponents/bar.vue'
 import router from '../router';
 
@@ -18,24 +19,30 @@ import router from '../router';
 export default {
   data() {
     return {
-      local:"",
+      local: "",
+      showcmd: [false, false, false]
     }
   },
   components: {
-      
-      bar,
-      
-      },
-      beforeMount() {
 
-      let id_check = this.$cookies.get("idadmin");
-      // console.log(id_check)
-      if(!id_check) router.push('/login')
+    bar,
 
-      
-      // this.check_admin(id_check);
-      
-      },
-        }
+  },
+  beforeMount() {
+
+    let id_check = this.$cookies.get("idadmin");
+    // console.log(id_check)
+    if (!id_check) router.push('/login')
+
+
+    // this.check_admin(id_check);
+
+  },
+  provide(){
+    return {
+        showcmd : computed(() => this.showcmd)
+    }
+  }
+}
 
 </script>
