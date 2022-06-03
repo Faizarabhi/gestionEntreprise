@@ -56,4 +56,10 @@ class Controller
     }
     return $_SESSION;
   }
+
+  function dd($data){
+    header("content-type: text/html");
+    dump($data);
+    die();
+  }
 }

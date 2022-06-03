@@ -7,15 +7,15 @@
                 
             </div>
         <a href="/">
-        <img src="../../assets/images/logo.svg" :class=" isShow? ' p-20 pt-16 ' : 'pt-4 '" alt="logo ">
+        <img src="../../assets/images/logo.svg" :class=" isShow? ' p-12  pt-16 ' : 'pt-4 '" alt="logo ">
         </a>  
-        <div class="menu-items flex flex-col mt-12">
+        <div class="menu-items flex flex-col mt-8">
             <!-- <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-user-helmet-safety"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow" class="" > Personnel  </span></div></router-link> -->
-            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-person-digging"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow" class="" > Personnel  </span></div></router-link>
-            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-cart-flatbed-boxes" style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow" class="" > Order </span></div></router-link>
-            <!-- <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-forklift" style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow" class="" > Order </span></div></router-link> -->
-            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"><span class="pr-4"> <i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow" class="" > Product </span></div></router-link>
             <router-link to ="/historique" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow" class="" > statistic </span></div></router-link>
+            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-cart-flatbed-boxes" style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow" class="" > Order </span></div></router-link>
+            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-person-digging"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow" class="" > Personnel  </span></div></router-link>
+            <router-link to ="/" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-forklift" style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow" class="" > Customer </span></div></router-link>
+            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"><span class="pr-4"> <i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow" class="" > Product </span></div></router-link>
             
             
         </div>

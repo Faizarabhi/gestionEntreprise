@@ -230,6 +230,14 @@ export default {
     this.getAllPersonnel();
   },
   methods: {
+    start(refName, index) {
+                const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
+                el.anim.play();
+            },
+            stop(refName, index) {
+                const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
+                el.anim.stop();
+            },
     handleUpdate(personnel) {
       // console.log("hello")
       this.form.id = personnel.id;

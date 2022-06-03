@@ -11,6 +11,7 @@ module.exports = {
         'secondary': '#001E6C',
         'white' : '#fff',
         'dash-bleu': '#001E6C',
+        // 'bg-bleu': '#121212',
         'bg-bleu': '#F9F9F9',
         'scroll-bleu': '#657093',
         

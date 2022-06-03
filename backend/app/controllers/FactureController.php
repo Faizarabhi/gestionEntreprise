@@ -37,6 +37,7 @@
                     
                     public function getAllfacture(){
                         $result = $this->factureModel->getAllfacture();
+
                         
                         if($result){
                             echo json_encode($result);
@@ -54,8 +55,5 @@
                             echo json_encode(["message"=>"error not find"]);
                         }
                     }
-
-
-
 
                 }

@@ -14,18 +14,19 @@
             <tr v-for="(facture, index) in factures" :key="facture.id">
               <table>
                 <thead>
-                  
-                  <td >Ref- {{ facture.id }}</td>
+
+                  <td>Ref- {{ facture.id }}</td>
                   <td>Customer- {{ facture.customer_id }}</td>
                   <td>Date Creation : {{ facture.date_creation }}</td>
-                  <td @click="showcmd.value[index] = !showcmd.value[index]">take it</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
+                    <span class="inline-flex items-center justify-center  ">
+                      <lottie-animation @mouseover="start('arrow', index)" @mouseout="stop('arrow', index)" ref="arrow"
+                        :speed="2" :autoPlay="false" path="lottie/arrowDownCircle.json" />
+                    </span>
+                  </td>
                 </thead>
                 <tbody>
-                  <command v-if="showcmd.value[index]" />
+                  <command v-if="currentFacture === facture.id" :orders="orders" />
                 </tbody>
               </table>
             </tr>
@@ -64,29 +65,50 @@ export default {
     return {
       idfacture: "",
       factures: [],
-      
+      currentFacture: undefined,
+      orders: [],
+
 
     };
   },
   mounted() {
     this.getAllfacture();
-    
+
+  },
+  watch: {
+    currentFacture(newValue, oldValue) {
+      if (newValue === oldValue) return;
+      if (!newValue) {
+        this.orders = []
+      } else {
+        axios.get(`http://localhost/filrouge/backend/commandController/getCommandsByFacture/${this.currentFacture}`).then(res => {
+          this.orders = res.data;
+        })
+      }
+    }
   },
   methods: {
-    
+    start(refName, index) {
+      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
+      el.anim.play();
+    },
+    stop(refName, index) {
+      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
+      el.anim.stop();
+    },
     getAllfacture() {
       // console.log("hello");
       axios.get('http://localhost/filrouge/backend/public/FactureController/getAllfacture')
         .then(res => {
 
           this.factures = res.data
-          this.factures.forEach( _ => this.showcmd.value.push(false))
+          this.factures.forEach(_ => this.showcmd.value.push(false))
 
         })
     },
-    
+
   },
-  
+
   // http://localhost/filrouge/backend/public/FactureController/getAllCommande
 
 };

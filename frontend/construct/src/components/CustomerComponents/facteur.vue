@@ -1,7 +1,7 @@
                             <template>
     <div class="bg-bg-bleu">
         <div class="grid grid-rows-2 place-content-center   p-12">
-            <div class="grid grid-cols-2 gap-24 place-content-center bg-white p-16">
+            <div class="grid grid-cols-2 gap-12 place-content-center bg-white p-16">
                 <div class="place-self-center font-semibold">
                     <img src="../../assets/images/logo.svg" />
                     <p>{{ name }} </p>
@@ -22,13 +22,13 @@
                     </div>
 
                 </div>
-                
+
                 <p>{{ id_fact }}</p>
                 <div class="place-self-center col-span-2">
                     <label for="addrows">
-                        <button id="addrows" @click="addrow()">
+                        <button class="bg-black my-4 w-20 h-12 rounded-md text-white" id="addrows" @click="addrow()">
                             <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
-                        path="lottie/plusToX.json" /> <i class="fa-solid fa-plus"></i>
+                                path="lottie/plusToX.json" /> <i class="fa-solid fa-plus"></i>
                         </button>
                     </label>
                     <table class="table table-compact">
@@ -53,23 +53,13 @@
                             </tr>
                         </tbody>
                         <tfoot>
-
                             <tr>
-
-                                <th>
-                                <td></td>
-                                <td>Categorie</td>
-                                <td>Produit</td>
-                                <td>Quantité</td>
-                                <td>Unité</td>
-                                <td>Prix Unitaire HT</td>
-                                <td>Prix Total HT</td>
-                                </th>
-                            </tr>
+                            <td>Prix Total:</td>
                             
+                            </tr>
                         </tfoot>
                     </table>
-                        <div class=""><button @click="submit"> Send Order <i class="fa-solid fa-paper-plane"></i></button></div>
+                    <div class="ml-[80%] my-8 p-4 "><button class="bg-black w-20 h-12 rounded-md text-white" @click="submit"> Send<i class="fa-solid fa-paper-plane"></i></button></div>
                 </div>
             </div>
         </div>

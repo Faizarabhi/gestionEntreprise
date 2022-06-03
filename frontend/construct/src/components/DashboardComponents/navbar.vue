@@ -22,7 +22,7 @@
           ><i class="fa-solid fa-right-from-bracket"></i
         ></a>
       </div>
-      <div class="w-6">
+      <!-- <div class="w-6">
           <span
             class="animate-ping absolute inline-flex h-4 w-4 rounded-full bg-red-400 opacity-75"
           ></span>
@@ -30,7 +30,7 @@
             ><i class="fa-regular fa-bell"></i
           >
         </span>
-      </div>
+      </div> -->
       <div class="avatar ml-auto">
         <div
           class="avatar w-8 rounded-full ring ring-dash-bleu ring-offset-base-100  ring-offset-2"

@@ -40,16 +40,25 @@
                 $this->db->query($query);
                 return $this->db->execute($values);
             }
-            public function getAllCommande(){
+            public function getAllCommande()
+            {
                 $this->db->query("SELECT * FROM `commande`");
-                
-                try{
+
+                try {
                     return $this->db->resultSet();
-                }
-                catch(PDOException $e){
+                } catch (PDOException $e) {
                     return $e->getMessage();
                 }
             }
-        
-        
+
+            public function fetchManyByFactureId($facture)
+            {
+                $this->db->query("select commande.*, commande.id as commande_id, produit.* from commande left join produit on produit.id = commande.product_id where commande.facture_id = :facture");
+                $this->db->bind(':facture', $facture);
+                try {
+                    return $this->db->resultSet();
+                } catch (PDOException $e) {
+                    return $e->getMessage();
+                }
+            }
         }
