@@ -36,7 +36,7 @@
                     $placeholders[] = "(" . implode(",", array_fill(0, count($command), "?")) . ")";
                     $values = [...$values, ...array_values($command)];
                 }
-                $query = "insert into commande (" . implode(",", $keys) . ") values " . implode(", ", $placeholders);
+                $query = "INSERT INTO commande (" . implode(",", $keys) . ") VALUES " . implode(", ", $placeholders);
                 $this->db->query($query);
                 return $this->db->execute($values);
             }
@@ -53,7 +53,7 @@
 
             public function fetchManyByFactureId($facture)
             {
-                $this->db->query("select commande.*, commande.id as commande_id, produit.* from commande left join produit on produit.id = commande.product_id where commande.facture_id = :facture");
+                $this->db->query("SELECT commande.*, commande.id as commande_id, produit.* FROM commande LEFT JOIN produit ON produit.id = commande.product_id WHERE commande.facture_id = :facture ");
                 $this->db->bind(':facture', $facture);
                 try {
                     return $this->db->resultSet();

@@ -34,15 +34,15 @@
                     <table class="table table-compact">
                         <thead>
                             <tr>
-                                <th>
-                                <td></td>
-                                <td>Categorie</td>
-                                <td>Produit</td>
-                                <td>Quantité</td>
-                                <td>Unité</td>
-                                <td>Prix Unitaire HT</td>
-                                <td>Prix Total HT</td>
-                                </th>
+                                <th>Categorie</th>
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Unité</th>
+                                <th>Prix Unitaire HT</th>
+                                <th>Prix Total HT</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
 

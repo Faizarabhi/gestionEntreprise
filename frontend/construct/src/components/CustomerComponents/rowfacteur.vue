@@ -1,6 +1,6 @@
             <template>
 
-  <th>
+
   <td>
     <select @change="getAllProduct($event)" name="" class="select select-bordered max-w-xs">
       <option disabled selected>Categorie</option>
@@ -20,13 +20,14 @@
   <td>
     <input v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs" />
   </td>
-  <td>prix unitaire {{ this.product?.prix_unitaire ?? 0 }}</td>
-  <td>prix Total {{ prix }}</td>
+  <td> {{ this.product?.unite ?? 0 }}</td>
+  <td>{{ this.product?.prix_unitaire ?? 0 }}</td>
+  <td>{{ prix }}</td>
 
-  <td @click="removeCmd(command.id)">
+  <td class="inline-flex  " @click="removeCmd(command.id)">
     <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/trashV2.json" />
   </td>
-  </th>
+  
 
 </template>
 

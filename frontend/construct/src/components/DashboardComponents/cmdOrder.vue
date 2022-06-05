@@ -1,25 +1,38 @@
         <template>
 
-    <tr v-for="order in orders" :key="order.commande_id">
-        <td>{{ order.designation }}</td>
-        <td>{{ order.quantity }}</td>
-        <td>prix {{ order.prix_unitaire }}</td>
-        <td>
+    
+        <tr>
+            <td>referanse produit</td>
+            <!-- <td></td> -->
+            <td>prix unitaire</td>
+            <td>quantite</td>
+            <td>unite</td>
+            <td></td>
+            <td></td>
+        </tr>
+   
+        <tr v-for="order in orders" :key="order.commande_id">
+            <td> {{ order.ref_prdt }}</td>
+            <!-- <td>{{ order.designation }}</td> -->
+            <td> {{ order.prix_unitaire }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.unite }}</td>
+            <td>
 
-            <span class="inline-flex items-center justify-center  ">
-                <lottie-animation @mouseover="start('edit', index)" @mouseout="stop('edit', index)" ref="edit"
-                    :speed="2" :autoPlay="false" path="lottie/edit.json" />
-            </span>
-        </td>
-        <td>
-            <span class="inline-flex items-center justify-center  ">
-                <lottie-animation @mouseover="start('trash', index)" @mouseout="stop('trash', index)" ref="trash"
-                    :speed="2" :autoPlay="false" path="lottie/trashV2.json" />
-            </span>
+                <span class="inline-flex ">
+                    <lottie-animation @mouseover="start('edit', index)" @mouseout="stop('edit', index)" ref="edit"
+                        :speed="2" :autoPlay="false" path="lottie/edit.json" />
+                </span>
+                        </td>
+            <td>
+                <span class="inline-flex ">
+                    <lottie-animation @mouseover="start('trash', index)" @mouseout="stop('trash', index)" ref="trash"
+                        :speed="2" :autoPlay="false" path="lottie/trashV2.json" />
+                </span>
 
-        </td>
-    </tr>
-
+            </td>
+        </tr>
+  
 
 </template>
         <script>

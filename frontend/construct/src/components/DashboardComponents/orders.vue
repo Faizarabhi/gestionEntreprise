@@ -1,48 +1,34 @@
   <template>
-  <div class="w-full">
-    <div
-      class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-      <div class="py-8">
-        <a href="#addcmd" class="inline-flex items-center justify-center ">
-          <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/plusToX.json" />
+  <div class="relative w-full p-16 rounded-lg ">
+     
+      <div >
+        <table class="table table-compact  " v-for="(facture, index) in factures" :key="facture.id">
+          <thead >
 
-        </a>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="table table-compact w-full ">
+            <tr >
+              <th>Ref- {{ facture.id }}</th>
+              <th>Customer- {{ facture.customer_id }}</th>
+              <th>Date Creation : {{ facture.date_creation }}</th>
+              <th @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
+                <span class="inline-flex items-center justify-center  ">
+                  <lottie-animation @mouseover="start('arrow', index)" @mouseout="stop('arrow', index)" ref="arrow"
+                    :speed="2" :autoPlay="false" path="lottie/arrowDownCircle.json" />
+                </span>
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+
+
           <tbody>
-            <tr v-for="(facture, index) in factures" :key="facture.id">
-              <table>
-                <thead>
-
-                  <td>Ref- {{ facture.id }}</td>
-                  <td>Customer- {{ facture.customer_id }}</td>
-                  <td>Date Creation : {{ facture.date_creation }}</td>
-                  <td @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
-                    <span class="inline-flex items-center justify-center  ">
-                      <lottie-animation @mouseover="start('arrow', index)" @mouseout="stop('arrow', index)" ref="arrow"
-                        :speed="2" :autoPlay="false" path="lottie/arrowDownCircle.json" />
-                    </span>
-                  </td>
-                </thead>
-                <tbody>
-                  <command v-if="currentFacture === facture.id" :orders="orders" />
-                </tbody>
-              </table>
-            </tr>
+            <command v-if="currentFacture === facture.id" :orders="orders" />
           </tbody>
-          <tfoot>
-            <tr>
 
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
-
-
-
-  </div>
+  
 </template>
   <script>
 import axios from 'axios';
