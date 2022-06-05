@@ -10,7 +10,7 @@
 <script>
 import sidebar from "./sidebar.vue";
 import navbar from "./navbar.vue";
-import st from "./profile.vue";
+import st from "../../DashboardComponents/profile.vue";
 
 export default {
   components: {

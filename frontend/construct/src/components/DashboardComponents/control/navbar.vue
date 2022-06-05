@@ -35,7 +35,7 @@
         <div
           class="avatar w-8 rounded-full ring ring-dash-bleu ring-offset-base-100  ring-offset-2"
         >
-          <img src="../../assets/images/about.svg" />
+          <img src="../../../assets/images/about.svg" />
         </div>
       </div>
     </div>

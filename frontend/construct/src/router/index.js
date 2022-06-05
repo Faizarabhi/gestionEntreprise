@@ -54,34 +54,22 @@ const router = createRouter({
         },
         {
           path:'/orders',
-        component: ()=> import('../components/DashboardComponents/orders.vue')
+        component: ()=> import('../components/DashboardComponents/orders/orders.vue')
         }
         ,
         {
           path:'/product',
-        component: ()=> import('../components/DashboardComponents/product.vue')
+        component: ()=> import('../components/DashboardComponents/product/product.vue')
         },
         {
           path:'/customers',
-        component: ()=> import('../components/DashboardComponents/customers.vue')
+        component: ()=> import('../components/DashboardComponents/customer/customers.vue')
         },
         
       ]
 
       
     },
-    // {
-    //   path : '/profile',
-    //   name : 'profile',
-    //   component: profile
-      
-    // },
-    // {
-    //   path : '/historique',
-    //   name : 'historique',
-    //   component: historique
-      
-    // },
 
     
     

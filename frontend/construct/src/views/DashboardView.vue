@@ -8,7 +8,7 @@
 <script>
 
 import { computed } from 'vue';
-import bar from '../components/DashboardComponents/bar.vue'
+import bar from '../components/DashboardComponents/control/bar.vue'
 import router from '../router';
 
 

@@ -1,7 +1,7 @@
 <template >
     <div id="about" class="relative " data-aos="flip-left" >
         <div class="hidden md:block w-3/5 h-full ml-8 md:h-full md:ml-28 my-14  ">
-            <img src="../assets/images/about.svg" >
+            <img src="../../assets/images/about.svg" >
         </div>
         <div class="relative md:absolute w-4/5 top-4 md:top-8 bg-secondary left-6 p-6 left-1/4 md:left-1/2 md:w-3/12 h-4/5 text-white md:p-11  md:py-18 grid place-items-start gap-3">
             

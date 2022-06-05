@@ -1,21 +1,16 @@
 <template>
     <div>
-        <table>
-            <thead>
-                <th>hello</th>
-            </thead>
-            <tbody>
-                <customer />
-            </tbody>
-        </table>
-
+        
+<aa/>
     </div>
 </template>
 <script>
-import customer from '../DashboardComponents/customer.vue'
+import router from "@/router";
+import aa from "../DashboardComponents/customer.vue";
+
 export default {
     component: {
-        customer
+        aa,
     }
 }
 </script>

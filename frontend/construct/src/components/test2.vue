@@ -16,7 +16,7 @@
               <span class="text-secondary font-medium mr-3">Email: </span>
               <span class="">rabhi.construction@gmail.com</span>
             </li>
-            <li><img src="../assets/images/logo1.svg" class="h-8" alt=""></li>
+            <li><img src="../../assets/images/logo1.svg" class="h-8" alt=""></li>
           </ul>
         </div>
       </div>

@@ -32,7 +32,7 @@
 </template>
   <script>
 import axios from 'axios';
-import command from '../DashboardComponents/cmdOrder.vue'
+import command from './cmdOrder.vue'
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
 export default {
   components: {
