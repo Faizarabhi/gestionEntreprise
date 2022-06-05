@@ -5,10 +5,13 @@
                 <!-- head -->
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>photo</th>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>tel</th>
+                        <th>email</th>
+                        <th>metier</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -205,9 +205,7 @@ export default {
             this.form.categorie = product.categorie;
         },
         updateProduct(id) {
-            // console.log($id);
-            // this.form.id = $id;
-            // console.log(this.form.id)
+            
             fetch(
                 "http://localhost/filrouge/backend/public/ProductController/update_product",
                 {
@@ -224,7 +222,7 @@ export default {
             console.log(this.form.product);
         },
         deleteProduct(id) {
-            console.log(id);
+            
             fetch(
                 "http://localhost/filrouge/backend/public/ProductController/delete_product",
                 {

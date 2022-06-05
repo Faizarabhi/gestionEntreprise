@@ -282,9 +282,7 @@ export default {
     },
 
     updatePersonnel(id) {
-      // console.log($id);
-      // this.form.id = id;
-      // console.log(this.form.id)
+      
       fetch(
         "http://localhost/filrouge/backend/public/PersonnelController/update_personnel",
         {
