@@ -12,10 +12,10 @@ class AdminController extends Controller
   }
   public function check_admin()
   {       
-        // die("hello from checkadmin method");
+        
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
           $data = json_decode(file_get_contents("php://input"), true);
-          // die("hello from checkadmin method");
+          
           
             $result = $this->adminModel->checkAdmin($data);
             

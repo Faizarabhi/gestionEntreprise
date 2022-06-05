@@ -94,11 +94,11 @@
                 // print_r($data);
                 // die($id);
                 $id = $data['id'];
-                // http://localhost/filrouge/backend/public/CustomerController/delete_customer
+                
                 $this->db->query('DELETE  FROM customer WHERE id = :id');
                 $this->db->bind(":id", $id);
                 try {
-                    // die($id);
+                    
                     return $this->db->execute();
                 } catch (PDOException $e) {
                     die($e->getMessage());

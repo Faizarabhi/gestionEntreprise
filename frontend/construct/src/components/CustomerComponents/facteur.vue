@@ -54,13 +54,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td>Prix Total:</td>
-
+                            <td>Prix Total:</td>
+                            
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="ml-[80%] my-8 p-4 "><button class="bg-black w-20 h-12 rounded-md text-white"
-                            @click="submit"> Send<i class="fa-solid fa-paper-plane"></i></button></div>
+                    <div class="ml-[80%] my-8 p-4 "><button class="bg-black w-20 h-12 rounded-md text-white" @click="submit"> Send<i class="fa-solid fa-paper-plane"></i></button></div>
                 </div>
             </div>
         </div>

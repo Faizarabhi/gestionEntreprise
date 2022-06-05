@@ -1,7 +1,7 @@
 <template>
     <div >
-        <div  class="relative  " :class=" isShow ? 'w-56 h-screen bg-dash-bleu p-x-4 ': 'w-16 h-screen  bg-dash-bleu ' ">
-            <div class="absolute top-20 -right-4    rotate-90 cursor-row-resize bg-bg-bleu rounded-full text-primary  text-5xl" :class="isShow? 'z-50 ':'-rotate-90  z-50'"   v-on:click="show">
+        <div  class="relative  " :class=" isShow ? 'w-56 overflow-hidden h-screen bg-dash-bleu p-x-4 ': 'w-16 h-screen overflow-hidden bg-dash-bleu ' ">
+            <div class="absolute top-20 -right-3   rotate-90 cursor-row-resize bg-secondary rounded-full text-bg-bleu  text-5xl" :class="isShow? 'z-50 ':'-rotate-90  z-50'"   v-on:click="show">
                 <i class="fa-solid fa-circle-chevron-down "   ></i>
                 
                 

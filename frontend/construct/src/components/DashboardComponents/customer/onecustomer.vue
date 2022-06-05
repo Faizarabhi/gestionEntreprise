@@ -67,7 +67,17 @@ export default {
                 })
         },
         deleteCustomer(id) {
-            console.log(id);
+             console.log(id)
+      fetch(
+        "http://localhost/filrouge/backend/public/CustomerController/delete_customer",
+        {
+          method: "DELETE",
+          body: JSON.stringify({ id: id }),
+        }
+      )
+        .then((res) => res.json())
+        .then((out) => console.log(out));
+        this.getAllCustomer() 
         },
         handleUpdate(customers) {
             console.log(customers)
