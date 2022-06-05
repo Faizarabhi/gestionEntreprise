@@ -46,11 +46,11 @@ const router = createRouter({
       children:[
         {
           path:'/profile',
-        component: ()=> import('../components/DashboardComponents/profile.vue')
+        component: ()=> import('../components/DashboardComponents/personnel/profile.vue')
         },
         {
           path:'/historique',
-        component: ()=> import('../components/DashboardComponents/historique.vue')
+        component: ()=> import('../components/DashboardComponents/statistics/historique.vue')
         },
         {
           path:'/orders',
