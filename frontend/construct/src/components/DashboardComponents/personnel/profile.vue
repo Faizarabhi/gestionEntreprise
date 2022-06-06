@@ -13,12 +13,8 @@
           <!-- head -->
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
-              <th>Name</th>
+              <th>Name </th>
+              
               <th>Job</th>
               <th>Phone</th>
               <th>Email</th>
@@ -30,21 +26,17 @@
           <tbody>
             <!-- row 1 -->
             <tr v-for="perso in personnel" :key="perso">
-              <th>
-                <label>
-                  <input type="checkbox" class="checkbox" />
-                </label>
-              </th>
+
               <td>
                 <div class="flex items-center space-x-3">
                   <div class="avatar">
                     <div class="mask mask-squircle w-12 h-12">
-                      <img src="../../assets/images/about.svg" alt="Avatar Tailwind CSS Component" />
+                      <img src="../../../assets/images/about.svg" alt="Avatar Tailwind CSS Component" />
                     </div>
                   </div>
                   <div>
                     <div class="font-bold">{{ perso.name }}</div>
-                    <div class="text-sm opacity-50">United States</div>
+                    
                   </div>
                 </div>
               </td>
@@ -78,19 +70,6 @@
             </tr>
             <!-- row 2 -->
           </tbody>
-          <!-- foot -->
-          <tfoot>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>
@@ -98,7 +77,7 @@
     <div class="modal" id="adduser">
       <div class="modal-box">
         <a href="#" for="my-modal-3"
-          class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+          class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
         <h3 class="font-bold text-lg">ADD User!</h3>
 
         <div class="form-control w-full max-w-xs">
@@ -143,7 +122,7 @@
         </div>
 
         <div class="modal-action">
-          <button @click="addPersonnel()" for="my-modal-3" class="btn bg-dash-bleu hover:bg-scroll-bleu">
+          <button @click="addPersonnel()" for="my-modal-3" class="btn bg-primary border-none hover:bg-scroll-bleu">
             ADD
           </button>
         </div>
@@ -155,7 +134,7 @@
     <div class="modal" id="update_personnel">
       <div class="modal-box relative">
         <a href="#" for="my-modal-3"
-          class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+          class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
         <h3 class="text-lg font-bold">Update Personnel!</h3>
         <div class="form-control w-full max-w-xs">
           <label class="label">
@@ -199,7 +178,7 @@
         </div>
         <div class="modal-action">
           <a @click="updatePersonnel(form.id)" href="#" for="my-modal-3"
-            class="btn bg-dash-bleu hover:bg-scroll-bleu">Update
+            class="btn bg-primary border-none hover:bg-scroll-bleu">Update
           </a>
         </div>
       </div>
