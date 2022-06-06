@@ -5,8 +5,7 @@
         <td>{{ customer.tel }}</td>
         <td>{{ customer.email }}</td>
         <td>{{ customer.metier }}</td>
-        <td> <a @click="handleUpdate(customer.id)" href=""
-                class="inline-flex items-center justify-center ">
+        <td> <a @click="handleUpdate(customer.id)" href="" class="inline-flex items-center justify-center ">
                 <lottie-animation @mouseover="start('edit', index)" @mouseleave="stop('edit', index)" ref="edit"
                     :speed="1" :autoPlay="false" path="lottie/edit.json" />
             </a>
@@ -23,6 +22,7 @@
 import axios from 'axios';
 
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+
 export default {
     components: {
         LottieAnimation
@@ -33,13 +33,13 @@ export default {
         return {
             customers: [],
             form: {
-                email: "",
                 id: "",
                 metier: "",
                 name: "",
+                tel: "",
+                email: "",
                 password: "",
                 photo: "",
-                tel: ""
             },
         }
     },
@@ -67,21 +67,21 @@ export default {
                 })
         },
         deleteCustomer(id) {
-             console.log(id)
-      fetch(
-        "http://localhost/filrouge/backend/public/CustomerController/delete_customer",
-        {
-          method: "DELETE",
-          body: JSON.stringify({ id: id }),
-        }
-      )
-        .then((res) => res.json())
-        .then((out) => console.log(out));
-        this.getAllCustomer() 
+            console.log(id)
+            fetch(
+                "http://localhost/filrouge/backend/public/CustomerController/delete_customer",
+                {
+                    method: "DELETE",
+                    body: JSON.stringify({ id: id }),
+                }
+            )
+                .then((res) => res.json())
+                .then((out) => console.log(out));
+            this.getAllCustomer()
         },
         handleUpdate(customers) {
             console.log(customers)
-                this.form.id = customers.id,
+            this.form.id = customers.id,
                 this.form.email = customers.email,
                 this.form.metier = customers.metier,
                 this.form.name = customers.name,
@@ -89,9 +89,10 @@ export default {
                 this.form.photo = customers.photo,
                 this.form.tel = customers.tel
         },
-        updateCustomer(){
+        updateCustomer() {
             // http://localhost/filrouge/backend/public/CustomerController/update_customer
-        }
+        },
+        
     }
 }
 
