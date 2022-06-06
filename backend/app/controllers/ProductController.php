@@ -76,10 +76,13 @@
             }
             public function delete_product()
             {
+                
 
-            if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+                if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+                    
             $id = json_decode(file_get_contents("php://input"), true); 
             $result = $this->productModel->delete_product($id);
+            // var_dump($result);
             if($result){
                 echo json_encode(["message" => "success delete","data"=>$id]);
             }else{

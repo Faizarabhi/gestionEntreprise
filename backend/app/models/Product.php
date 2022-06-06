@@ -14,16 +14,13 @@
             public function add_product($data)
             {
 
-                $this->db->query("INSERT INTO `produit`( `ref_prdt`, `designation`, `unite`, `categorie`) VALUES (:ref_prdt,:designation,:unite,:categorie)");
+                $this->db->query("INSERT INTO `produit`( `ref_prdt`, `designation`, `unite`, `id_categorie`,`prix_unitaire`) VALUES (:ref_prdt,:designation,:unite,:id_categorie,:prix_unitaire)");
                 $this->db->bind(':ref_prdt', $data['ref_prdt']);
                 $this->db->bind(':designation', $data['designation']);
                 $this->db->bind(':unite', $data['unite']);
-                $this->db->bind(':categorie', $data['categorie']);
-                // $this->db->query("INSERT INTO `produit`( `ref_prdt`, `designation`, `unite`, `categorie`) VALUES (?,?,?,?)");
-                // $this->db->bind(1, $data['ref_prdt']);
-                // $this->db->bind(2, $data['designation']);
-                // $this->db->bind(3, $data['unite']);
-                // $this->db->bind(4, $data['categorie']);
+                $this->db->bind(':id_categorie', $data['id_categorie']);
+                $this->db->bind(':prix_unitaire', $data['prix_unitaire']);
+                
 
                 try {
                     // var_dump($data);
@@ -36,7 +33,7 @@
             public function getAll_product()
             {
 
-                $this->db->query('SELECT *,categorie.* FROM produit 
+                $this->db->query('SELECT produit.id as idpro,produit.*,categorie.* FROM produit 
                 INNER JOIN categorie ON categorie.id = produit.id_categorie ');
                 try {
                     return $this->db->resultSet();
@@ -97,9 +94,10 @@
             public function delete_product($data)
             {
 
-                // die($data['id']);
+                // var_dump($id);
+                $id = $data['id'];
                 $this->db->query('DELETE  FROM produit WHERE id = :id');
-                $this->db->bind(":id", $data['id']);
+                $this->db->bind(":id", $id);
                 
                 try {
                     return $this->db->execute();

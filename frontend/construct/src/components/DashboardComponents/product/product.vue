@@ -5,8 +5,8 @@
 
             <div class="py-8 ">
                 <a href="#addproduct" class="inline-flex items-center justify-center  ">
-                    <lottie-animation @mouseover="start('add')" @mouseleave="stop('add')" ref="add" :speed="1" :autoPlay="false"
-                        path="lottie/plusToX.json" />
+                    <lottie-animation @mouseover="start('add')" @mouseleave="stop('add')" ref="add" :speed="1"
+                        :autoPlay="false" path="lottie/plusToX.json" />
 
                 </a>
             </div>
@@ -16,11 +16,11 @@
                 <table class="table table-compact w-full">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>Name</th>
-                            <th>Job</th>
+
                             <th>Designation</th>
                             <th>Unite</th>
+                            <th>Categorie</th>
                             <th>Prix Unitaire</th>
                             <th></th>
                             <th></th>
@@ -28,9 +28,9 @@
                     </thead>
                     <tbody>
                         <tr v-for="(pro, i) in product" :key="pro">
-                            <th>{{ pro.id }}</th>
+                            <!-- <th>{{ pro.id }}</th> -->
                             <th>{{ pro.ref_prdt }}</th>
-                            <td>{{ pro.categorie }}</td>
+                            <td>{{ pro.name }}</td>
                             <td>{{ pro.designation }}</td>
                             <td>{{ pro.unite }}</td>
                             <td>{{ pro.prix_unitaire }}</td>
@@ -42,7 +42,7 @@
                                         ref="edit" :speed="1" :autoPlay="false" path="lottie/edit.json" />
                                 </a>
                             </td>
-                            <td><a @click="deleteProduct(pro.id)" class="inline-flex items-center justify-center ">
+                            <td><a @click="deleteProduct(pro.idpro)" class="inline-flex items-center justify-center ">
                                     <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
                                         ref="trash" :speed=".1" :autoPlay="false" path="lottie/trashV2.json" />
                                 </a></td>
@@ -56,15 +56,15 @@
         <div class="modal" id="addproduct">
             <div class="modal-box">
                 <a href="#" for="my-modal-3"
-                    class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+                    class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
                 <h3 class="font-bold text-lg">ADD PRODUCT!</h3>
-                <!-- `ref_prdt`, `designation`, `unite`, `categorie` -->
-                <select @click="getAll_categorie" name="" class="select select-bordered max-w-xs">
-                    <option disabled selected>Categorie</option>
-                    <option v-for="(cat, i) in categorie" :key="i">
+                <select v-model="form.id_categorie" class="select select-bordered max-w-xs">
+                    <option value="default" disabled>Categorie</option>
+                    <option :value="cat.id" v-for="(cat, i) in categories" :key="i">
                         {{ cat.name }}
                     </option>
                 </select>
+
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Reference produit</span>
@@ -76,7 +76,8 @@
                     <label class="label">
                         <span class="label-text">Designation produit</span>
                     </label>
-                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                        v-model="form.designation" />
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
@@ -87,13 +88,14 @@
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">Categorie produit</span>
+                        <span class="label-text">prix_unitaire</span>
                     </label>
                     <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-                        v-model="form.categorie" />
+                        v-model="form.prix_unitaire" />
                 </div>
                 <div class="modal-action">
-                    <a @click="addProduct" href="#" for="my-modal-3" class="btn bg-dash-bleu hover:bg-scroll-bleu">ADD
+                    <a @click="addProduct" href="#" for="my-modal-3"
+                        class="btn bg-primary border-none hover:bg-scroll-bleu">ADD
                     </a>
                 </div>
             </div>
@@ -106,7 +108,7 @@
         <div class="modal" id="update_product">
             <div class="modal-box relative">
                 <a href="#" for="my-modal-3"
-                    class="btn btn-sm bg-dash-bleu btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+                    class="btn btn-sm bg-primary btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
                 <h3 class="text-lg font-bold">Update Product!</h3>
                 <input v-model="form.id" disabled />
                 <div class="form-control w-full max-w-xs">
@@ -138,7 +140,7 @@
                 </div>
                 <div class="modal-action">
                     <a @click="updateProduct(form.id)" href="#" for="my-modal-3"
-                        class="btn bg-dash-bleu hover:bg-scroll-bleu">Update
+                        class="btn bg-primary hover:bg-scroll-bleu">Update
                     </a>
                 </div>
             </div>
@@ -157,36 +159,40 @@ export default {
         return {
             product: [],
             title: "",
+            categories: [],
             form: {
                 id: "",
                 ref_prdt: "",
                 designation: "",
                 unite: "",
-                categorie: "",
+                id_categorie: "default",
                 prix_unitaire: ""
             },
         };
     },
     mounted() {
         this.getAllProduct();
+        this.getAll_categorie();
     },
     methods: {
         start(refName, index) {
-            const el = index !== undefined ?  this.$refs[refName]?.[index] : this.$refs[refName];  
+            const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
             el.anim.play();
         },
         stop(refName, index) {
-            const el = index !== undefined ?  this.$refs[refName]?.[index] : this.$refs[refName];  
+            const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
             el.anim.stop();
         },
         async getAllProduct() {
+
             let respons = await fetch(
                 "http://localhost/filrouge/backend/public/ProductController/getAll_product"
             );
             this.product = await respons.json();
+            console.log(this.product)
         },
         addProduct() {
-            getAll_categorie()
+
             fetch(
                 "http://localhost/filrouge/backend/public/ProductController/add_product",
                 {
@@ -205,7 +211,7 @@ export default {
             this.form.categorie = product.categorie;
         },
         updateProduct(id) {
-            
+
             fetch(
                 "http://localhost/filrouge/backend/public/ProductController/update_product",
                 {
@@ -221,8 +227,33 @@ export default {
             this.getAllProduct();
             console.log(this.form.product);
         },
+        
+        async getAll_categorie() {
+            let respons = await fetch(
+                "http://localhost/filrouge/backend/public/CategorieController/getAll_categorie"
+            );
+            this.categories = await respons.json();
+            console.log(this.categories)
+        },
+        async getAllProductBycategorie(event) {
+            this.category = event.target.value;
+            let res = await fetch(
+                "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        id: this.category,
+                    }),
+                }
+            );
+            console.log(this.res);
+            this.products = await res.json();
+        },
         deleteProduct(id) {
-            
+            console.log(id)
             fetch(
                 "http://localhost/filrouge/backend/public/ProductController/delete_product",
                 {
@@ -233,13 +264,6 @@ export default {
                 .then((res) => res.json())
                 .then((out) => console.log(out));
             this.getAllProduct();
-        },
-        async getAll_categorie() {
-            let respons = await fetch(
-                "http://localhost/filrouge/backend/public/CategorieController/getAll_categorie"
-            );
-            this.categorie = await respons.json();
-            // this.getAllProduct(id_categorie);
         },
     },
 };
