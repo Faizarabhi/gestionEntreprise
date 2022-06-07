@@ -68,14 +68,14 @@
             public function update_customer($data)
             {
 
-                $this->db->query("UPDATE customer SET name	 = :name	, tel	 = :tel	, email =:email, password = :password , photo = :photo, type = :type  WHERE id= :id");
+                $this->db->query("UPDATE customer SET name	 = :name	, tel	 = :tel	, email =:email, password = :password , photo = :photo, metier = :metier  WHERE id= :id");
                 $this->db->bind(':id', $data['id']);
                 $this->db->bind(':name', $data['name']);
                 $this->db->bind(':tel', $data['tel']);
                 $this->db->bind(':email', $data['email']);
                 $this->db->bind(':password', $data['password']);
                 $this->db->bind(':photo', $data['photo']);
-                $this->db->bind(':type', $data['type']);
+                $this->db->bind(':metier', $data['metier']);
 
 
                 try {

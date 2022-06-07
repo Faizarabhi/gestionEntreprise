@@ -61,12 +61,11 @@
 
               </td>
               <td>
-                <label for="delete" class="inline-flex items-center justify-center ">
-                  <input id="delete" class="hidden" @click="deletePersonnel(perso.id)">
-                  <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)" ref="trash" :speed=".1"
-                    :autoPlay="false" path="lottie/userX.json" />
-
-                </label>
+                
+                <a @click="deletePersonnel(perso.id)" class="inline-flex items-center justify-center ">
+                                    <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
+                                        ref="trash" :speed=".1" :autoPlay="false" path="lottie/userX.json" />
+                                </a>
               </td>
             </tr>
             <!-- row 2 -->
@@ -267,16 +266,16 @@ export default {
     
     deletePersonnel(id) {
       console.log(id)
-      // fetch(
-      //   "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
-      //   {
-      //     method: "DELETE",
-      //     body: JSON.stringify({ id: id }),
-      //   }
-      // )
-      //   .then((res) => res.json())
-      //   .then((out) => console.log(out));
-      // this.getAllPersonnel();
+      fetch(
+        "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
+        {
+          method: "DELETE",
+          body: JSON.stringify({ id: id }),
+        }
+      )
+        .then((res) => res.json())
+        .then((out) => console.log(out));
+      this.getAllPersonnel();
     },
   },
   // http://localhost/filrouge/backend/public/PersonnelController/add_personnel

@@ -51,7 +51,7 @@
                         <label class="label">
                             <span class="label-text">tel</span>
                         </label>
-                        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                        <input type="tel" placeholder="Type here" class="input input-bordered w-full max-w-xs"
                             v-model="form.tel" />
                     </div>
                     <div class="form-control w-full max-w-xs">
@@ -60,6 +60,13 @@
                         </label>
                         <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
                             v-model="form.email" />
+                    </div>
+                    <div class="form-control w-full max-w-xs">
+                        <label class="label">
+                            <span class="label-text">metier</span>
+                        </label>
+                        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                            v-model="form.metier" />
                     </div>
                     <div class="form-control w-full max-w-xs">
                         <label class="label">
@@ -118,6 +125,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 <script>
@@ -162,8 +170,8 @@ export default {
                 }
             )
                 .then((res) => res.json())
-                .then((user) => console.log("user addede"));
-            this.getAllCustomer()
+                .then((user) => console.log(user));
+            
 
         }
     }

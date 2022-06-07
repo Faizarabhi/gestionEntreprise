@@ -1,5 +1,6 @@
                             <template>
     <div class="bg-bg-bleu">
+
         <div class="grid grid-rows-2 place-content-center   p-12">
             <div class="grid grid-cols-2 gap-12 place-content-center bg-white p-16">
                 <div class="place-self-center font-semibold">
@@ -54,18 +55,23 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                            <td>Prix Total:</td>
-                            
+                                <td>Prix Total:</td>
+
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="ml-[80%] my-8 p-4 "><button class="bg-black w-20 h-12 rounded-md text-white" @click="submit"> Send<i class="fa-solid fa-paper-plane"></i></button></div>
+                    <div class="ml-[80%] my-8 p-4 "><button class="bg-black w-20 h-12 rounded-md text-white"
+                            @click="submit"> Send<i class="fa-solid fa-paper-plane"></i></button></div>
                 </div>
+                <button class="bg-black my-4 w-20 h-12 rounded-md text-white"  >
+                    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
+                        path="lottie/arrowDownCircle.json" /> <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
         </div>
     </div>
 </template>
-                            <script>
+<script>
 import router from "@/router";
 import rowfacteur from "../CustomerComponents/rowfacteur.vue";
 import { computed } from "vue";

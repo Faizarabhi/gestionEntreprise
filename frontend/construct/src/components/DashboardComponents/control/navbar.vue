@@ -67,7 +67,7 @@ export default {
       //  console.log('taha remove');
       this.$cookies.remove("idadmin");
       this.$cookies.remove("email");
-      this.$router.push("/");
+      this.$router.push("/login");
     },
   },
 };
