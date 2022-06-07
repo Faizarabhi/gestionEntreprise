@@ -20,7 +20,7 @@
                 $this->db->bind(':unite', $data['unite']);
                 $this->db->bind(':id_categorie', $data['id_categorie']);
                 $this->db->bind(':prix_unitaire', $data['prix_unitaire']);
-                
+
 
                 try {
                     // var_dump($data);
@@ -61,30 +61,30 @@
                 $this->db->query('SELECT * FROM produit  Where id = :id');
                 $this->db->bind(':id', $data['id']);
                 // die($data);
-                
+
                 // print_r($data);
                 try {
                     // die("heelo");
                     return $this->db->single();
                 } catch (PDOException $e) {
-                    var_dump($e->getMessage()) ;
+                    var_dump($e->getMessage());
                     return $e->getMessage();
                 }
             }
             public function update_product($data)
-            {   
+            {
                 // $data['id']=42;
-                
-                $this->db->query("UPDATE produit SET ref_prdt = :ref_prdt, designation = :designation, unite =:unite, categorie = :categorie  WHERE id= :id");
-                $this->db->bind(':id', $data['id']);
-                $this->db->bind(':ref_prdt', $data['ref_prdt']);
+                print_r($data);
+
+                $this->db->query("UPDATE produit SET  designation = :designation,prix_unitaire = :prix_unitaire, unite =:unite  WHERE id= :id");
+                $this->db->bind(':id', $data['idpro']);
                 $this->db->bind(':designation', $data['designation']);
                 $this->db->bind(':unite', $data['unite']);
-                $this->db->bind(':categorie', $data['categorie']);
+                $this->db->bind(':prix_unitaire', $data['prix_unitaire']);
 
 
                 try {
-                    
+
                     return $this->db->execute();
                 } catch (PDOException $e) {
                     die($e->getMessage());
@@ -98,7 +98,7 @@
                 $id = $data['id'];
                 $this->db->query('DELETE  FROM produit WHERE id = :id');
                 $this->db->bind(":id", $id);
-                
+
                 try {
                     return $this->db->execute();
                 } catch (PDOException $e) {

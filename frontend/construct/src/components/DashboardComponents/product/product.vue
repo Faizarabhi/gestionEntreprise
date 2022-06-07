@@ -45,7 +45,8 @@
                             <td><a @click="deleteProduct(pro.idpro)" class="inline-flex items-center justify-center ">
                                     <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
                                         ref="trash" :speed=".1" :autoPlay="false" path="lottie/trashV2.json" />
-                                </a></td>
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -108,21 +109,29 @@
         <div class="modal" id="update_product">
             <div class="modal-box relative">
                 <a href="#" for="my-modal-3"
-                    class="btn btn-sm bg-primary btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+                    class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
                 <h3 class="text-lg font-bold">Update Product!</h3>
-                <input v-model="form.id" disabled />
+                <input v-model="form.idpro" disabled />
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Categorie produit</span>
+                    </label>
+                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                        v-model="form.name" disabled />
+                </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Reference produit</span>
                     </label>
                     <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-                        v-model="form.ref_prdt" />
+                        v-model="form.ref_prdt" disabled />
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
                         <span class="label-text">Designation produit</span>
                     </label>
-                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                        v-model="form.designation" />
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
@@ -133,14 +142,15 @@
                 </div>
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">Categorie produit</span>
+                        <span class="label-text">prix unitaire</span>
                     </label>
-                    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-                        v-model="form.categorie" />
+                    <input type="number" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+                        v-model="form.prix_unitaire" />
                 </div>
+
                 <div class="modal-action">
-                    <a @click="updateProduct(form.id)" href="#" for="my-modal-3"
-                        class="btn bg-primary hover:bg-scroll-bleu">Update
+                    <a @click="updateProduct(form.idpro)" href="#" for="my-modal-3"
+                        class="btn bg-primary border-none hover:bg-scroll-bleu">Update
                     </a>
                 </div>
             </div>
@@ -151,6 +161,7 @@
     <script>
 import router from "@/router";
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+
 export default {
     components: {
         LottieAnimation
@@ -161,13 +172,16 @@ export default {
             title: "",
             categories: [],
             form: {
+                idpro: "",
                 id: "",
                 ref_prdt: "",
                 designation: "",
                 unite: "",
-                id_categorie: "default",
+                id_categorie: "",
+                name: "",
                 prix_unitaire: ""
             },
+
         };
     },
     mounted() {
@@ -204,14 +218,14 @@ export default {
             router.push("/product");
         },
         handleUpdate(product) {
+            this.form.idpro = product.idpro;
             this.form.id = product.id;
             this.form.ref_prdt = product.ref_prdt;
             this.form.designation = product.designation;
             this.form.unite = product.unite;
-            this.form.categorie = product.categorie;
+            this.form.name = product.name;
         },
         updateProduct(id) {
-
             fetch(
                 "http://localhost/filrouge/backend/public/ProductController/update_product",
                 {
@@ -219,15 +233,11 @@ export default {
                     body: JSON.stringify(this.form),
                 }
             ).then((res) => res.json());
+            console.log(this.form);
             this.getAllProduct();
-            // router.push("/product");
-        },
-        pushproduct: function () {
-            // this.product.push(this.form.product);
-            this.getAllProduct();
-            console.log(this.form.product);
         },
         
+
         async getAll_categorie() {
             let respons = await fetch(
                 "http://localhost/filrouge/backend/public/CategorieController/getAll_categorie"

@@ -59,16 +59,14 @@
                     echo json_encode(["message" => "error not select"]);
                 }
             }
-            public function update_product()
-            {
+            public function update_product(){
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $data = json_decode(file_get_contents("php://input"), true);
-                    // var_dump($data);die;
-
+                    // print_r($data);die();
+    
+    
                     if ($this->productModel->update_product($data)) {
-                        echo json_encode(array(
-                            "message" => "done"
-                        ));
+                        echo json_encode( ["message" => "done"] );
                     } else {
                         echo json_encode(["message" => "error"]);
                     }

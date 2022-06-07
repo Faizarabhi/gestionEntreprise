@@ -51,9 +51,9 @@
             }
             public function update_personnel($data)
             {   
-                // $data['id']=42;
+                // print_r($data);
                 
-                $this->db->query("UPDATE personnel SET name = :name, email = :email, password =:password, tel = :tel , photo = :photo , metier = :metier  WHERE id= :id");
+                $this->db->query("UPDATE personnel SET name = :name, email = :email, password =:password, tel = :tel , photo = :photo , metier = :metier , materiel_id= :materiel_id WHERE id= :id");
                 $this->db->bind(':id', $data['id']);
                 $this->db->bind(':name', $data['name']);
                 $this->db->bind(':email', $data['email']);
@@ -61,6 +61,7 @@
                 $this->db->bind(':tel', $data['tel']);
                 $this->db->bind(':photo', $data['photo']);
                 $this->db->bind(':metier', $data['metier']);
+                $this->db->bind(':materiel_id', $data['materiel_id']);
 
                 try {
                     

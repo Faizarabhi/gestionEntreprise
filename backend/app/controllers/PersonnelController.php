@@ -22,7 +22,7 @@
                 $data = json_decode(file_get_contents("php://input"), true);
                 $email = "PR-" . $data['email'];
 
-                
+
                 $result = $this->personnelModel->add_personnel([...$data, "email" => $email]);
                 if ($result) {
                     echo json_encode(["message" => "success", "data" => $result]);
@@ -46,6 +46,7 @@
         {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $data = json_decode(file_get_contents("php://input"), true);
+                // print_r(json_decode(file_get_contents("php://input")));
 
 
                 if ($this->personnelModel->update_personnel($data)) {
@@ -58,17 +59,17 @@
             }
         }
         public function delete_personnel()
-        {   
+        {
             if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
                 // die("hello");
-                $id = json_decode(file_get_contents("php://input"), true); 
-                
-        $result = $this->personnelModel->delete_personnel($id);
-        if($result){
-            echo json_encode(["message" => "success","data"=>$id]);
-        }else{
-            echo json_encode(["message" => "failed"]);
-        }
+                $id = json_decode(file_get_contents("php://input"), true);
+
+                $result = $this->personnelModel->delete_personnel($id);
+                if ($result) {
+                    echo json_encode(["message" => "success", "data" => $id]);
+                } else {
+                    echo json_encode(["message" => "failed"]);
+                }
             }
         }
     }

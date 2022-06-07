@@ -4,7 +4,8 @@
       class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <div class="py-8">
         <a href="#adduser" class="inline-flex items-center justify-center  ">
-          <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/userPlus.json" />
+          <lottie-animation @mouseover="start('add', i)" @mouseout="stop('add', i)" ref="add" :speed=".1"
+            :autoPlay="false" path="lottie/userPlus.json" />
 
         </a>
       </div>
@@ -14,18 +15,18 @@
           <thead>
             <tr>
               <th>Name </th>
-              
+
               <th>Job</th>
               <th>Phone</th>
               <th>Email</th>
               <th></th>
               <th></th>
-              <th></th>
+
             </tr>
           </thead>
           <tbody>
             <!-- row 1 -->
-            <tr v-for="perso in personnel" :key="perso">
+            <tr v-for="(perso, i) in personnel" :key="i">
 
               <td>
                 <div class="flex items-center space-x-3">
@@ -36,7 +37,7 @@
                   </div>
                   <div>
                     <div class="font-bold">{{ perso.name }}</div>
-                    
+
                   </div>
                 </div>
               </td>
@@ -48,25 +49,25 @@
                 {{ perso.email }}
               </td>
               <td>{{ perso.tel }}</td>
-              <th>
 
-              </th>
-              <th>
+              <td>
                 <label for="edit">
                   <a id="edit" v-on:click="handleUpdate(perso)" href="#update_personnel"
                     class="inline-flex items-center justify-center  ">
-                    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/edit.json" />
+                    <lottie-animation @mouseover="start('edit', i)" @mouseleave="stop('edit', i)" ref="edit" :speed="1"
+                      :autoPlay="false" path="lottie/edit.json" />
 
                   </a></label>
 
-              </th>
-              <th>
+              </td>
+              <td>
                 <label for="delete" class="inline-flex items-center justify-center ">
                   <input id="delete" class="hidden" @click="deletePersonnel(perso.id)">
-                  <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/userX.json" />
+                  <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)" ref="trash" :speed=".1"
+                    :autoPlay="false" path="lottie/userX.json" />
 
                 </label>
-              </th>
+              </td>
             </tr>
             <!-- row 2 -->
           </tbody>
@@ -236,17 +237,7 @@ export default {
       console.log(this.personnel);
     },
 
-    // getPersonnel(id) {
-    // fetch(
-    //     "http://localhost/filrouge/backend/public/personnelController/get_personnel",
-    //     {
-    //     method: "POST",
-    //     body: JSON.stringify(this.id),
-    //     }
-    // ).then((res) => res.json());
 
-    // router.push("/Personnel");
-    // },
 
     addPersonnel() {
       fetch(
@@ -271,25 +262,21 @@ export default {
         }
       ).then((res) => res.json());
       this.getAllPersonnel();
-      router.push("/Personnel");
+
     },
-    // pushPersonnel: function () {
-    //   // this.Personnel.push(this.form.Personnel);
-    //   this.getAllPersonnel();
-    //   console.log(this.form.Personnel);
-    // },
+    
     deletePersonnel(id) {
       console.log(id)
-      fetch(
-        "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
-        {
-          method: "DELETE",
-          body: JSON.stringify({ id: id }),
-        }
-      )
-        .then((res) => res.json())
-        .then((out) => console.log(out));
-      this.getAllPersonnel();
+      // fetch(
+      //   "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
+      //   {
+      //     method: "DELETE",
+      //     body: JSON.stringify({ id: id }),
+      //   }
+      // )
+      //   .then((res) => res.json())
+      //   .then((out) => console.log(out));
+      // this.getAllPersonnel();
     },
   },
   // http://localhost/filrouge/backend/public/PersonnelController/add_personnel
