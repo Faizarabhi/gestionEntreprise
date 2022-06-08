@@ -1,11 +1,11 @@
 <template>
   <div class="w-full">
     <div
-      class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+        class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <div class="py-8">
         <a href="#adduser" class="inline-flex items-center justify-center  ">
           <lottie-animation @mouseover="start('add', i)" @mouseout="stop('add', i)" ref="add" :speed=".1"
-            :autoPlay="false" path="lottie/userPlus.json" />
+                            :autoPlay="false" path="lottie/userPlus.json"/>
 
         </a>
       </div>
@@ -13,62 +13,62 @@
         <table class="table table-compact w-full">
           <!-- head -->
           <thead>
-            <tr>
-              <th>Name </th>
+          <tr>
+            <th>Name</th>
 
-              <th>Job</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th></th>
-              <th></th>
+            <th>Job</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
 
-            </tr>
+          </tr>
           </thead>
           <tbody>
-            <!-- row 1 -->
-            <tr v-for="(perso, i) in personnel" :key="i">
+          <!-- row 1 -->
+          <tr v-for="(perso, i) in personnel" :key="i">
 
-              <td>
-                <div class="flex items-center space-x-3">
-                  <div class="avatar">
-                    <div class="mask mask-squircle w-12 h-12">
-                      <img src="../../../assets/images/about.svg" alt="Avatar Tailwind CSS Component" />
-                    </div>
-                  </div>
-                  <div>
-                    <div class="font-bold">{{ perso.name }}</div>
-
+            <td>
+              <div class="flex items-center space-x-3">
+                <div class="avatar">
+                  <div class="mask mask-squircle w-12 h-12">
+                    <img src="../../../assets/images/about.svg" alt="Avatar Tailwind CSS Component"/>
                   </div>
                 </div>
-              </td>
+                <div>
+                  <div class="font-bold">{{ perso.name }}</div>
 
-              <td>
-                {{ perso.metier }}
-              </td>
-              <td>
-                {{ perso.email }}
-              </td>
-              <td>{{ perso.tel }}</td>
+                </div>
+              </div>
+            </td>
 
-              <td>
-                <label for="edit">
-                  <a id="edit" v-on:click="handleUpdate(perso)" href="#update_personnel"
-                    class="inline-flex items-center justify-center  ">
-                    <lottie-animation @mouseover="start('edit', i)" @mouseleave="stop('edit', i)" ref="edit" :speed="1"
-                      :autoPlay="false" path="lottie/edit.json" />
+            <td>
+              {{ perso.metier }}
+            </td>
+            <td>
+              {{ perso.email }}
+            </td>
+            <td>{{ perso.tel }}</td>
 
-                  </a></label>
+            <td>
+              <label for="edit">
+                <a id="edit" v-on:click="handleUpdate(perso)" href="#update_personnel"
+                   class="inline-flex items-center justify-center  ">
+                  <lottie-animation @mouseover="start('edit', i)" @mouseleave="stop('edit', i)" ref="edit" :speed="1"
+                                    :autoPlay="false" path="lottie/edit.json"/>
 
-              </td>
-              <td>
-                
-                <a @click="deletePersonnel(perso.id)" class="inline-flex items-center justify-center ">
-                                    <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
-                                        ref="trash" :speed=".1" :autoPlay="false" path="lottie/userX.json" />
-                                </a>
-              </td>
-            </tr>
-            <!-- row 2 -->
+                </a></label>
+
+            </td>
+            <td>
+
+              <a @click="deletePersonnel(perso.id)" class="inline-flex items-center justify-center ">
+                <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
+                                  ref="trash" :speed=".1" :autoPlay="false" path="lottie/userX.json"/>
+              </a>
+            </td>
+          </tr>
+          <!-- row 2 -->
           </tbody>
         </table>
       </div>
@@ -77,48 +77,48 @@
     <div class="modal" id="adduser">
       <div class="modal-box">
         <a href="#" for="my-modal-3"
-          class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+           class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
         <h3 class="font-bold text-lg">ADD User!</h3>
 
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Name</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.name" />
+          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.name"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Tel</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel" />
+          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Email </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.email" />
+                 v-model="form.email"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Password </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.password" />
+                 v-model="form.password"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">photo </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.photo" />
+                 v-model="form.photo"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">metier </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.metier" />
+                 v-model="form.metier"/>
         </div>
 
         <div class="modal-action">
@@ -134,51 +134,51 @@
     <div class="modal" id="update_personnel">
       <div class="modal-box relative">
         <a href="#" for="my-modal-3"
-          class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
+           class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
         <h3 class="text-lg font-bold">Update Personnel!</h3>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Name</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.name" />
+          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.name"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Tel</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel" />
+          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Email </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.email" />
+                 v-model="form.email"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Password </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.password" />
+                 v-model="form.password"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">photo </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.photo" />
+                 v-model="form.photo"/>
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">metier </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.metier" />
+                 v-model="form.metier"/>
         </div>
         <div class="modal-action">
           <a @click="updatePersonnel(form.id)" href="#" for="my-modal-3"
-            class="btn bg-primary border-none hover:bg-scroll-bleu">Update
+             class="btn bg-primary border-none hover:bg-scroll-bleu">Update
           </a>
         </div>
       </div>
@@ -187,11 +187,8 @@
 </template>
 
 <script>
-import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
 export default {
-  components: {
-    LottieAnimation
-  },
+  components: {},
   data() {
     return {
       personnel: [],
@@ -230,21 +227,20 @@ export default {
     },
     async getAllPersonnel() {
       let respons = await fetch(
-        "http://localhost/filrouge/backend/public/personnelController/getAll_personnel"
+          "http://localhost/filrouge/backend/public/personnelController/getAll_personnel"
       );
       this.personnel = await respons.json();
       console.log(this.personnel);
     },
 
 
-
     addPersonnel() {
       fetch(
-        "http://localhost/filrouge/backend/public/PersonnelController/add_personnel",
-        {
-          method: "POST",
-          body: JSON.stringify(this.form),
-        }
+          "http://localhost/filrouge/backend/public/PersonnelController/add_personnel",
+          {
+            method: "POST",
+            body: JSON.stringify(this.form),
+          }
       ).then((res) => res.json());
       // this.Personnel.push(this.form);
       this.getAllPersonnel();
@@ -254,27 +250,27 @@ export default {
     updatePersonnel(id) {
 
       fetch(
-        "http://localhost/filrouge/backend/public/PersonnelController/update_personnel",
-        {
-          method: "POST",
-          body: JSON.stringify(this.form),
-        }
+          "http://localhost/filrouge/backend/public/PersonnelController/update_personnel",
+          {
+            method: "POST",
+            body: JSON.stringify(this.form),
+          }
       ).then((res) => res.json());
       this.getAllPersonnel();
 
     },
-    
+
     deletePersonnel(id) {
       console.log(id)
       fetch(
-        "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
-        {
-          method: "DELETE",
-          body: JSON.stringify({ id: id }),
-        }
+          "http://localhost/filrouge/backend/public/PersonnelController/delete_personnel",
+          {
+            method: "DELETE",
+            body: JSON.stringify({id: id}),
+          }
       )
-        .then((res) => res.json())
-        .then((out) => console.log(out));
+          .then((res) => res.json())
+          .then((out) => console.log(out));
       this.getAllPersonnel();
     },
   },

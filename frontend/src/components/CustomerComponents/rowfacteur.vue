@@ -1,4 +1,4 @@
-            <template>
+<template>
 
 
   <td>
@@ -18,27 +18,26 @@
     </select>
   </td>
   <td>
-    <input v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs" />
+    <input v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs"/>
   </td>
   <td> {{ this.product?.unite ?? 0 }}</td>
   <td>{{ this.product?.prix_unitaire ?? 0 }}</td>
   <td>{{ prix }}</td>
 
   <td class="inline-flex  " @click="removeCmd(command.id)">
-    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/trashV2.json" />
+    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/trashV2.json"/>
+    <!--    todo: change to VUE3-Lottile-->
   </td>
-  
+
 
 </template>
 
 <script>
-import { computed } from "vue";
-import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+import {computed} from "vue";
+
 export default {
-    components: {
-        LottieAnimation
-    },
-    
+  components: {},
+
   props: ["command"],
   inject: ["removeCmd", "updateCmd", "categorie"],
   data() {
@@ -67,16 +66,16 @@ export default {
     async getAllProduct(event) {
       this.category = event.target.value;
       let res = await fetch(
-        "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: this.category,
-          }),
-        }
+          "http://localhost/filrouge/backend/public/ProductController/get_productBycategorie",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: this.category,
+            }),
+          }
       );
       this.products = await res.json();
     },

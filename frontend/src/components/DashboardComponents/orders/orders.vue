@@ -1,50 +1,47 @@
-  <template>
+<template>
   <div class="relative w-full p-16 rounded-lg ">
-     
-      <div >
-        <table class="table table-compact  " v-for="(facture, index) in factures" :key="facture.id">
-          <thead >
 
-            <tr >
-              <th>Ref- {{ facture.id }}</th>
-              <th>Customer- {{ facture.customer_id }}</th>
-              <th>Date Creation : {{ facture.date_creation }}</th>
-              <th @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
+    <div>
+      <table class="table table-compact  " v-for="(facture, index) in factures" :key="facture.id">
+        <thead>
+
+        <tr>
+          <th>Ref- {{ facture.id }}</th>
+          <th>Customer- {{ facture.customer_id }}</th>
+          <th>Date Creation : {{ facture.date_creation }}</th>
+          <th @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
                 <span class="inline-flex items-center justify-center  ">
                   <lottie-animation @mouseover="start('arrow', index)" @mouseout="stop('arrow', index)" ref="arrow"
-                    :speed="2" :autoPlay="false" path="lottie/arrowDownCircle.json" />
+                                    :speed="2" :autoPlay="false" path="lottie/arrowDownCircle.json"/>
                 </span>
-              </th>
-              <th></th>
-              
-            </tr>
-          </thead>
+          </th>
+          <th></th>
+
+        </tr>
+        </thead>
 
 
-          <tbody>
-            <command v-if="currentFacture === facture.id" :orders="orders" />
-          </tbody>
+        <tbody>
+        <command v-if="currentFacture === facture.id" :orders="orders"/>
+        </tbody>
 
-        </table>
-      </div>
+      </table>
     </div>
-  
+  </div>
+
 </template>
-  <script>
+<script>
 import axios from 'axios';
 import command from './cmdOrder.vue'
-import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+
 export default {
   components: {
-    LottieAnimation,
     command
   },
   inject: ["showcmd"],
 
   provide() {
-    return {
-
-    }
+    return {}
   },
 
   data() {
@@ -85,12 +82,12 @@ export default {
     getAllfacture() {
       // console.log("hello");
       axios.get('http://localhost/filrouge/backend/public/FactureController/getAllfacture')
-        .then(res => {
+          .then(res => {
 
-          this.factures = res.data
-          this.factures.forEach(_ => this.showcmd.value.push(false))
+            this.factures = res.data
+            this.factures.forEach(_ => this.showcmd.value.push(false))
 
-        })
+          })
     },
 
   },
