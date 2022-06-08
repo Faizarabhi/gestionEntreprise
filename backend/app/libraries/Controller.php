@@ -20,17 +20,15 @@ class Controller
   {
     // Check for view file
     if (file_exists('../app/views/' . $view . '.php')) {
-      require_once '../app/views/' . $view . '.php';
+      require_once "../app/views/$view.php";
     } else {
       // View does not exist
-
-
-      ('View does not exist');
+      $this->json(["message" => "View does not exist"]);
     }
   }
 
 
-  public function isPostRequest()
+  public function isPostRequest(): bool
   {
     return $_SERVER["REQUEST_METHOD"] == "POST";
   }
@@ -43,7 +41,7 @@ class Controller
 
   public function getBody()
   {
-    if (count($_POST) > 0) {
+    if (!empty($_POST)) {
       return $_POST;
     }
     return json_decode(file_get_contents("php://input"), true);
@@ -58,8 +56,6 @@ class Controller
   }
 
   function dd($data){
-    header("content-type: text/html");
-    dump($data);
-    die();
+    dd($data);
   }
 }

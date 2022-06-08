@@ -8,6 +8,7 @@ import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue"; // import lo
 import router from './router'
 import './index.css'
 import 'flowbite';
+import jsPDF from 'jsPDF'
 const app = createApp(App)
 
 

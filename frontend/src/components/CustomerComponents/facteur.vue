@@ -63,25 +63,29 @@
                     <div class="ml-[80%] my-8 p-4 "><button class="bg-black w-20 h-12 rounded-md text-white"
                             @click="submit"> Send<i class="fa-solid fa-paper-plane"></i></button></div>
                 </div>
-                <button class="bg-black my-4 w-20 h-12 rounded-md text-white"  >
-                    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false"
-                        path="lottie/arrowDownCircle.json" /> <i class="fa-solid fa-plus"></i>
-                </button>
+                <div class="w-[14rem] h-[16rem] bg-red">
+                    <span class="inline-flex items-center justify-center " @click="download">
+                        <lottie-animation @mouseover="start('download')" @mouseout="stop('download')" 
+                            ref="download" :speed="1" :autoPlay="false" path="lottie/download.json" />
+                    </span>
+                </div>
+
             </div>
         </div>
     </div>
 </template>
 <script>
 import router from "@/router";
-import rowfacteur from "../CustomerComponents/rowfacteur.vue";
+import rowfacteur from "./rowfacteur.vue";
 import { computed } from "vue";
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+import jsPDF from 'jsPDF';
+const downloadf = [];
 export default {
     components: {
-        LottieAnimation
+        LottieAnimation,
+        rowfacteur
     },
-
-    components: { rowfacteur },
     inject: ["id_fact"],
     provide() {
         return {
@@ -103,6 +107,7 @@ export default {
             tel: "",
             email: "",
             metier: "",
+            
             // data katjm3 hna kolha katruturna hna (id facteur) list katruturni tabl=>2 feh les cmds
             data: {
                 list: [],
@@ -123,6 +128,15 @@ export default {
         // this.metier = $this.cookies.get("metier")
     },
     methods: {
+
+        start(refName, index) {
+            const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
+            el.anim.play();
+        },
+        stop(refName, index) {
+            const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
+            el.anim.stop();
+        },
         async submit() {
             // send this.data to backend
             const res = await fetch("http://localhost/filrouge/backend/public/FactureController/create", {
@@ -132,7 +146,10 @@ export default {
                 },
                 body: JSON.stringify(this.data)
             }).then(r => r.json());
+            this.downloadf = res
             console.log(res)
+            console.log(this.downloadf)
+            
         },
         getId() {
             return (
@@ -207,6 +224,12 @@ export default {
         },
         // http://localhost/filrouge/backend/public/FacteurController/add_facteur
         // http://localhost/filrouge/backend/CommandController/add_commands
+        download() {
+            
+            var doc = new jsPDF();
+            doc.text("this.downloadf", 10, 10);
+            doc.save("facture" + '.pdf');
+        }
     },
 };
 </script>

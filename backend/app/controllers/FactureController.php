@@ -30,7 +30,7 @@
                             $created = $this->commandModel->createMany($commands);
                             if(!$created) return $this->json(["message" => "cannot create facture"]);
 
-                            return $this->json(["message" => "success", "factureId" => $factureId]);
+                            return $this->json(["message" => "success", "factureId" => $factureId,"product_id" => $command["product_id"], "quantity" => $command["quantity"]]);
 
                         }
                     }

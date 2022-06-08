@@ -1,5 +1,7 @@
 {
     "require": {
-        "symfony/var-dumper": "^6.1"
+        "symfony/var-dumper": "^6.1",
+        "cloudinary/cloudinary_php": "^2.7",
+      "ext-json": "*"
     }
 }
