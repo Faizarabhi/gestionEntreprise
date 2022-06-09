@@ -7,14 +7,15 @@
     <td>{{ customer.email }}</td>
     <td>{{ customer.metier }}</td>
     <td><a href="#update_customer" @click="handleUpdate(customer)" class="inline-flex items-center justify-center ">
-      <lottie-animation @mouseover="start('edit', index)" @mouseleave="stop('edit', index)" ref="edit"
-                        :speed="1" :autoPlay="false" path="lottie/edit.json"/>
+
+      <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true" :animationData="edit"/>
     </a>
     </td>
 
     <td><a @click="deleteCustomer(customer.id)" class="inline-flex items-center justify-center ">
-      <lottie-animation @mouseover="start('trash', index)" @mouseout="stop('trash', index)" ref="trash"
-                        :speed=".1" :autoPlay="false" path="lottie/trashV2.json"/>
+
+      <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                   :animationData="trashV2"/>
     </a></td>
   </tr>
 
@@ -73,7 +74,8 @@
 </template>
 <script>
 import axios from 'axios';
-
+import trashV2 from "../../../assets/lottie/trashV2.json"
+import edit from "../../../assets/lottie/edit.json"
 
 export default {
   components: {},
@@ -82,6 +84,8 @@ export default {
   data() {
     return {
       customers: [],
+      edit,
+      trashV2,
       form: {
         id: "",
         metier: "",

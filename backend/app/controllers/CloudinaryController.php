@@ -2,8 +2,8 @@
 
 class CloudinaryController extends Controller
 {
-        public function getSignature()
+    public function getSignature()
     {
-        $this->json(cloudinarySign());
+        $this->json(cloudinarySign(["folder" => "fil-rouge"]));
     }
 }

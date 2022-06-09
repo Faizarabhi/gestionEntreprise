@@ -25,7 +25,8 @@
   <td>{{ prix }}</td>
 
   <td class="inline-flex  " @click="removeCmd(command.id)">
-    <lottie-animation @click="start" ref="anim" :speed=".2" :autoPlay="false" path="lottie/trashV2.json"/>
+    <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :animationData="TrashData"/>
+
     <!--    todo: change to VUE3-Lottile-->
   </td>
 
@@ -34,14 +35,15 @@
 
 <script>
 import {computed} from "vue";
+import TrashData from "../../assets/lottie/trashV2.json"
 
 export default {
-  components: {},
 
   props: ["command"],
   inject: ["removeCmd", "updateCmd", "categorie"],
   data() {
     return {
+      TrashData,
       category: undefined,
       products: [],
       product: undefined,

@@ -1,25 +1,25 @@
 <template>
   <div
-    class="flex w-full justify-center h-16 justify-between items-center px-8 shadow"
-    :class="isShow ? ' ' : ''"
+      class="flex w-full justify-center h-16 justify-between items-center px-8 shadow"
+      :class="isShow ? ' ' : ''"
   >
     <div>
       <i class="fa-solid fa-magnifying-glass" style="color: gray !important">
       </i>
       <input
-        type="text"
-        v-model="search"
-        placeholder="Search ..."
-        class="border-0 bg-transparent"
+          type="text"
+          v-model="search"
+          placeholder="Search ..."
+          class="border-0 bg-transparent"
       />
     </div>
 
     <div class="flex w-32 items-center justify-start">
-      <div >
+      <div>
         <a
-          class="cursor-pointer text-dash-bleu p-2.5 rounded"
-          v-on:click="removeCookie"
-          ><i class="fa-solid fa-right-from-bracket"></i
+            class="cursor-pointer text-dash-bleu p-2.5 rounded"
+            v-on:click="removeCookie"
+        ><i class="fa-solid fa-right-from-bracket"></i
         ></a>
       </div>
       <!-- <div class="w-6">
@@ -33,19 +33,23 @@
       </div> -->
       <div class="avatar ml-auto">
         <div
-          class="avatar w-8 rounded-full ring ring-dash-bleu ring-offset-base-100  ring-offset-2"
+            class="avatar w-8 rounded-full ring ring-dash-bleu ring-offset-base-100  ring-offset-2"
         >
-          <img src="../../../assets/images/about.svg" />
+          <img :src="getImgUrl(photo)"/>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import {getCloudinaryImgUrl} from "../../../utils/helpers";
+
 export default {
   data() {
     return {
-      
+      photo: "",
+      name: "",
+
       search: "",
     };
   },
@@ -55,7 +59,7 @@ export default {
   },
   mounted() {
     this.name = this.$cookies.get("name");
-    
+    this.photo = this.$cookies.get("photo");
 
   },
   methods: {
@@ -69,6 +73,7 @@ export default {
       this.$cookies.remove("email");
       this.$router.push("/login");
     },
+    getImgUrl: getCloudinaryImgUrl,
   },
 };
 </script>

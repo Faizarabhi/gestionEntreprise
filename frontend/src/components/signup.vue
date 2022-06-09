@@ -81,8 +81,10 @@
 
 <script>
 import axios from "axios";
+import {toFormData} from "../utils/helpers";
+import {cloudinaryConfig} from "../utils/constants";
 
-const formadduser = {
+const initialFormState = {
   name: "",
   tel: "",
   photo: "",
@@ -93,10 +95,11 @@ const formadduser = {
 export default {
   data() {
     return {
-      form: formadduser, uploadAuth: {
+      form: initialFormState, uploadAuth: {
         timestamp: "",
         signature: "",
-      }
+      },
+      image: undefined
     };
   },
   mounted() {
@@ -104,25 +107,34 @@ export default {
   },
   methods: {
     setImage(event) {
-      let image = event.target.files[0];
-      console.log(image);
+      this.image = event.target.files[0];
     },
     async fetchSignature() {
       const res = await axios.get("http://localhost/filrouge/backend/CloudinaryController/getSignature");
-      console.log(res.data);
+      this.uploadAuth = res.data;
     },
-    addUser() {
-      fetch(
+    async addUser() {
+      // image upload to cloud
+      // get publicId
+      // add public to form data
+      // submit form
+      let cloudinaryData = {
+        timestamp: this.uploadAuth.timestamp,
+        signature: this.uploadAuth.signature,
+        "api_key": cloudinaryConfig.apiKey,
+        file: this.image,
+        folder: cloudinaryConfig.folder
+      };
+      const formData = toFormData(cloudinaryData)
+      const url = `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`;
+      const imageData = await axios.post(url, formData).then(res => res.data);
+      // console.log(`https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload/v1654771394/${imageData.public_id}.jpg`)
+      this.form.photo = imageData.public_id;
+      const user = await axios.post(
           "http://localhost/filrouge/backend/public/CustomerController/add_customer",
-          {
-            method: "POST",
-            body: JSON.stringify(this.form),
-          }
-      )
-          .then((res) => res.json())
-          .then((user) => console.log("user addede"));
-      this.$router.push("login");
-      this.form = formadduser;
+          this.form)
+      console.log(user);
+      // this.$router.push("login");
     },
   },
 };

@@ -5,8 +5,9 @@
 
       <div class="py-8 ">
         <a href="#addproduct" class="inline-flex items-center justify-center  ">
-          <lottie-animation @mouseover="start('add')" @mouseleave="stop('add')" ref="add" :speed="1"
-                            :autoPlay="false" path="lottie/plusToX.json"/>
+
+          <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                       :animationData="plusToX"/>
 
         </a>
       </div>
@@ -38,13 +39,15 @@
             <td>
               <a @click="handleUpdate(pro)" href="#update_product"
                  class="inline-flex items-center justify-center ">
-                <lottie-animation @mouseover="start('edit', i)" @mouseleave="stop('edit', i)"
-                                  ref="edit" :speed="1" :autoPlay="false" path="lottie/edit.json"/>
+
+                <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                             :animationData="edit"/>
               </a>
             </td>
             <td><a @click="deleteProduct(pro.idpro)" class="inline-flex items-center justify-center ">
-              <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
-                                ref="trash" :speed=".1" :autoPlay="false" path="lottie/trashV2.json"/>
+
+              <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                           :animationData="trashV2"/>
             </a>
             </td>
           </tr>
@@ -160,11 +163,18 @@
 <script>
 
 import router from "@/router";
+import edit from "../../../assets/lottie/edit.json"
+import trashV2 from "../../../assets/lottie/trashV2.json"
+import plusToX from "../../../assets/lottie/plusToX.json"
+
 
 export default {
   components: {},
   data() {
     return {
+      edit,
+      trashV2,
+      plusToX,
       product: [],
       title: "",
       categories: [],

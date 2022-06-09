@@ -4,14 +4,15 @@
         class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
       <div class="py-8">
         <a href="#adduser" class="inline-flex items-center justify-center  ">
-          <lottie-animation @mouseover="start('add', i)" @mouseout="stop('add', i)" ref="add" :speed=".1"
-                            :autoPlay="false" path="lottie/userPlus.json"/>
 
+          <vue3-lottie @click="start" ref="anim" :speed=".2" :playOnHover="true" :autoPlay="false"
+                       :animationData="userPlus"/>
         </a>
       </div>
       <div class="overflow-x-auto">
         <table class="table table-compact w-full">
-          <!-- head -->
+
+
           <thead>
           <tr>
             <th>Name</th>
@@ -54,8 +55,9 @@
               <label for="edit">
                 <a id="edit" v-on:click="handleUpdate(perso)" href="#update_personnel"
                    class="inline-flex items-center justify-center  ">
-                  <lottie-animation @mouseover="start('edit', i)" @mouseleave="stop('edit', i)" ref="edit" :speed="1"
-                                    :autoPlay="false" path="lottie/edit.json"/>
+
+                  <vue3-lottie @click="start" ref="anim" :speed="1" :playOnHover="true" :autoPlay="false"
+                               :animationData="edit"/>
 
                 </a></label>
 
@@ -63,8 +65,9 @@
             <td>
 
               <a @click="deletePersonnel(perso.id)" class="inline-flex items-center justify-center ">
-                <lottie-animation @mouseover="start('trash', i)" @mouseout="stop('trash', i)"
-                                  ref="trash" :speed=".1" :autoPlay="false" path="lottie/userX.json"/>
+
+                <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                             :animationData="userX"/>
               </a>
             </td>
           </tr>
@@ -187,10 +190,17 @@
 </template>
 
 <script>
+import userPlus from "../../../assets/lottie/userPlus.json";
+import edit from "../../../assets/lottie/edit.json";
+import userX from "../../../assets/lottie/userX.json"
+
 export default {
   components: {},
   data() {
     return {
+      userPlus,
+      edit,
+      userX,
       personnel: [],
       form: {
         id: "",

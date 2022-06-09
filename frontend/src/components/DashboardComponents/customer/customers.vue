@@ -4,8 +4,8 @@
     <div>
       <div class="py-8">
         <a href="#addcustomer" class="inline-flex items-center justify-center  ">
-          <lottie-animation @mouseover="start('trash', index)" @mouseout="stop('trash', index)"
-                            ref="trash" :speed=".1" :autoPlay="false" path="lottie/userPlus.json"/>
+          
+                            <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false"  :playOnHover="true" :animationData="userPlus"/>
 
         </a>
       </div>
@@ -130,6 +130,7 @@
 </template>
 <script>
 import onecustomer from "./onecustomer.vue";
+import userPlus from "../../../assets/lottie/userPlus.json";
 
 export default {
   components: {
@@ -137,7 +138,7 @@ export default {
   },
   data() {
     return {
-
+userPlus,
       form: {
         id: "",
         name: "",
