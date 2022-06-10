@@ -19,8 +19,10 @@
     <td>
 
       <a href="#updatecmd" class="inline-flex ">
-        <lottie-animation @mouseover="start('edit', index)" @mouseout="stop('edit', index)" ref="edit"
-                          :speed="2" :autoPlay="false" path="lottie/edit.json"/>
+        
+                          <vue3-lottie  ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100"
+                           :width="100"
+                           :animationData="edit"/>
       </a>
     </td>
 
@@ -42,39 +44,24 @@
 
 </template>
 <script>
+import edit from "../../../assets/lottie/edit.json"
 
 export default {
   components: {},
   props: ["orders"],
   data() {
     return {
+      edit
 
-      // orders: [],
+      
     }
   },
 
   methods: {
 
-    start(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.play();
-    },
-    stop(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.stop();
-    },
+    
 
-    // getAllCommande() {
-    //     // console.log("hello");
-    //     axios.get('http://localhost/filrouge/backend/public/FactureController/getAllCommande')
-    //         .then(res => {
-
-    //             this.orders = res.data
-    //             console.log(this.orders)
-    //             // this.factures.forEach(_ => this.showcmd.value.push(false))
-
-    //         })
-    // },
+    
 
   }
 }

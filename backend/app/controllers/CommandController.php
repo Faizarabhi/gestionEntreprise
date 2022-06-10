@@ -29,7 +29,8 @@ class CommandController extends Controller
 
     public function getCommandsByFacture($facture)
     {
-        // $this->dd($facture); affichier data bilk7al comme laravel
+        //affichier data bilk7al comme laravel
+        // $this->dd($facture); 
         $commandes = $this->commandModel->fetchManyByFactureId($facture);
         $this->json($commandes);
     }

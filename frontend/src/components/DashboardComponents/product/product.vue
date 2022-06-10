@@ -6,7 +6,7 @@
       <div class="py-8 ">
         <a href="#addproduct" class="inline-flex items-center justify-center  ">
 
-          <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+          <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
                        :animationData="plusToX"/>
 
         </a>
@@ -40,13 +40,13 @@
               <a @click="handleUpdate(pro)" href="#update_product"
                  class="inline-flex items-center justify-center ">
 
-                <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                <vue3-lottie ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
                              :animationData="edit"/>
               </a>
             </td>
             <td><a @click="deleteProduct(pro.idpro)" class="inline-flex items-center justify-center ">
 
-              <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+              <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
                            :animationData="trashV2"/>
             </a>
             </td>
@@ -196,14 +196,7 @@ export default {
     this.getAll_categorie();
   },
   methods: {
-    start(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.play();
-    },
-    stop(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.stop();
-    },
+    
     async getAllProduct() {
 
       let respons = await fetch(

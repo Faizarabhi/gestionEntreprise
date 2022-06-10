@@ -38,7 +38,8 @@
                 }
             }
             public function get_customer($data)
-            {
+            {   
+                // var_dump($data);
                 // print_r($id);
                 // http://localhost/filrouge/backend/public/CustomerController/get_customer
                 $this->db->query('SELECT * FROM customer  WHERE id = :id');

@@ -5,7 +5,7 @@
       <div class="py-8">
         <a href="#adduser" class="inline-flex items-center justify-center  ">
 
-          <vue3-lottie @click="start" ref="anim" :speed=".2" :playOnHover="true" :autoPlay="false"
+          <vue3-lottie  ref="anim" :speed=".2" :playOnHover="true" :autoPlay="false"
                        :animationData="userPlus"/>
         </a>
       </div>
@@ -56,7 +56,7 @@
                 <a id="edit" v-on:click="handleUpdate(perso)" href="#update_personnel"
                    class="inline-flex items-center justify-center  ">
 
-                  <vue3-lottie @click="start" ref="anim" :speed="1" :playOnHover="true" :autoPlay="false"
+                  <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false"
                                :animationData="edit"/>
 
                 </a></label>
@@ -66,7 +66,7 @@
 
               <a @click="deletePersonnel(perso.id)" class="inline-flex items-center justify-center ">
 
-                <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+                <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
                              :animationData="userX"/>
               </a>
             </td>
@@ -217,14 +217,7 @@ export default {
     this.getAllPersonnel();
   },
   methods: {
-    start(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.play();
-    },
-    stop(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.stop();
-    },
+    
     handleUpdate(personnel) {
       // console.log("hello")
       this.form.id = personnel.id;

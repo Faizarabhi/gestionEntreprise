@@ -3,9 +3,9 @@
 
     <div class="grid grid-rows-2 place-content-center   p-12">
       <div class="grid grid-cols-2 gap-12 place-content-center bg-white p-16">
-        <div class="place-self-center font-semibold">KLJZKLJELKJ
+        <div class="place-self-center font-semibold">
           <img
-              src=""/>
+              src="../../assets/images/logo.svg"/>
           <p>{{ name }} </p>
           <p>{{ tel }} </p>
           <p>{{ email }} </p>
@@ -29,7 +29,7 @@
         <div class="place-self-center col-span-2">
           <label for="addrows">
             <button class=" my-4 w-20 h-12 rounded-md text-white" id="addrows" @click="addrow()">
-              <vue3-lottie @click="start" ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100"
+              <vue3-lottie  ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100"
                            :width="100"
                            :animationData="PlusX"/>
               <i class="fa-solid fa-plus"></i>
@@ -71,7 +71,7 @@
         <div class="w-[14rem] h-[16rem] ">
                     <span class="inline-flex items-center justify-center " @click="download">
 
-                       <vue3-lottie @click="start" ref="anim" :speed="1" :playOnHover="true" :autoPlay="false"
+                       <vue3-lottie  ref="anim" :speed="1" :playOnHover="true" :autoPlay="false"
                                     :animationData="download"/>
                     </span>
         </div>
@@ -83,6 +83,7 @@
 <script>
 import rowfacteur from "./rowfacteur.vue";
 import {computed} from "vue";
+
 import PlusX from "../../assets/lottie/plusToX.json"
 import download from "../../assets/lottie/download.json"
 import jsPDF from 'jspdf';
@@ -137,14 +138,7 @@ export default {
   },
   methods: {
 
-    start(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.play();
-    },
-    stop(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.stop();
-    },
+    
     async submit() {
       // send this.data to backend
       const res = await fetch("http://localhost/filrouge/backend/public/FactureController/create", {

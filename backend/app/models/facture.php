@@ -23,7 +23,7 @@ class facture
                 return $this->db->lastInsertedId("facteur");
             }
             public function getAllfacture(){
-                $this->db->query('SELECT * FROM `facteur`');
+                $this->db->query('SELECT facteur.*,customer.name FROM `facteur` INNER JOIN customer ON customer.id = facteur.customer_id	');
                 try{
                     return $this->db->resultSet();
                 }

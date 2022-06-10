@@ -25,7 +25,7 @@
   <td>{{ prix }}</td>
 
   <td class="inline-flex  " @click="removeCmd(command.id)">
-    <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :animationData="TrashData"/>
+    <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :animationData="TrashData"/>
 
     <!--    todo: change to VUE3-Lottile-->
   </td>

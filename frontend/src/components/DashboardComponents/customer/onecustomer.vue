@@ -1,20 +1,20 @@
 <template>
 
   <tr v-for="(customer, index) in customers" :key="customer.id">
-    <td>{{ customer.photo }}</td>
+    <td class="w-8 "><img :src="getImgUrl(customer.photo)"></td>
     <th>{{ customer.name }}</th>
     <td>{{ customer.tel }}</td>
     <td>{{ customer.email }}</td>
     <td>{{ customer.metier }}</td>
     <td><a href="#update_customer" @click="handleUpdate(customer)" class="inline-flex items-center justify-center ">
 
-      <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true" :animationData="edit"/>
+      <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true" :animationData="edit"/>
     </a>
     </td>
 
     <td><a @click="deleteCustomer(customer.id)" class="inline-flex items-center justify-center ">
 
-      <vue3-lottie @click="start" ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
+      <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
                    :animationData="trashV2"/>
     </a></td>
   </tr>
@@ -76,6 +76,7 @@
 import axios from 'axios';
 import trashV2 from "../../../assets/lottie/trashV2.json"
 import edit from "../../../assets/lottie/edit.json"
+import {getCloudinaryImgUrl} from "../../../utils/helpers";
 
 export default {
   components: {},
@@ -99,17 +100,11 @@ export default {
   },
   mounted() {
     this.getAllCustomer();
+    console.log(this.getAllCustomer())
   },
   methods: {
 
-    start(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.play();
-    },
-    stop(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.stop();
-    },
+    
     getAllCustomer() {
 
       axios.get('http://localhost/filrouge/backend/public/CustomerController/getAll_customer')
@@ -145,7 +140,7 @@ export default {
           this.form.tel = customers.tel
     },
     updateCustomer(id) {
-      console.log("hello");
+      
       console.log(this.form);
       http://localhost/filrouge/backend/public/CustomerController/update_customer
           fetch(
@@ -158,6 +153,7 @@ export default {
       console.log(this.form);
       this.getAllProduct();
     },
+    getImgUrl: getCloudinaryImgUrl,
 
   }
 }

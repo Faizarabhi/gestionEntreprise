@@ -7,13 +7,14 @@
 
         <tr>
           <th>Ref- {{ facture.id }}</th>
-          <th>Customer- {{ facture.customer_id }}</th>
+          <th>Customer {{ facture.name }}</th>
           <th>Date Creation : {{ facture.date_creation }}</th>
           <th @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
-                <span class="inline-flex items-center justify-center  ">
-                  <lottie-animation @mouseover="start('arrow', index)" @mouseout="stop('arrow', index)" ref="arrow"
-                                    :speed="2" :autoPlay="false" path="lottie/arrowDownCircle.json"/>
-                </span>
+              <span class="inline-flex items-center justify-center  ">
+
+                <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100"
+                              :width="100" :animationData="arrowDownCircle"/>
+              </span>
           </th>
           <th></th>
 
@@ -33,6 +34,7 @@
 <script>
 import axios from 'axios';
 import command from './cmdOrder.vue'
+import arrowDownCircle from "../../../assets/lottie/arrowDownCircle.json"
 
 export default {
   components: {
@@ -50,45 +52,59 @@ export default {
       factures: [],
       currentFacture: undefined,
       orders: [],
+      arrowDownCircle,
+      customer: "",
+      id_customer: "",
+      name_customer: ""
 
 
     };
   },
   mounted() {
     this.getAllfacture();
-
+    
   },
   watch: {
     currentFacture(newValue, oldValue) {
+
       if (newValue === oldValue) return;
       if (!newValue) {
         this.orders = []
       } else {
         axios.get(`http://localhost/filrouge/backend/commandController/getCommandsByFacture/${this.currentFacture}`).then(res => {
           this.orders = res.data;
+        console.log(this.orders)
+
         })
       }
     }
   },
   methods: {
-    start(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.play();
-    },
-    stop(refName, index) {
-      const el = index !== undefined ? this.$refs[refName]?.[index] : this.$refs[refName];
-      el.anim.stop();
-    },
+
     getAllfacture() {
-      // console.log("hello");
+      console.log();
       axios.get('http://localhost/filrouge/backend/public/FactureController/getAllfacture')
           .then(res => {
 
             this.factures = res.data
+            this.id_customer = this.factures[0].customer_id;
+            
+            console.log(this.factures);
             this.factures.forEach(_ => this.showcmd.value.push(false))
 
           })
     },
+    // async getCustomer(id_customer) {
+
+    //   const res = await axios.post(
+    //       "http://localhost/filrouge/backend/public/CustomerController/getAll_customer",
+    //   )
+    //   console.log(res.data);
+    //   this.customer = res.data
+    //   console.log(this.customer[0].name);
+
+
+    // },
 
   },
 

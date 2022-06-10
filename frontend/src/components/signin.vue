@@ -105,16 +105,10 @@ export default {
             // console.log("hello api customer")
             res.json().then((out) => {
               let data = out.data;
-              // Cookies.set('id',data.id)
-              // Cookies.set('name',data.name);
-              // console.log(data.name)
-              // console.log(data.id)
-
               console.log(out);
               if (data) {
                 this.$cookies.set("idcustomer", data.id);
                 this.$cookies.set("name", data.name);
-                // this.$cookies.set("name", data.name);
                 this.$cookies.set("email", data.email);
                 this.$cookies.set("photo", data.photo);
 
@@ -143,11 +137,7 @@ export default {
           if (res.status == 200) {
             res.json().then((out) => {
               let data = out.data;
-              // Cookies.set('id',data.id)
-              // Cookies.set('name',data.name);
-              // console.log(data.name)
-              // console.log(data.id)
-
+              
               console.log(out);
               if (data) {
                 this.$cookies.set("idadmin", data.id);
