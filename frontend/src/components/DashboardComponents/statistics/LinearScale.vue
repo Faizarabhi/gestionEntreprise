@@ -60,7 +60,7 @@ export default {
                     'December'],
                 datasets: [
 
-                    { label: 'Data One', backgroundColor: '#67e34a', data: [40, 20, 12, 20, 30, 20, 12, 20, 12, 20, 12, 12] }]
+                    { label: 'Product ', backgroundColor: '#001E6C', data: [38, 20, 12, 20, 30, 20, 12, 20, 12, 20, 12, 12] }]
             },
             chartOptions: {
                 responsive: true
