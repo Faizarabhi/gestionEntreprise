@@ -81,7 +81,7 @@
 
   <script>
   import axios from "axios";
-  import {toFormData} from "../utils/helpers";
+  import {toFormData, uploadToCloudinary} from "../utils/helpers";
   import {cloudinaryConfig} from "../utils/constants";
 
   const initialFormState = {
@@ -118,18 +118,19 @@
         // get publicId
         // add public to form data
         // submit form
-        let cloudinaryData = {
-          timestamp: this.uploadAuth.timestamp,
-          signature: this.uploadAuth.signature,
-          "api_key": cloudinaryConfig.apiKey,
-          file: this.image,
-          folder: cloudinaryConfig.folder
-        };
-        const formData = toFormData(cloudinaryData)
-        const url = `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`;
-        const imageData = await axios.post(url, formData).then(res => res.data);
+        // let cloudinaryData = {
+        //   timestamp: this.uploadAuth.timestamp,
+        //   signature: this.uploadAuth.signature,
+        //   "api_key": cloudinaryConfig.apiKey,
+        //   file: this.image,
+        //   folder: cloudinaryConfig.folder
+        // };
+        // const formData = toFormData(cloudinaryData)
+        // const url = `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`;
+        // const imageData = await axios.post(url, formData).then(res => res.data);
         // console.log(`https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload/v1654771394/${imageData.public_id}.jpg`)
-        this.form.photo = imageData.public_id;
+        // this.form.photo = imageData.public_id;
+        this.form.data = await uploadToCloudinary(this.image);
         const user = await axios.post(
             "http://localhost/filrouge/backend/public/CustomerController/add_customer",
             this.form)
