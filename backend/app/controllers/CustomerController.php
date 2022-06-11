@@ -14,8 +14,8 @@ class CustomerController extends Controller
     public function check_customer()
     {
         // die("error mn methode customer hna");
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = json_decode(file_get_contents("php://input"), true);
+        if ($this->isPostRequest()) {
+            $data = $this->getBody();
 
             $result = $this->customerModel->check_customer($data);
             if ($result) {
@@ -42,7 +42,7 @@ class CustomerController extends Controller
     public function get_customer()
     {
 
-        $id = json_decode(file_get_contents("php://input"), true);
+        $id = $this->getBody();
         $result = $this->customerModel->get_customer($id);
         if ($result) {
             echo json_encode($result);
@@ -55,7 +55,7 @@ class CustomerController extends Controller
     public function add_customer()
     {
         if ($this->isPostRequest()) {
-//            $data = json_decode(file_get_contents("php://input"), true);
+            //            $data = $this->getBody();
             $data = $this->getBody();
             $email = "CL-" . $data['email'];
             $password = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -71,8 +71,8 @@ class CustomerController extends Controller
 
     public function update_customer()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = json_decode(file_get_contents("php://input"), true);
+        if ($this->isPostRequest()) {
+            $data = $this->getBody();
 
             // print_r($data);
             // http://localhost/filrouge/backend/public/CustomerController/update_customer
@@ -91,7 +91,7 @@ class CustomerController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
 
-            $id = json_decode(file_get_contents("php://input"), true);
+            $id = $this->getBody();
             $result = $this->customerModel->delete_customer($id);
             if ($result) {
                 echo json_encode(["message" => "success Delete", "data" => $id]);
@@ -101,6 +101,4 @@ class CustomerController extends Controller
         }
         // http://localhost/filrouge/backend/public/CustomerController/delete_customer
     }
-
-
 }

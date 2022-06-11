@@ -10,8 +10,8 @@ class CommandController extends Controller
 
     public function add_commands()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = json_decode(file_get_contents("php://input"), true);
+        if ($this->isPostRequest()) {
+            $data = $this->getBody();
             // print_r($data);
             $result = $this->commandModel->add_commands($data);
 

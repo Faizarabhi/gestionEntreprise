@@ -13,8 +13,8 @@ class AdminController extends Controller
   public function check_admin()
   {       
         
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          $data = json_decode(file_get_contents("php://input"), true);
+        if($this->isPostRequest()){
+          $data = $this->getBody();
           
           
             $result = $this->adminModel->checkAdmin($data);

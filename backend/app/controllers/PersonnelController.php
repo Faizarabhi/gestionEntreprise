@@ -19,7 +19,7 @@
         {
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $data = json_decode(file_get_contents("php://input"), true);
+                $data = $this->getBody();
                 $email = "PR-" . $data['email'];
 
 
@@ -34,7 +34,7 @@
         public function get_personnel()
         {
 
-            $id = json_decode(file_get_contents("php://input"), true);
+            $id = $this->getBody();
             $result = $this->personnelModel->get_personnel($id);
             if ($result) {
                 echo json_encode($result);
@@ -45,7 +45,7 @@
         public function update_personnel()
         {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $data = json_decode(file_get_contents("php://input"), true);
+                $data = $this->getBody();
                 // print_r(json_decode(file_get_contents("php://input")));
 
 
@@ -62,7 +62,7 @@
         {
             if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
                 // die("hello");
-                $id = json_decode(file_get_contents("php://input"), true);
+                $id = $this->getBody();
 
                 $result = $this->personnelModel->delete_personnel($id);
                 if ($result) {
