@@ -47,22 +47,8 @@
 import edit from "../../../assets/lottie/edit.json"
 
 export default {
-  components: {},
+  
   props: ["orders"],
-  data() {
-    return {
-      edit
 
-      
-    }
-  },
-
-  methods: {
-
-    
-
-    
-
-  }
 }
 </script>
