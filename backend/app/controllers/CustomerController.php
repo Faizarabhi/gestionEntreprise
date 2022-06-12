@@ -38,7 +38,7 @@ class CustomerController extends Controller
         }
         // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
     }
-
+    
     public function get_customer()
     {
 

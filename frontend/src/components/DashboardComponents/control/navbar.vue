@@ -1,7 +1,7 @@
 <template>
   <div
-      class="flex w-full justify-center h-16 justify-between items-center px-8 shadow"
-      :class="isShow ? ' ' : ''"
+      class="flex w-full  h-16 justify-between items-center px-8 shadow"
+      
   >
     <div>
       <i class="fa-solid fa-magnifying-glass" style="color: gray !important">

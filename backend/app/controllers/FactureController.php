@@ -55,5 +55,16 @@
                             echo json_encode(["message"=>"error not find"]);
                         }
                     }
+                    public function getfactures(){
+                        $result= $this->factureModel->getfactures();
+
+                        if($result){
+                            echo json_encode($result);
+
+                        }
+                        else{
+                            echo json_encode(["message"=> "aucune"]);
+                        }
+                    }
 
                 }

@@ -61,16 +61,19 @@
               </tr>
             </tfoot>
           </table>
-          <div class="ml-[80%] my-8 p-4 ">
-            <button class="bg-black w-20 h-12 rounded-md text-white" @click="submit"> Send  <i
+          
+          <div class="ml-[80%] my-8 p-4  ">
+            <button class="bg-black w-20 h-12 rounded-md text-white" v-if="sendcmd" @click="submit"> Send <i
                 class="fa-solid fa-paper-plane"></i></button>
-          </div>
+         
         </div>
-        
-        <v-btn  class="w-8" @click='generatePDF'><vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" /></v-btn>
-
       </div>
+      <button class="w-8" @click='generatePDF'>
+        <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" />
+      </button>
+
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -109,7 +112,7 @@ export default {
       tel: "",
       email: "",
       metier: "",
-
+      sendcmd: true,
       // data katjm3 hna kolha katruturna hna (id facteur) list katruturni tabl=>2 feh les cmds
       data: {
         list: [],
@@ -121,13 +124,14 @@ export default {
       heading: "facture RabhiConstruction",
       moreText: [
         "This is another few sentences of text to look at it.",
-        
+
       ],
       items: [
-        { title: "Item 1", body: "I am item 1 body text" },
-        { title: "Item 2", body: "I am item 2 body text" },
-        { title: "Item 3", body: "I am item 3 body text" },
-        { title: "Item 4", body: "I am item 4 body text" }
+
+        { title: "Item 2", body: "I am item 2 body text", categorie: "hhh", Produit: "jjjjj", Quantité: "ppp", Unité: "kg", prix: "87" },
+        { title: "Item 2", body: "I am item 2 body text", categorie: "hhh", Produit: "jjjjj", Quantité: "ppp", Unité: "m²", prix: "87" },
+        { title: "Item 2", body: "I am item 2 body text", categorie: "hhh", Produit: "jjjjj", Quantité: "ppp", Unité: "kg", prix: "87" },
+
       ]
     };
   },
@@ -143,10 +147,13 @@ export default {
   methods: {
     generatePDF() {
       const columns = [
-        { title: "Product", dataKey: "title" },
-        { title: "Quantite", dataKey: "body" },
-        { title: "Unité", dataKey: "body" },
-        { title: "Prix Unitaire", dataKey: "body" }
+        { title: "Title", dataKey: "title" },
+        { title: "Body", dataKey: "body" },
+        { title: "Categorie", dataKey: "categorie" },
+        { title: "Produit", dataKey: "Produit" },
+        { title: "Quantite", dataKey: "Quantité" },
+        { title: "prix", dataKey: "prix" },
+        { title: "Unité", dataKey: "Unité" },
       ];
       const doc = new jsPDF({
         orientation: "portrait",
@@ -177,7 +184,7 @@ export default {
         .setFontStyle("italic")
         .setTextColor(0, 0, 255)
         .text(
-          "RabhiConstruct.com",
+          "This is a simple footer located .5 inches from page bottom",
           0.5,
           doc.internal.pageSize.height - 0.5
         )
@@ -194,9 +201,9 @@ export default {
         },
         body: JSON.stringify(this.data)
       }).then(r => r.json());
-      this.downloadf = res
+      this.sendcmd = false;
+      
       console.log(res)
-      console.log(this.downloadf)
 
     },
     getId() {
@@ -255,6 +262,7 @@ export default {
     removeCmd(id) {
       this.data.list = this.data.list.filter((cmd, i) => cmd.id !== id);
     },
+
     addrow() {
       const data = {
         id: this.getId(),
@@ -265,6 +273,7 @@ export default {
       //   console.log(data);
       this.data.list.push(data);
     },
+
     date_function() {
       var formatted_date = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
       this.date = formatted_date;
@@ -272,12 +281,7 @@ export default {
     },
     // http://localhost/filrouge/backend/public/FacteurController/add_facteur
     // http://localhost/filrouge/backend/CommandController/add_commands
-    download() {
-
-      var doc = new jsPDF();
-      doc.text("this.downloadf", 10, 10);
-      doc.save("facture" + '.pdf');
-    }
+    
   },
 };
 </script>

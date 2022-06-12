@@ -1,6 +1,6 @@
 <template>
     <div >
-        <div  class="relative  " :class=" isShow ? 'w-56 overflow-hidden h-screen bg-dash-bleu p-x-4 ': 'w-16 h-screen overflow-hidden bg-dash-bleu ' ">
+        <div  class="sticky top-0 bg-dash-bleu h-screen overflow-hidden" :class=" isShow ? 'w-56   p-x-4 ': 'w-16   ' ">
             <div class="absolute top-20 -right-3   rotate-90 cursor-row-resize bg-secondary rounded-full text-bg-bleu  text-5xl" :class="isShow? 'z-50 ':'-rotate-90  z-50'"   v-on:click="show">
                 <i class="fa-solid fa-circle-chevron-down "   ></i>
                 
@@ -11,11 +11,11 @@
         </a>  
         <div class="menu-items flex flex-col mt-8">
             <!-- <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-user-helmet-safety"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow" class="" > Personnel  </span></div></router-link> -->
-            <router-link to ="/historique" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow" class="" > statistic </span></div></router-link>
-            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-cart-flatbed-boxes" style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow" class="" > Order </span></div></router-link>
-            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-person-digging"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow" class="" > Personnel  </span></div></router-link>
-            <router-link to ="/customers" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-forklift" style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow" class="" > Customer </span></div></router-link>
-            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"><span class="pr-4"> <i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow" class="" > Product </span></div></router-link>
+            <router-link to ="/statistic" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow"  > statistic </span></div></router-link>
+            <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow"  > Order </span></div></router-link>
+            <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-person-digging"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow"  > Personnel  </span></div></router-link>
+            <router-link to ="/customers" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow"  > Customer </span></div></router-link>
+            <router-link to ="/product" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"><span class="pr-4"> <i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow"  > Product </span></div></router-link>
             
             
         </div>

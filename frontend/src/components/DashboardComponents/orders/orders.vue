@@ -1,15 +1,16 @@
 <template>
-  <div class="relative w-full p-16 rounded-lg ">
+  <div class=" w-full p-16 rounded-lg ">
 
-    <div>
-      <table class="table table-compact  " v-for="(facture, index) in factures" :key="facture.id">
+    <div class="overflow-x-auto p-8">
+        
+      <table class="table table-compact  w-full  " v-for="(facture, index) in factures" :key="facture.id">
         <thead>
 
         <tr>
-          <th>Ref- {{ facture.id }}</th>
-          <th>Customer {{ facture.name }}</th>
-          <th>Date Creation : {{ facture.date_creation }}</th>
-          <th @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
+          <th class=" w-[10%]">Ref- {{ facture.id }}</th>
+          <th class="w-2/5">Customer {{ facture.name }}</th>
+          <th class="w-2/5">Date Creation : {{ facture.date_creation }}</th>
+          <th class="w-[10%]" @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
               <span class="inline-flex items-center justify-center  ">
 
                 <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100"

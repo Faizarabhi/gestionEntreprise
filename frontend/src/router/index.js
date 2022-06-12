@@ -47,9 +47,10 @@ const router = createRouter({
                     component: () => import('../components/DashboardComponents/personnel/profile.vue')
                 },
                 {
-                    path: '/historique',
-                    component: () => import('../components/DashboardComponents/statistics/historique.vue')
+                    path: '/statistic',
+                    component: () => import('../components/DashboardComponents/statistics/statistics.vue')
                 },
+                
                 {
                     path: '/orders',
                     component: () => import('../components/DashboardComponents/orders/orders.vue')

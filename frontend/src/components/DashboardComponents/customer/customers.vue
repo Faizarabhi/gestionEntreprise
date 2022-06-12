@@ -14,7 +14,7 @@
       <div class="overflow-x-auto">
         <table class="table w-full">
           <!-- head -->
-          <thead>
+          <thead >
             <tr>
               <th>photo</th>
               <th>Name</th>

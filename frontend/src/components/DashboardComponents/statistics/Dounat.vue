@@ -6,7 +6,7 @@
 :height ="height"
 :cssClasses ="cssClasses"
 :styles ="styles"
- />
+/>
     </div>
 </template>
 

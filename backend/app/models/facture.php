@@ -32,6 +32,16 @@ class facture
                 }
                 
             }
+            public function getfactures(){
+                $this->db->query('SELECT COUNT(id) FROM `facteur` WHERE date_creation = "2022-06-11"');
+                try{
+                    return $this->db->resultSet();
+                }
+                catch(PDOException $e){
+                    return $e->getMessage();
+                }
+                
+            }
 
 
             

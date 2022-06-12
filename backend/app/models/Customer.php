@@ -51,6 +51,15 @@
                     return $e->getMessage();
                 }
             }
+            public function get_customerDate(){
+                $this->db->query('SELECT COUNT(id) FROM `customer` WHERE date_creation = "2022-06-11"');
+                try{
+                    return $this->db->resultSet();
+                }
+                catch(PDOException $e){
+                    return $e->getMessage();
+                }
+            }
             public function add_customer($data)
             {
                 $this->db->query("INSERT INTO `customer`(`name`, `tel`, `email`, `password`, `photo`, `metier`) VALUES (:name,:tel,:email,:password,:photo,:metier)");

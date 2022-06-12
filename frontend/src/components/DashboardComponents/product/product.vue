@@ -1,8 +1,6 @@
 <template>
-  <div class="w-full ">
-    <div
-        class="relative overflow-x-auto p-8 sm:rounded-lg bottom-5 max-h-full h-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dash-bleu scrollbar-track-scroll-bleu scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-
+  
+   <div class="w-full p-8">
       <div class="py-8 ">
         <a href="#addproduct" class="inline-flex items-center justify-center  ">
 
@@ -15,6 +13,8 @@
 
       <div class="overflow-x-auto">
         <table class="table table-compact w-full">
+          
+        
           <thead>
           <tr>
             <th>Name</th>
@@ -54,7 +54,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    
 
     <!-- ADD Product  -->
     <div class="modal" id="addproduct">

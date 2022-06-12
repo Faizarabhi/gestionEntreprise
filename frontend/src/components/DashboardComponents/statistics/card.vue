@@ -34,3 +34,7 @@
 </template>
 
 
+<script>
+// http://localhost/filrouge/backend/FactureController/getfactures
+
+</script>

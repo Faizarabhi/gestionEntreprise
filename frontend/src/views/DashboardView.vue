@@ -1,9 +1,9 @@
 <template>
-  <div class="h-screen w-screen">
+  
 
     <bar />
 
-  </div>
+  
 </template>
 <script>
 
