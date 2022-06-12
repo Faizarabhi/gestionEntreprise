@@ -9,7 +9,7 @@
                     <Dounat />
                 </div>
                 <div class="lg:row-span-2">
-                    <LinearScale />
+                    <!-- <LinearScale /> -->
                 
             </div>
         </div>

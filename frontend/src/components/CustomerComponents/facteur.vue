@@ -5,21 +5,22 @@
       <div class="grid grid-cols-2 gap-12 place-content-center bg-white p-16">
         <div class="place-self-center font-semibold">
           <img src="../../assets/images/logo.svg" />
-          <p>{{ name }} </p>
-          <p>{{ tel }} </p>
-          <p>{{ email }} </p>
+          <h1 class="font-bold text-secondary">PRESUPUESTO</h1>
+          <h3 class="font-bold">Fetcha</h3>
+          <h3 class="font-bold">Descripción</h3>
+          <p> Rediseño y mejora UX-UI </p>
+
 
         </div>
         <div class="place-self-center">
-          <h1 class="font-bold text-secondary">PRESUPUESTO</h1>
+          <p>{{ name }} </p>
           <div class="">
-            <h3 class="font-bold">Fetcha</h3>
+            <p>{{ tel }} </p>
             <p>{{ this.date }}</p>
           </div>
           <div>
-            <h3 class="font-bold">Descripción</h3>
-            <p> Rediseño y mejora UX-UI del site www.afsdesign.es</p>
 
+            <p>{{ email }} </p>
           </div>
 
         </div>
@@ -61,19 +62,19 @@
               </tr>
             </tfoot>
           </table>
-          
+
           <div class="ml-[80%] my-8 p-4  ">
             <button class="bg-black w-20 h-12 rounded-md text-white" v-if="sendcmd" @click="submit"> Send <i
                 class="fa-solid fa-paper-plane"></i></button>
-         
+
+          
+        <button  v-else class="w-8" @click='generatePDF' >
+          <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" />
+        </button>
+</div>
         </div>
       </div>
-      <button class="w-8" @click='generatePDF'>
-        <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" />
-      </button>
-
     </div>
-  </div>
   </div>
 </template>
 <script>
@@ -128,9 +129,9 @@ export default {
       ],
       items: [
 
-        { title: "Item 2", body: "I am item 2 body text", categorie: "hhh", Produit: "jjjjj", Quantité: "ppp", Unité: "kg", prix: "87" },
-        { title: "Item 2", body: "I am item 2 body text", categorie: "hhh", Produit: "jjjjj", Quantité: "ppp", Unité: "m²", prix: "87" },
-        { title: "Item 2", body: "I am item 2 body text", categorie: "hhh", Produit: "jjjjj", Quantité: "ppp", Unité: "kg", prix: "87" },
+        {  categorie: "hhh", PRODUIT: "jjjjj", QUANTITE: "ppp", UNITE: "kg", PRIX: "87" },
+        {  categorie: "GGG", PRODUIT: "jjjjj", QUANTITE: "ppp", UNITE: "m²", PRIX: "87" },
+        {  categorie: "hhh", PRODUIT: "jjjjj", QUANTITE: "ppp", UNITE: "kg", PRIX: "87" },
 
       ]
     };
@@ -147,13 +148,14 @@ export default {
   methods: {
     generatePDF() {
       const columns = [
-        { title: "Title", dataKey: "title" },
-        { title: "Body", dataKey: "body" },
+        // CATEGORIE	PRODUIT	QUANTITÉ	UNITÉ	PRIX UNITAIRE HT	PRIX TOTAL HT	
+        { title: "PRODUIT", dataKey: "PRODUIT" },
+        { title: "UNITÉ", dataKey: "UNITE" },
+        { title: "QUANTITÉ", dataKey: "QUANTITE" },
         { title: "Categorie", dataKey: "categorie" },
-        { title: "Produit", dataKey: "Produit" },
-        { title: "Quantite", dataKey: "Quantité" },
-        { title: "prix", dataKey: "prix" },
-        { title: "Unité", dataKey: "Unité" },
+        // { title: "UNITAIRE HT", dataKey: "UNITAIRE HT" },
+        { title: "PRIX TOTAL HT", dataKey: "PRIX" },
+        
       ];
       const doc = new jsPDF({
         orientation: "portrait",

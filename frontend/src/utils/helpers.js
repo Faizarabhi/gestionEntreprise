@@ -1,5 +1,5 @@
 import { cloudinaryConfig } from "./constants";
-
+import axios from "axios";
 export function toFormData(data) {
   const formData = new FormData();
   Object.entries(data).forEach(([key, val]) => {
@@ -13,7 +13,7 @@ export function getCloudinaryImgUrl(publicId) {
 }
 
 async function getUploadAuthentication() {
-  const res = await axios.get(
+  const res = await axios.post(
     "http://localhost/filrouge/backend/CloudinaryController/getSignature"
   );
   return res.data;

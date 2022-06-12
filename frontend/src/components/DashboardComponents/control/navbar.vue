@@ -8,7 +8,6 @@
       </i>
       <input
           type="text"
-          v-model="search"
           placeholder="Search ..."
           class="border-0 bg-transparent"
       />
