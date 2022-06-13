@@ -135,7 +135,7 @@ export default {
       })
       console.log(user);
 
-      // this.$router.push("login");
+      this.$router.push("login");
     },
   },
 };
