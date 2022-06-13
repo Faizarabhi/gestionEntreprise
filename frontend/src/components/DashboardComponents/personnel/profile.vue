@@ -1,4 +1,4 @@
-<template>
+    <template>
 
   <div class="w-full p-8">
     <div class="py-8">
@@ -31,7 +31,7 @@
               <div class="flex items-center space-x-3">
                 <div class="avatar">
                   <div class="mask mask-squircle w-12 h-12">
-                    <img src="../../../assets/images/about.svg" alt="Avatar Tailwind CSS Component" />
+                    <img :src="getImgUrl(perso.photo)">
                   </div>
                 </div>
                 <div>
@@ -107,23 +107,52 @@
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
-            <span class="label-text">photo </span>
-          </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
-            v-model="form.photo" />
-        </div>
-        <div class="form-control w-full max-w-xs">
-          <label class="label">
             <span class="label-text">metier </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
             v-model="form.metier" />
         </div>
 
-        <div class="modal-action">
-          <button @click="addPersonnel()" for="my-modal-3" class="btn bg-primary border-none hover:bg-scroll-bleu">
-            ADD
-          </button>
+
+        <div class="flex items-center justify-around">
+          <div class="  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  ">
+            <label for="dropzone-file" class="
+                                flex flex-col
+                                justify-center
+                                items-center
+                                rounded-lg
+                                cursor-pointer
+                                ">
+              <span class="
+                                    flex
+                                    items-center
+                                    transition
+                                    ease-out
+                                    duration-300
+                                    hover:bg-secondary hover:text-white
+                                    bg-primary
+                                    w-8
+                                    h-8
+                                    px-2
+                                    rounded-full
+                                    text-bleu
+                                    cursor-pointer
+                                    ">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                  stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+              </span>
+              <input name="Image" id="dropzone-file" @change="setImage" type="file" class="hidden" />
+            </label>
+          </div>
+          <div class="modal-action">
+            <button for="my-modal-3" class="btn bg-primary border-none   hover:bg-scroll-bleu" @click="addPersonnel()">
+              ADD
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -185,13 +214,25 @@
   </div>
 </template>
 
-<script>
+    <script>
 import userPlus from "../../../assets/lottie/userPlus.json";
 import edit from "../../../assets/lottie/edit.json";
 import userX from "../../../assets/lottie/userX.json"
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
-
+import axios from "axios";
+import { toFormData, uploadToCloudinary } from "../../../utils/helpers";
+import { cloudinaryConfig } from "../../../utils/constants";
+import {getCloudinaryImgUrl} from "../../../utils/helpers";
+const initialFormState = {
+  id: "",
+  name: "",
+  email: "",
+  password: "",
+  tel: "",
+  photo: "",
+  metier: "",
+};
 export default {
   components: {},
   data() {
@@ -200,21 +241,15 @@ export default {
       edit,
       userX,
       personnel: [],
-      form: {
-        id: "",
-        name: "",
-        email: "",
-        password: "",
-        tel: "",
-        photo: "",
-        metier: "",
+      image: undefined,
+      form: initialFormState, uploadAuth: {
+        timestamp: "",
+        signature: "",
       },
     };
   },
   mounted() {
     this.getAllPersonnel();
-
-
   },
   methods: {
 
@@ -235,9 +270,30 @@ export default {
       this.personnel = await respons.json();
       console.log(this.personnel);
     },
+    setImage(event) {
+      this.image = event.target.files[0];
+    },
 
+    async fetchSignature() {
+      const res = await axios.get("http://localhost/filrouge/backend/CloudinaryController/getSignature");
+      this.uploadAuth = res.data;
+    },
+    async addPersonnel() {
+      // image upload to cloud
+      // get publicId
+      // add public to form data
+      // submit form
+      this.form.photo = await uploadToCloudinary(this.image);
+      // console.log(this.form.photo);
+      // console.log("hello");
+      const user = await axios.post(
+        "http://localhost/filrouge/backend/public/PersonnelController/add_personnel",
+        this.form)
 
-    addPersonnel() {
+      console.log(user);
+
+    },
+    addPersonnell() {
       fetch(
         "http://localhost/filrouge/backend/public/PersonnelController/add_personnel",
         {
@@ -245,6 +301,7 @@ export default {
           body: JSON.stringify(this.form),
         }
       ).then((res) => res.json());
+      console.log("hello");
       // this.Personnel.push(this.form);
       Swal.fire({
 
@@ -290,17 +347,6 @@ export default {
         .then((res) => res.json())
         .then((out) => console.log(out));
       Swal.fire({
-        // title: 'Are you sure you want to delete this person?',
-        // width: 600,
-        // padding: '3em',
-        // color: '#FFAA4C',
-        // background: '#fff url(/images/trees.png)',
-        // backdrop: `
-        //   rgba(0,0,123,0.4)
-        //   // url("https://i.gifer.com/OFAF.gif")
-        //   // left top
-        //   // no-repeat
-        // `
         position: '',
         icon: 'success',
         title: 'Personnel Deleted',
@@ -309,6 +355,7 @@ export default {
       })
       this.getAllPersonnel();
     },
+    getImgUrl: getCloudinaryImgUrl,
   },
   // http://localhost/filrouge/backend/public/PersonnelController/add_personnel
 };
