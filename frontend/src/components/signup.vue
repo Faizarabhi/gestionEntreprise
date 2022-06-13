@@ -6,7 +6,7 @@
       </div>
 
       <div class="flex-1 flex  items-center justify-center   ">
-        <div class="">
+        <div>
           <label class=" mb-2 text-3xl font-bold text-gray-900">Votre Espace
             <span class="font-medium text-sm">Rabhi Construction</span></label>
           <form @submit.prevent="addUser">
@@ -99,6 +99,7 @@ export default {
       form: initialFormState, uploadAuth: {
         timestamp: "",
         signature: "",
+        
       },
       image: undefined
     };
@@ -117,7 +118,9 @@ export default {
     },
     async addUser() {
       
-      this.form.data = await uploadToCloudinary(this.image);
+      this.form.photo = await uploadToCloudinary(this.image);
+      // console.log(this.form.photo);
+      // console.log("hello");
       const user = await axios.post(
         "http://localhost/filrouge/backend/public/CustomerController/add_customer",
         this.form)
@@ -132,7 +135,7 @@ export default {
       })
       console.log(user);
 
-      this.$router.push("login");
+      // this.$router.push("login");
     },
   },
 };

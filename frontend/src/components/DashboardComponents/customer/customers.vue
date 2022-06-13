@@ -5,8 +5,7 @@
       <div class="py-8">
         <a href="#addcustomer" class="inline-flex items-center justify-center  ">
 
-          <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
-            :animationData="userPlus" />
+          <vue3-lottie ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true" :animationData="userPlus" />
 
         </a>
       </div>
@@ -126,8 +125,7 @@
 import axios from "axios";
 import onecustomer from "./onecustomer.vue";
 import userPlus from "../../../assets/lottie/userPlus.json";
-
-import { toFormData } from "../../../utils/helpers";
+import { toFormData, uploadToCloudinary } from "../../../utils/helpers";
 import { cloudinaryConfig } from "../../../utils/constants";
 const initialFormState = {
   id: "",
@@ -153,6 +151,9 @@ export default {
 
     };
   },
+  mounted() {
+    this.fetchSignature();
+  },
   methods: {
     setImage(event) {
       this.image = event.target.files[0];
@@ -171,26 +172,22 @@ export default {
 
 
     },
+    async fetchSignature() {
+      const res = await axios.get("http://localhost/filrouge/backend/CloudinaryController/getSignature");
+      this.uploadAuth = res.data;
+    },
     async addUser() {
       // image upload to cloud
       // get publicId
       // add public to form data
       // submit form
-      let cloudinaryData = {
-        timestamp: this.uploadAuth.timestamp,
-        signature: this.uploadAuth.signature,
-        "api_key": cloudinaryConfig.apiKey,
-        file: this.image,
-        folder: cloudinaryConfig.folder
-      };
-      const formData = toFormData(cloudinaryData)
-      const url = `https://api.cloudinary.com/v1_1/${cloudinaryConfig.cloudName}/image/upload`;
-      const imageData = await axios.post(url, formData).then(res => res.data);
-      // console.log(`https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload/v1654771394/${imageData.public_id}.jpg`)
-      this.form.photo = imageData.public_id;
+      this.form.photo = await uploadToCloudinary(this.image);
+      // console.log(this.form.photo);
+      // console.log("hello");
       const user = await axios.post(
         "http://localhost/filrouge/backend/public/CustomerController/add_customer",
         this.form)
+
       console.log(user);
       // this.$router.push("login");
     },

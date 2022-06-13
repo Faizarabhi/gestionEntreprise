@@ -148,14 +148,12 @@ export default {
   },
   methods: {
     generatePDF() {
-      // const datadownload = this.downloadf
-      // console.log(datadownload.facture.commands)
+      
       const columns = [
         // CATEGORIE	PRODUIT	QUANTITÉ	UNITÉ	PRIX UNITAIRE HT	PRIX TOTAL HT	
         { title: "PRODUIT", dataKey: "PRODUIT" },
         { title: "UNITÉ", dataKey: "UNITE" },
         { title: "QUANTITÉ", dataKey: "QUANTITE" },
-        { title: "Categorie", dataKey: "categorie" },
         // { title: "UNITAIRE HT", dataKey: "UNITAIRE HT" },
         { title: "PRIX TOTAL HT", dataKey: "PRIX" },
 
