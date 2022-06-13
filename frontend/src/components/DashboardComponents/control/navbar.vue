@@ -62,7 +62,7 @@ export default {
 
   },
   methods: {
-    search: function (e) {
+    searchit: function (e) {
       console.log(this.search);
     },
     removeCookie: function (e) {

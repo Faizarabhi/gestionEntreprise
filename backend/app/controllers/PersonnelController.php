@@ -10,9 +10,9 @@
         {
             $result = $this->personnelModel->getAll_personnel();
             if ($result) {
-                echo json_encode($result);
+                return $this->json($result);
             } else {
-                echo json_encode(["message" => "error not select"]);
+                return $this->json(["message" => "error not select"]);
             }
         }
         public function add_personnel()
@@ -25,9 +25,9 @@
 
                 $result = $this->personnelModel->add_personnel([...$data, "email" => $email]);
                 if ($result) {
-                    echo json_encode(["message" => "success", "data" => $result]);
+                    return $this->json(["message" => "success", "data" => $result]);
                 } else {
-                    echo json_encode(["message" => "error not created"]);
+                    return $this->json(["message" => "error not created"]);
                 }
             }
         }
@@ -37,9 +37,9 @@
             $id = $this->getBody();
             $result = $this->personnelModel->get_personnel($id);
             if ($result) {
-                echo json_encode($result);
+                return $this->json($result);
             } else {
-                echo json_encode(["message" => "error not select"]);
+                return $this->json(["message" => "error not select"]);
             }
         }
         public function update_personnel()
@@ -54,7 +54,7 @@
                         "message" => "done"
                     ));
                 } else {
-                    echo json_encode(["message" => "error"]);
+                    return $this->json(["message" => "error"]);
                 }
             }
         }
@@ -66,9 +66,9 @@
 
                 $result = $this->personnelModel->delete_personnel($id);
                 if ($result) {
-                    echo json_encode(["message" => "success", "data" => $id]);
+                    return $this->json(["message" => "success", "data" => $id]);
                 } else {
-                    echo json_encode(["message" => "failed"]);
+                    return $this->json(["message" => "failed"]);
                 }
             }
         }

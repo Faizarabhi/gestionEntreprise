@@ -248,7 +248,7 @@ export default {
       // this.Personnel.push(this.form);
       Swal.fire({
 
-        position: 'ceneter',
+        position: '',
         icon: 'success',
         title: 'Personnel Added',
         showConfirmButton: false,
@@ -268,7 +268,7 @@ export default {
         }
       ).then((res) => res.json());
       Swal.fire({
-        position: 'ceneter',
+        position: '',
         icon: 'success',
         title: 'Personnel Updated',
         showConfirmButton: false,
@@ -301,7 +301,7 @@ export default {
         //   // left top
         //   // no-repeat
         // `
-        position: 'ceneter',
+        position: '',
         icon: 'success',
         title: 'Personnel Deleted',
         showConfirmButton: false,

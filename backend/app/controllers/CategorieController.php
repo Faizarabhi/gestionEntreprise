@@ -11,9 +11,9 @@ class CategorieController extends Controller
         $result = $this->categorieModel->getAll_categorie();
 
         if ($result) {
-            echo json_encode($result);
+            return $this->json($result);
         } else {
-            echo json_encode(["message" => "error not select"]);
+            return $this->json(["message" => "error not select"]);
         }
     }
 }

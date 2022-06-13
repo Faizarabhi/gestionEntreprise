@@ -19,9 +19,9 @@ class CustomerController extends Controller
 
             $result = $this->customerModel->check_customer($data);
             if ($result) {
-                echo json_encode(["message" => "success", "data" => $result]);
+                return $this->json(["message" => "success", "data" => $result]);
             } else {
-                echo json_encode(["message" => "error not created"]);
+                return $this->json(["message" => "error not find"]);
             }
         }
     }
@@ -32,22 +32,22 @@ class CustomerController extends Controller
 
         $result = $this->customerModel->getAll_customer();
         if ($result) {
-            echo json_encode($result);
+            return $this->json($result);
         } else {
-            echo json_encode(["message" => "error not select"]);
+            return $this->json(["message" => "error not select"]);
         }
         // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
     }
-    
+
     public function get_customer()
     {
 
         $id = $this->getBody();
         $result = $this->customerModel->get_customer($id);
         if ($result) {
-            echo json_encode($result);
+            return $this->json($result);
         } else {
-            echo json_encode(["message" => "error not select"]);
+            return $this->json(["message" => "error not select"]);
         }
         // http://localhost/filrouge/backend/public/CustomerController/get_customer
     }
@@ -82,7 +82,7 @@ class CustomerController extends Controller
                     "message" => "done"
                 ));
             } else {
-                echo json_encode(["message" => "error"]);
+                return $this->json(["message" => "error"]);
             }
         }
     }
@@ -94,9 +94,9 @@ class CustomerController extends Controller
             $id = $this->getBody();
             $result = $this->customerModel->delete_customer($id);
             if ($result) {
-                echo json_encode(["message" => "success Delete", "data" => $id]);
+                return $this->json(["message" => "success Delete", "data" => $id]);
             } else {
-                echo json_encode(["message" => "failed"]);
+                return $this->json(["message" => "failed"]);
             }
         }
         // http://localhost/filrouge/backend/public/CustomerController/delete_customer

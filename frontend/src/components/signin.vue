@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="flex h-screen  ">
-      <div class="flex-1 flex flex-col items-center justify-center   bg-bg-bleu">
-        <img src="../assets/images/slide1.svg" class="w-[]100%]" alt=""/>
+      <div class="hidden lg:block flex-1 lg:flex  lg:items-center lg:justify-center   bg-bg-bleu">
+        <img src="../assets/images/slide1.svg" class="w-[80%]" alt=""/>
       </div>
-      <div class="flex-1 flex flex-col items-center justify-center ">
+      <div class="flex-1 flex  items-center justify-center ">
         <div class="">
           <form @submit.prevent="checkUser">
-            <label class="block mb-2 text-3xl font-bold text-gray-900"
+            <label class="mb-2 text-3xl font-bold text-gray-900"
             >Votre espace client
               <span class="font-medium text-sm">Rabhi Construction</span></label
             >
@@ -32,7 +32,7 @@
               <input
                   type="text"
                   id="email-address-icon"
-                  class="w-48 md:w-96 mt-8 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                  class="border border-gray-300  md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                   placeholder="name@flowbite.com"
                   v-model="form.email"
               />
@@ -40,7 +40,7 @@
 
             <input
                 type="password"
-                class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                class="border border-gray-300  md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Mot de passe"
                 v-model="form.password"
             />

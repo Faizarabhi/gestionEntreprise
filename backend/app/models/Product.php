@@ -106,4 +106,17 @@
                     return $e->getMessage();
                 }
             }
+            public function getManyByIds($ids)
+            {
+                $placeholders = implode(",",array_fill(0, count($ids), "?"));
+                $this->db->query("SELECT * from produit where id in ($placeholders)");
+                try {
+
+                    $this->db->execute($ids);
+                    return $this->db->resultSet();
+                } catch (PDOException $e) {
+                    die($e->getMessage());
+                    return $e->getMessage();
+                }
+            }
         }

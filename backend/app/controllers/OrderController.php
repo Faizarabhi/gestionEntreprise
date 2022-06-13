@@ -13,9 +13,9 @@ class OrderController extends Controller
 
             $result = $this->orderModel->check_order($data);
             if ($result) {
-                echo json_encode(["message" => "success", "data" => $result]);
+                return $this->json(["message" => "success", "data" => $result]);
             } else {
-                echo json_encode(["message" => "error not created"]);
+                return $this->json(["message" => "error not created"]);
             }
         }
     }
@@ -23,9 +23,9 @@ class OrderController extends Controller
     {
         $result = $this->orderModel->getAll_order();
         if ($result) {
-            echo json_encode($result);
+            return $this->json($result);
         } else {
-            echo json_encode(["message" => "error not select"]);
+            return $this->json(["message" => "error not select"]);
         }
     }
     public function get_order()
@@ -33,9 +33,9 @@ class OrderController extends Controller
         $id = $this->getBody();
         $result = $this->orderModel->get_order($id);
         if ($result) {
-            echo json_encode($result);
+            return $this->json($result);
         } else {
-            echo json_encode(["message" => "error not select"]);
+            return $this->json(["message" => "error not select"]);
         }
     }
     public function add_order()
@@ -47,9 +47,9 @@ class OrderController extends Controller
             $result = $this->orderModel->add_order($data);
             // die($result);
             if ($result) {
-                echo json_encode(["message" => "success", "data" => $result]);
+                return $this->json(["message" => "success", "data" => $result]);
             } else {
-                echo json_encode(["message" => "error not created"]);
+                return $this->json(["message" => "error not created"]);
             }
         }
     }
@@ -66,7 +66,7 @@ class OrderController extends Controller
                     "message" => "done"
                 ));
             } else {
-                echo json_encode(["message" => "error"]);
+                return $this->json(["message" => "error"]);
             }
         }
     }
@@ -77,9 +77,9 @@ class OrderController extends Controller
             $id = $this->getBody();
             $result = $this->orderModel->delete_order($id);
             if ($result) {
-                echo json_encode(["message" => "success", "data" => $id]);
+                return $this->json(["message" => "success", "data" => $id]);
             } else {
-                echo json_encode(["message" => "failed"]);
+                return $this->json(["message" => "failed"]);
             }
         }
     }

@@ -21,9 +21,9 @@
 
                     $result = $this->productModel->add_product($data);
                     if ($result) {
-                        echo json_encode(["message" => "success"]);
+                        return $this->json(["message" => "success"]);
                     } else {
-                        echo json_encode(["message" => "error not created"]);
+                        return $this->json(["message" => "error not created"]);
                     }
                 }
             }
@@ -31,9 +31,9 @@
             {
                 $result = $this->productModel->getAll_product();
                 if ($result) {
-                    echo json_encode($result);
+                    return $this->json($result);
                 } else {
-                    echo json_encode(["message" => "error not select"]);
+                    return $this->json(["message" => "error not select"]);
                 }
             }
 
@@ -43,9 +43,9 @@
                 $id = $this->getBody();
                 $result = $this->productModel->get_product($id);
                 if ($result) {
-                    echo json_encode($result);
+                    return $this->json($result);
                 } else {
-                    echo json_encode(["message" => "error not select from controller"]);
+                    return $this->json(["message" => "error not select from controller"]);
                 }
             }
             public function get_productBycategorie()
@@ -54,9 +54,9 @@
                 $id = $this->getBody();
                 $result = $this->productModel->get_productBycategorie($id);
                 if ($result) {
-                    echo json_encode($result);
+                    return $this->json($result);
                 } else {
-                    echo json_encode(["message" => "error not select"]);
+                    return $this->json(["message" => "error not select"]);
                 }
             }
             public function update_product()
@@ -67,9 +67,9 @@
 
 
                     if ($this->productModel->update_product($data)) {
-                        echo json_encode(["message" => "done"]);
+                        return $this->json(["message" => "done"]);
                     } else {
-                        echo json_encode(["message" => "error"]);
+                        return $this->json(["message" => "error"]);
                     }
                 }
             }
@@ -83,9 +83,9 @@
                     $result = $this->productModel->delete_product($id);
                     // var_dump($result);
                     if ($result) {
-                        echo json_encode(["message" => "success delete", "data" => $id]);
+                        return $this->json(["message" => "success delete", "data" => $id]);
                     } else {
-                        echo json_encode(["message" => "failed"]);
+                        return $this->json(["message" => "failed"]);
                     }
                 }
             }

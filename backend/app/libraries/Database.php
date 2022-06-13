@@ -63,10 +63,11 @@ class Database
     $this->stmt->bindValue($param, $value, $type);
   }
   // Execute 
-  public function resultass() {
+  public function resultass()
+  {
     $this->execute();
     return $this->statement->fetchAll(PDO::FETCH_ASSOC);
-}
+  }
   // Execute the prepared statement
   public function execute($data = null)
   {
@@ -101,5 +102,9 @@ class Database
   public function getConnection()
   {
     return $this->connection;
+  }
+  public function fetchOne()
+  {
+    return $this->stmt->fetch(PDO::FETCH_OBJ);
   }
 }

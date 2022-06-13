@@ -28,7 +28,7 @@
         <p>{{ id_fact }}</p>
         <div class="place-self-center col-span-2">
           <label for="addrows">
-            <button class=" my-4 w-20 h-12 rounded-md text-white" id="addrows" @click="addrow()">
+            <button v-if="sendcmd" class=" my-4 w-20 h-12 rounded-md text-white" id="addrows" @click="addrow()">
               <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100" :width="100"
                 :animationData="PlusX" />
               <i class="fa-solid fa-plus"></i>
@@ -67,11 +67,11 @@
             <button class="bg-black w-20 h-12 rounded-md text-white" v-if="sendcmd" @click="submit"> Send <i
                 class="fa-solid fa-paper-plane"></i></button>
 
-          
-        <button  v-else class="w-8" @click='generatePDF' >
-          <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" />
-        </button>
-</div>
+
+            <button v-else class="w-8" @click='generatePDF'>
+              <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -84,7 +84,6 @@ import { computed } from "vue";
 import PlusX from "../../assets/lottie/plusToX.json"
 import download from "../../assets/lottie/download.json"
 
-const downloadf = [];
 export default {
   vuetify: new Vuetify(),
   components: {
@@ -104,6 +103,7 @@ export default {
 
   data() {
     return {
+      downloadf:[],
       PlusX,
       download,
       add: 1,
@@ -116,7 +116,14 @@ export default {
       sendcmd: true,
       // data katjm3 hna kolha katruturna hna (id facteur) list katruturni tabl=>2 feh les cmds
       data: {
-        list: [],
+        list: [
+          {
+            id: this.getId(),
+            product_id: "",
+            quantity: 1,
+            prix: 0,
+          }
+        ],
 
         customer_id: this.$cookies.get("idcustomer")
       },
@@ -127,13 +134,6 @@ export default {
         "This is another few sentences of text to look at it.",
 
       ],
-      items: [
-
-        {  categorie: "hhh", PRODUIT: "jjjjj", QUANTITE: "ppp", UNITE: "kg", PRIX: "87" },
-        {  categorie: "GGG", PRODUIT: "jjjjj", QUANTITE: "ppp", UNITE: "m²", PRIX: "87" },
-        {  categorie: "hhh", PRODUIT: "jjjjj", QUANTITE: "ppp", UNITE: "kg", PRIX: "87" },
-
-      ]
     };
   },
   mounted() {
@@ -143,10 +143,13 @@ export default {
       this.name = this.$cookies.get("name"),
       this.email = this.$cookies.get("email"),
       this.tel = this.$cookies.get("tel")
+    this.customer_id = this.$cookies.get("customer_id")
     // this.metier = $this.cookies.get("metier")
   },
   methods: {
     generatePDF() {
+      // const datadownload = this.downloadf
+      // console.log(datadownload.facture.commands)
       const columns = [
         // CATEGORIE	PRODUIT	QUANTITÉ	UNITÉ	PRIX UNITAIRE HT	PRIX TOTAL HT	
         { title: "PRODUIT", dataKey: "PRODUIT" },
@@ -155,7 +158,7 @@ export default {
         { title: "Categorie", dataKey: "categorie" },
         // { title: "UNITAIRE HT", dataKey: "UNITAIRE HT" },
         { title: "PRIX TOTAL HT", dataKey: "PRIX" },
-        
+
       ];
       const doc = new jsPDF({
         orientation: "portrait",
@@ -204,8 +207,12 @@ export default {
         body: JSON.stringify(this.data)
       }).then(r => r.json());
       this.sendcmd = false;
-      
-      console.log(res)
+      this.downloadf = res.facture.commands
+      console.log(res.facture.commands);
+      res.facture.commands.forEach(element => {
+            this.items.push({ categorie: "hhh", PRODUIT: element.product.ref_prdt,
+            QUANTITE:element.quantity, UNITE:element.product.unite, PRIX:element.product.prix_unitaire },)
+      });
 
     },
     getId() {
@@ -249,17 +256,6 @@ export default {
         return c;
       });
     },
-    passCmd() {
-
-      // const customer_id = this.$cookies.get("idcustomer");
-      // const fact_arr =[ customer_id];
-      // const cmd_arr = [this.data.list];
-
-      // console.log(fact_arr[0]);
-
-
-      // console.log(cmd_arr[0]);
-    },
 
     removeCmd(id) {
       this.data.list = this.data.list.filter((cmd, i) => cmd.id !== id);
@@ -283,7 +279,13 @@ export default {
     },
     // http://localhost/filrouge/backend/public/FacteurController/add_facteur
     // http://localhost/filrouge/backend/CommandController/add_commands
-    
+
   },
+  computed: {
+    items() {
+      return []
+    }
+
+  }
 };
 </script>

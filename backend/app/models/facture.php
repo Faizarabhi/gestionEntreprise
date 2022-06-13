@@ -20,6 +20,7 @@ class facture
 
             public function lastId()
             {
+                
                 return $this->db->lastInsertedId("facteur");
             }
             public function getAllfacture(){

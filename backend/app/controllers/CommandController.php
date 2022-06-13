@@ -20,9 +20,9 @@ class CommandController extends Controller
             if (gettype($result) !== 'string') {
                 // die("ana mora result");
                 // http://localhost/filrouge/backend/CommandController/add_commands
-                echo json_encode(["message" => "success Commande added"]);
+                return $this->json(["message" => "success Commande added"]);
             } else {
-                echo json_encode(["message" => "error not created"]);
+                return $this->json(["message" => "error not created"]);
             }
         }
     }

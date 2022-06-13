@@ -115,4 +115,8 @@
                     return $e->getMessage();
                 }
             }
+            public function getCustomerById($id)
+            {
+                return $this->get_customer(["id" => $id]);
+            }
         }
