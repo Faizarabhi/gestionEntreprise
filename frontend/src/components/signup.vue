@@ -30,7 +30,22 @@
                 placeholder="Mot de passe" v-model="form.password" />
               <input type="password"
                 class="order border-gray-300  md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-                placeholder="Mot de passe veréfier" />
+                placeholder="Mot de passe veréfier" v-model="form.passwrd" />
+              <div class="p-4 mt-4 rounded alert-success shadow-lg text-secondary font-medium flex"
+                v-if="form.password === form.passwrd">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>  mot de passe correct</span>
+              </div>
+              <div class="p-4 mt-4 rounded alert-error shadow-lg text-secondary font-medium flex"
+                v-else="form.password!=form.passwrd"> <svg xmlns="http://www.w3.org/2000/svg"
+                  class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg><span>  mot de passe incorrect</span></div>
               <div
                 class="order border-gray-300  md:w-96 mt-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5">
                 <label for="dropzone-file" class="
@@ -62,7 +77,8 @@
                       <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                   </span>
-                  <input accept="image/png, image/gif, image/jpeg" name="Image" id="dropzone-file" @change="setImage" type="file" class="hidden" />
+                  <input accept="image/png, image/gif, image/jpeg" name="Image" id="dropzone-file" @change="setImage"
+                    type="file" class="hidden" />
                 </label>
               </div>
               <a href="/login" class="text-sm font-medium text-primary underline block">Avez vous déja un compte ?
@@ -92,14 +108,16 @@ const initialFormState = {
   metier: "",
   email: "",
   password: "",
+  passwrd: "",
 };
 export default {
   data() {
     return {
+
       form: initialFormState, uploadAuth: {
         timestamp: "",
         signature: "",
-        
+
       },
       image: undefined
     };
@@ -117,25 +135,33 @@ export default {
       this.uploadAuth = res.data;
     },
     async addUser() {
-      
-      this.form.photo = await uploadToCloudinary(this.image);
-      // console.log(this.form.photo);
-      // console.log("hello");
-      const user = await axios.post(
-        "http://localhost/filrouge/backend/public/CustomerController/add_customer",
-        this.form)
-      Swal.fire({
-        title: 'Your Email is save it please    : CL-'+this.form.email,
-        showClass: {
-          popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-          popup: 'animate__animated animate__fadeOutUp'
-        }
-      })
-      console.log(user);
 
-      this.$router.push("login");
+      this.form.photo = await uploadToCloudinary(this.image);
+      if (this.form.password === this.form.passwrd) {
+        const user = await axios.post(
+          "http://localhost/filrouge/backend/public/CustomerController/add_customer",
+          this.form)
+        Swal.fire({
+          title: 'Your Email is save it please    : CL-' + this.form.email,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+
+        console.log(user);
+
+        this.$router.push("login");
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "mot de pass n'est pas correct",
+
+        })
+      }
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-    <hello/>
+    <navbar/>
     <Slide/>
     <Slide1/> 
     <Aboute/>
@@ -7,8 +7,9 @@
     <Slideexp/>
     <call/>
     <Product/>
+    
     <maps/>
-    <fotr/>
+    <footeer/>
     <coop/>
 </template>
 
@@ -17,8 +18,8 @@
 <style></style>
 
 <script>
-import hello from '@/components/test.vue';
-import fotr from '@/components/test2.vue';
+import navbar from '@/components/test.vue';
+import footeer from '@/components/test2.vue';
 import coop from '@/components/coop.vue';
 import Slide1 from '@/components/slide1.vue';
 import Aboute from '@/components/slideAboute.vue';
@@ -29,14 +30,14 @@ import call from '@/components/call.vue';
 import Product from '@/components/product.vue';
 import Opinion from '@/components/Opinion.vue';
 import maps from '@/components/maps.vue'
-
+// import ContactUsVue from '../components/ContactUs.vue';
 
 
 
 export default {
   components: {
-    hello,
-    fotr,
+    navbar,
+    footeer,
     coop,
     Slide1,
     Aboute,
@@ -46,7 +47,9 @@ export default {
     call,
     Product,
     Opinion,
-    maps
+    maps,
+    // ContactUsVue
+
 },
 };
 </script>

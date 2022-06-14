@@ -25,13 +25,13 @@
     <h1>Feature Projects</h1>
     <p>The National University of Architecture</p></div>
 <button type="button" class="  flex absolute bottom-7 right-80 z-30 justify-center items-center px-4 h-full cursor-pointer group" data-carousel-prev="">
-<span class=" inline-flex justify-center items-center w-10 h-10  bg-secondary w-56    group-focus:outline-none">
+<span class=" inline-flex justify-center items-center  h-10  bg-secondary w-56    group-focus:outline-none">
 <svg class="w-6 h-6 text-white  dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
 <span class="text-white">Back</span>
 </span>
 </button>
 <button type="button" class="flex absolute bottom-7 right-24 z-30 justify-center items-center px-4 h-full cursor-pointer group" data-carousel-next="">
-<span class="border-l border-white inline-flex justify-center items-center w-10 h-10  bg-secondary w-56    group-focus:outline-none">
+<span class="border-l border-white inline-flex justify-center items-center  h-10  bg-secondary w-56    group-focus:outline-none">
 <span class="text-white">Next</span>
 <svg class="w-6 h-6 text-white dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
 </span>
