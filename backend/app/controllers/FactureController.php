@@ -1,7 +1,7 @@
                 <?php
                 class FactureController extends Controller
                 {
-                    public $lastfactureid;
+                    
                     private $factureModel;
                     private $commandModel;
                     private $productModel;
@@ -28,7 +28,7 @@
                             $this->factureModel->create(["customer_id" => $customerId]);
 
                             $factureId = $this->factureModel->lastId();
-                            $this->lastfactureid = $factureId;
+                            
 
                             $commands = [];
                             $productsMapById = [];
@@ -82,7 +82,14 @@
                             return $this->json(["message" => "error not found"]);
                         }
                     }
-
+                    public function getMontan(){
+                        $result = $this->factureModel->getMontan();
+                        if ($result) {
+                            return $this->json($result);
+                        } else {
+                            return $this->json(["message" => "error not found"]);
+                        }
+                    }
 
                     public function getAllCommande()
                     {

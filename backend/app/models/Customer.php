@@ -52,9 +52,18 @@
                 }
             }
             public function get_customerDate(){
-                $this->db->query('SELECT COUNT(id) FROM `customer` WHERE date_creation = "2022-06-11"');
+                // $current = $this->db->query("SELECT DATE(NOW())");
+                // $date = $this->db->query("SELECT CURDATE()");
+                $date = date('Y-m-d');
+                // die($date);
+                
+                
+                $this->db->query('SELECT COUNT(id) AS aa FROM `customer` WHERE date_creation = :date');
+                $this->db->bind(':date',$date);
+
                 try{
                     return $this->db->resultSet();
+                    
                 }
                 catch(PDOException $e){
                     return $e->getMessage();

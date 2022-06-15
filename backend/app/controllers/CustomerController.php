@@ -38,6 +38,18 @@ class CustomerController extends Controller
         }
         // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
     }
+    public function get_customerDate()
+    {
+
+
+        $result = $this->customerModel->get_customerDate();
+        if ($result) {
+            return $this->json($result);
+        } else {
+            return $this->json(["message" => "error not select"]);
+        }
+        // http://localhost/filrouge/backend/public/CustomerController/getAll_customer
+    }
 
     public function get_customer()
     {

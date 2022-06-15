@@ -1,18 +1,16 @@
 <template>
-<LineWithLine :chartData="chartData"
-:chartOptions="chartOptions"
-:chartId="chartId"
-:width="width"
-:height="height"
-:cssClasses="cssClasses"
-:styles="styles"/>
+
+  <LineWithLine :chartData="chartData" :chartOptions="chartOptions" :chartId="chartId" :width="width" :height="height"
+    :cssClasses="cssClasses" :styles="styles" />
 </template>
 <script>
 
 
-import { defineComponent, h } from 'vue'
-
+import { defineComponent, h, reactive } from 'vue'
+import axios from 'axios';
 import { generateChart } from 'vue-chartjs'
+
+import { onMounted,ref } from 'vue';
 import {
   Chart as ChartJS,
   Title,
@@ -23,7 +21,7 @@ import {
   PointElement,
   CategoryScale,
   LinearScale,
-  
+
 } from 'chart.js'
 
 ChartJS.register(
@@ -70,48 +68,66 @@ export default defineComponent({
   components: {
     LineWithLine
   },
-  props: {
-    chartId: {
-      
-      default: '-chart'
-    },
-    width: {
-      
-      default: 400
-    },
-    height: {
-      
-      default: 400
-    },
-    cssClasses: {
-      default: '',
-      
-    },
-    styles: {
-      default: () => {}
-    },
+
+  methods: {
     
   },
+  computed: {
+    dataQ() {
+      return []
+    }
+
+  },
   setup(props) {
+    let data = reactive([])
+    const dataQ = reactive([])
+    let dataT = reactive([])
+    const getData = () => {
+      axios.get("http://localhost/filrouge/backend/FactureController/getMontan").then(res => {
+        data = res.data
+        console.log("res");
+        console.log(res);
+        console.log("data");
+        console.log(data);
+        data.forEach(element => {
+            // this.data.push({ j:element})
+            dataQ.push(element.total_quantity) 
+            dataT.push(element.DD)
+            
+      });
+      console.log("dataQ");
+      console.log(dataQ);
+      console.log("dataT");
+      console.log(dataT);
+        // console.log(res.data[0].total_quantity)
+      })
+    }
+    onMounted(() => {
+      getData()
+    })
+
     const chartData = {
-      labels: ['January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                    'August',
-                    'September',
-                    'October',
-                    'November',
-                    'December'],
+      labels:
+       dataT,
+      // ['January',
+      //   'February',
+      //   'March',
+      //   'April',
+      //   'May',
+      //   'June',
+      //   'July',
+      //   'August',
+      //   'September',
+      //   'October',
+      //   'November',
+      //   'December'],
       datasets: [
         {
-          label: 'Data One',
+          label: "data",
           backgroundColor: '#f87979',
-          data: [40, 39, 10, 40, 39, 80,40, 39, 10, 40, 39, 80]
-        }
+          data: [507, 211, 16, 6448,89, 67,932 ,120,980,1290,1297]
+     
+          }
       ]
     }
 
@@ -126,13 +142,16 @@ export default defineComponent({
     return () =>
       h(LineWithLine, {
         chartData,
+        data,
+        dataQ,
+        dataT,
         chartOptions,
         chartId: props.chartId,
         width: props.width,
         height: props.height,
         cssClasses: props.cssClasses,
         styles: props.styles,
-        
+
       })
   }
 })

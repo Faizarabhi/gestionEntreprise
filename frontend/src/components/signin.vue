@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex h-screen  ">
-      <div class="hidden lg:block flex-1 lg:flex  lg:items-center lg:justify-center   bg-bg-bleu">
+      <div class="hidden  flex-1 lg:flex  lg:items-center lg:justify-center   bg-bg-bleu">
         <img src="../assets/images/slide1.svg" class="w-[80%]" alt="" />
       </div>
       <div class="flex-1 flex  items-center justify-center ">
