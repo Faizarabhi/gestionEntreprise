@@ -48,6 +48,7 @@ export default{
     this.getNumberCustomers();
     this.getNumberFacture();
     this.today = new Date();
+    console.log("Card");
   },
   methods:{
 getNumberCustomers() {

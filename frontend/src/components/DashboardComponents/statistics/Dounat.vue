@@ -1,19 +1,15 @@
 <template>
     <div>
-        <Doughnut :chartData="chartData"  :chartOptions = "chartOptions"
-:chartId ="chartId"
-:width ="width"
-:height ="height"
-:cssClasses ="cssClasses"
-:styles ="styles"
-/>
+        <Doughnut :chartData="chartData" :chartOptions="chartOptions" :chartId="chartId" :width="width" :height="height"
+            :cssClasses="cssClasses" :styles="styles" />
     </div>
 </template>
 
 <script>
 import { defineComponent, h } from 'vue'
-
+import { onMounted, ref } from 'vue';
 import { Doughnut } from 'vue-chartjs'
+import axios from 'axios'
 import {
     Chart as ChartJS,
     Title,
@@ -21,7 +17,7 @@ import {
     Legend,
     ArcElement,
     CategoryScale,
-    
+
 } from 'chart.js'
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale)
@@ -31,30 +27,32 @@ export default defineComponent({
     components: {
         Doughnut
     },
-    props: {
-        chartId: {
-            
-            default: 'doughnut-chart'
+        props: {
+            chartId: {
+
+                default: 'doughnut-chart'
+            },
+            width: {
+
+                default: 400
+            },
+            height: {
+
+                default: 400
+            },
+            cssClasses: {
+                default: '',
+
+            },
+            styles: {
+
+                default: () => { }
+            },
+
         },
-        width: {
-            
-            default: 400
-        },
-        height: {
-            
-            default: 400
-        },
-        cssClasses: {
-            default: '',
-            
-        },
-        styles: {
-            
-            default: () => { }
-        },
-        
-    },
     setup(props) {
+        
+        
         const chartData = {
             labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
             datasets: [
@@ -64,14 +62,27 @@ export default defineComponent({
                 }
             ]
         }
-
+        
         const chartOptions = {
             responsive: true,
             maintainAspectRatio: false
         }
-
+        const getProduct = () => {
+            axios.get("http://localhost/filrouge/backend/FactureController/getProduct").then(res => {
+                // data = res.data
+                console.log(res);
+                console.log("hhhh");
+            })
+        }
+        
+        onMounted(() => {
+            getProduct()  
+            console.log("Dounat");
+        })
         return () =>
+        
             h(Doughnut, {
+                
                 chartData,
                 chartOptions,
                 chartId: props.chartId,
@@ -79,7 +90,7 @@ export default defineComponent({
                 height: props.height,
                 cssClasses: props.cssClasses,
                 styles: props.styles,
-                
+
             })
     }
 })

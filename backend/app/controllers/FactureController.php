@@ -83,14 +83,22 @@
                         }
                     }
                     public function getMontan(){
-                        $result = $this->factureModel->getMontan();
+                        $result = $this->commandModel->getMontan();
                         if ($result) {
                             return $this->json($result);
                         } else {
                             return $this->json(["message" => "error not found"]);
                         }
                     }
-
+                    public function getProduct(){
+                        $result = $this->commandModel->getProduct();
+                        if($result){
+                            return $this->json($result);
+                        }
+                        else{
+                            return $this->json(["message" => "error not found"]);
+                        }
+                    }
                     public function getAllCommande()
                     {
                         $result = $this->commandModel->getAllCommande();

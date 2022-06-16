@@ -45,15 +45,5 @@ class facture
             return $e->getMessage();
         }
     }
-    public function getMontan()
-    {
-
-        $this->db->query('SELECT SUM(quantity) as total_quantity,MONTHNAME(facteur.date_creation) as DateCreation FROM commande INNER JOIN facteur ON facteur.id = commande.facture_id GROUP BY DateCreation ORDER BY date_creation ASC	');
-        try {
-            return $this->db->resultSet();
-        } 
-        catch (PDOException $e) {
-            return $e->getMessage();
-        }
-    }
+    
 }

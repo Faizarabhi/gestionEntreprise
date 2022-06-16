@@ -7,10 +7,9 @@
 
 
 import { defineComponent, h, reactive } from 'vue'
-import axios from 'axios';
 import { generateChart } from 'vue-chartjs'
-
-import { onMounted,ref } from 'vue';
+import axios from 'axios';
+import { onMounted, ref } from 'vue';
 import {
   Chart as ChartJS,
   Title,
@@ -68,19 +67,32 @@ export default defineComponent({
   components: {
     LineWithLine
   },
+  // props: {
+  //   chartId: {
 
-  methods: {
-    
-  },
-  computed: {
-    dataQ() {
-      return []
-    }
+  //     default: '-chart'
+  //   },
+  //   width: {
 
-  },
+  //     default: 400
+  //   },
+  //   height: {
+
+  //     default: 400
+  //   },
+  //   cssClasses: {
+  //     default: '',
+
+  //   },
+  //   styles: {
+  //     default: () => { }
+  //   },
+
+  // },
+
   setup(props) {
     let data = reactive([])
-    const dataQ = reactive([])
+    let dataQ = reactive([])
     let dataT = reactive([])
     const getData = () => {
       axios.get("http://localhost/filrouge/backend/FactureController/getMontan").then(res => {
@@ -90,44 +102,62 @@ export default defineComponent({
         console.log("data");
         console.log(data);
         data.forEach(element => {
-            // this.data.push({ j:element})
-            dataQ.push(element.total_quantity) 
-            dataT.push(element.DD)
-            
-      });
-      console.log("dataQ");
-      console.log(dataQ);
-      console.log("dataT");
-      console.log(dataT);
+          // this.data.push({ j:element})
+
+
+          let quantity = parseInt(element.total_quantity)
+          dataQ.push(quantity)
+          dataT.push(element.DateCreation)
+
+        });
+        // console.log("dataQ");
+        console.log(dataQ);
+        // dataQ.forEach(e=>console.log(e)) 
+        console.log("dataT");
+        console.log(dataT);
+
         // console.log(res.data[0].total_quantity)
       })
     }
     onMounted(() => {
-      getData()
+      // getData()
+      console.log("Line");
     })
 
     const chartData = {
       labels:
-       dataT,
-      // ['January',
-      //   'February',
-      //   'March',
-      //   'April',
-      //   'May',
-      //   'June',
-      //   'July',
-      //   'August',
-      //   'September',
-      //   'October',
-      //   'November',
-      //   'December'],
+        // dataT,
+        data =
+      ['January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'],
       datasets: [
         {
           label: "data",
           backgroundColor: '#f87979',
-          data: [507, 211, 16, 6448,89, 67,932 ,120,980,1290,1297]
-     
-          }
+          data:
+            [507
+              , 57
+              , 594
+              , 273
+              , 259
+              , 4501
+              , 358
+              , 264
+              , 88
+              , 188,
+              93],
+
+        }
       ]
     }
 

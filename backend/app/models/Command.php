@@ -61,4 +61,25 @@
                     return $e->getMessage();
                 }
             }
+            public function getMontan()
+    {
+        // $this->db->query('SELECT SUM(quantity) as total_quantity,MONTH(facteur.date_creation)  as DD  FROM commande INNER JOIN facteur ON facteur.id = commande.facture_id GROUP BY DD  ORDER BY DD 	');
+        // $this->db->query('SELECT SUM(quantity) as total_quantity,MONTHNAME(facteur.date_creation) as DateCreation FROM commande INNER JOIN facteur ON facteur.id = commande.facture_id GROUP BY DateCreation ORDER BY DateCreation ASC	');
+        $this->db->query('SELECT SUM(quantity) as total_quantity,MONTHNAME(facteur.date_creation) as DateCreation FROM commande INNER JOIN facteur ON facteur.id = commande.facture_id GROUP BY DateCreation ORDER BY date_creation ASC	');
+        try {
+            return $this->db->resultSet();
+        } 
+        catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+    public function getProduct()
+    {
+        $this->db->query('SELECT ref_prdt,SUM(quantity) as quantity, MONTH(facteur.date_creation) as datevente from commande INNER JOIN facteur ON facteur.id = commande.facture_id INNER JOIN produit ON produit.id = commande.product_id GROUP BY datevente');
+        try{
+            return $this->db->resultSet();
+        }catch(PDOException $e){
+            return $e->getMessage();
+        }
+    }
         }
