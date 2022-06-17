@@ -1,5 +1,5 @@
   <template>
-    <div class="w-full p-8">
+    <div class="w-full p-20 rounded-lg ">
 
       <div>
         <div class="py-8">

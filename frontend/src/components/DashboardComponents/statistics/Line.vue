@@ -1,7 +1,7 @@
 <template>
 
   <LineWithLine :chartData="chartData" :chartOptions="chartOptions" :chartId="chartId" :width="width" :height="height"
-    :cssClasses="cssClasses" :styles="styles" />
+    :cssClasses="cssClasses" :styles="styles" :data="data" />
 </template>
 <script>
 
@@ -67,28 +67,31 @@ export default defineComponent({
   components: {
     LineWithLine
   },
-  // props: {
-  //   chartId: {
+  props: {
+    chartId: {
 
-  //     default: '-chart'
-  //   },
-  //   width: {
+      default: '-chart'
+    },
+    width: {
 
-  //     default: 400
-  //   },
-  //   height: {
+      default: 400
+    },
+    height: {
 
-  //     default: 400
-  //   },
-  //   cssClasses: {
-  //     default: '',
+      default: 400
+    },
+    cssClasses: {
+      default: '',
 
-  //   },
-  //   styles: {
-  //     default: () => { }
-  //   },
+    },
+    styles: {
+      default: () => { }
+    },
+    data:{
+      // default :dataQ
+    }
 
-  // },
+  },
 
   setup(props) {
     let data = reactive([])
@@ -97,53 +100,50 @@ export default defineComponent({
     const getData = () => {
       axios.get("http://localhost/filrouge/backend/FactureController/getMontan").then(res => {
         data = res.data
-        console.log("res");
-        console.log(res);
-        console.log("data");
-        console.log(data);
+        // console.log("res");
+        // console.log(res);
+        // console.log("data");
+        // console.log(data);
         data.forEach(element => {
-          // this.data.push({ j:element})
-
-
           let quantity = parseInt(element.total_quantity)
           dataQ.push(quantity)
           dataT.push(element.DateCreation)
-
         });
         // console.log("dataQ");
-        console.log(dataQ);
-        // dataQ.forEach(e=>console.log(e)) 
-        console.log("dataT");
-        console.log(dataT);
+        // console.log(dataQ);
+        // // dataQ.forEach(e=>console.log(e)) 
+        // console.log("dataT");
+        // console.log(dataT);
 
         // console.log(res.data[0].total_quantity)
       })
     }
     onMounted(() => {
-      // getData()
+      getData()
       console.log("Line");
     })
 
     const chartData = {
       labels:
-        // dataT,
-        data =
-      ['January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December'],
+        dataT,
+        // data =
+      // ['January',
+      //   'February',
+      //   'March',
+      //   'April',
+      //   'May',
+      //   'June',
+      //   'July',
+      //   'August',
+      //   'September',
+      //   'October',
+      //   'November',
+      //   'December'],
       datasets: [
         {
           label: "data",
-          backgroundColor: '#f87979',
+          backgroundColor: '#FFAA4C',
+          // dataQ
           data:
             [507
               , 57
@@ -156,7 +156,6 @@ export default defineComponent({
               , 88
               , 188,
               93],
-
         }
       ]
     }
@@ -165,7 +164,7 @@ export default defineComponent({
       responsive: true,
       maintainAspectRatio: false,
       tooltips: {
-        intersect: false
+        intersect: true
       }
     }
 

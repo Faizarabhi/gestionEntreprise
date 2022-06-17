@@ -1,11 +1,11 @@
 <template>
   
-   <div class="w-full p-8">
+    <div class="w-full p-20 rounded-lg ">
       <div class="py-8 ">
         <a href="#addproduct" class="inline-flex items-center justify-center  ">
 
           <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :playOnHover="true"
-                       :animationData="plusToX"/>
+                      :animationData="plusToX"/>
 
         </a>
       </div>

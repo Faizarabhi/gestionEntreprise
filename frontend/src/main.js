@@ -16,10 +16,10 @@ app.use(Vue3Lottie);
 app.use(router)
 
 
-app.use(TawkMessengerVue, {
-    propertyId : '62a8668c7b967b11799474af',
-    widgetId : '1g5gt159a'
-});
+// app.use(TawkMessengerVue, {
+//     propertyId : '62a8668c7b967b11799474af',
+//     widgetId : '1g5gt159a'
+// });
 
 app.mount('#app')
 

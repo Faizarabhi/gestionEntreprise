@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, reactive } from 'vue'
 import { onMounted, ref } from 'vue';
 import { Doughnut } from 'vue-chartjs'
 import axios from 'axios'
@@ -49,16 +49,21 @@ export default defineComponent({
                 default: () => { }
             },
 
+            
+
         },
     setup(props) {
-        
-        
+        let data = reactive([])
+        let dataQ = reactive([])
+        let dataprdt = reactive([])
+    
         const chartData = {
-            labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+            labels:dataprdt,
             datasets: [
                 {
-                    backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                    data: [40, 20, 80, 10]
+                    backgroundColor: ['#41C003', '#E46651', '#00D8FF', '#D16','#4EEE83','#003', '#E41', '#8FF', '#D16','#41B'],
+                    data: [40, 20, 80, 10, 40, 20, 80, 10, 80 ]
+                    // data: dataQ.forEach(e=>{data.push(e);})
                 }
             ]
         }
@@ -69,20 +74,34 @@ export default defineComponent({
         }
         const getProduct = () => {
             axios.get("http://localhost/filrouge/backend/FactureController/getProduct").then(res => {
-                // data = res.data
-                console.log(res);
-                console.log("hhhh");
+                data = res.data
+                console.log("hadi hya");
+                console.log(data);
+                
+
+            data.forEach(e=>{
+                dataQ.push(parseInt(e.quantity))
+                dataprdt.push(e.ref_prdt)
+                
+            })
+                // console.log(dataQ/.values);
+                dataQ.forEach(e=>{console.log(e);})
+                console.log(dataprdt);
+                
+                
             })
         }
         
         onMounted(() => {
             getProduct()  
-            console.log("Dounat");
+            
         })
         return () =>
         
             h(Doughnut, {
-                
+                data,
+                dataQ,
+                dataprdt,
                 chartData,
                 chartOptions,
                 chartId: props.chartId,
