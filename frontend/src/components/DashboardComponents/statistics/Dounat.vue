@@ -32,14 +32,14 @@ export default defineComponent({
 
                 default: 'doughnut-chart'
             },
-            width: {
+            // width: {
 
-                default: 400
-            },
-            height: {
+            //     default: 400
+            // },
+            // height: {
 
-                default: 400
-            },
+            //     default: 400
+            // },
             cssClasses: {
                 default: '',
 

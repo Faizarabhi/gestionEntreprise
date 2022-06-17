@@ -112,8 +112,9 @@
       <div class="modal-box relative">
         <a href="#" for="my-modal-3"
            class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
-        <h3 class="text-lg font-bold">Update Product!</h3>
-        <input v-model="form.idpro" disabled/>
+        <div class="flex flex-col justify-center items-center">
+        <h3 class="text-lg font-bold text-secondary">Update Product!</h3>
+        <!-- <input v-model="form.idpro" disabled/> -->
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Categorie produit</span>
@@ -156,7 +157,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div></div>
   </div>
 </template>
 

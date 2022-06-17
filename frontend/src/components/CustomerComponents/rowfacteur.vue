@@ -21,10 +21,10 @@
     <input v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs"/>
   </td>
   <td> {{ this.product?.unite ?? 0 }}</td>
-  <td>{{ this.product?.prix_unitaire ?? 0 }}</td>
+  <td>{{ this.product?.prix_unitaire ?? 0 }} .00</td>
   <td>{{ prix }}</td>
 
-  <td class="inline-flex  " @click="removeCmd(command.id)">
+  <td  class="inline-flex  " @click="removeCmd(command.id)">
     <vue3-lottie  ref="anim" :speed=".2" :autoPlay="false" :animationData="TrashData"/>
 
     <!--    todo: change to VUE3-Lottile-->
@@ -38,11 +38,12 @@ import {computed} from "vue";
 import TrashData from "../../assets/lottie/trashV2.json"
 
 export default {
-
+// sendcmd:Boolean,
   props: ["command"],
   inject: ["removeCmd", "updateCmd", "categorie"],
   data() {
     return {
+      
       TrashData,
       category: undefined,
       products: [],
@@ -61,6 +62,7 @@ export default {
     quantity() {
       this.updateCmd(this.command.id, {
         quantity: this.quantity,
+        
       });
     },
   },

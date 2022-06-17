@@ -25,8 +25,9 @@
       <div class="modal-box relative">
         <a href="#" for="my-modal-3"
           class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
-        <h3 class="text-lg font-bold">Update Customer!</h3>
-        <input v-model="form.id" disabled/>
+        <div class="flex flex-col justify-center items-center">
+        <h3 class="text-lg font-bold text-secondary">Update Customer!</h3>
+        <!-- <input v-model="form.id" disabled/> -->
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">name</span>
@@ -69,7 +70,7 @@
             class="btn bg-primary border-none hover:bg-scroll-bleu">Update
           </a>
         </div>
-      </div>
+      </div></div>
     </div>
   </template>
   <script>

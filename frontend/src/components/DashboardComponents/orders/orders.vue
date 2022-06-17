@@ -13,7 +13,7 @@
           <th class="w-[10%]" @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
               <span class="inline-flex items-center justify-center  ">
 
-                <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100"
+                <vue3-lottie ref="anim" :speed="1"  :playOnHover="true" :autoplay="false" :height="100"
                               :width="100" :animationData="arrowDownCircle"/>
               </span>
           </th>

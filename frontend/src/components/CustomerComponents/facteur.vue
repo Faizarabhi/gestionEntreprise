@@ -28,7 +28,7 @@
         <p>{{ id_fact }}</p>
         <div class="place-self-center col-span-2">
           <label for="addrows">
-            <button v-if="sendcmd" class=" my-4 w-20 h-12 rounded-md text-white" id="addrows" @click="addrow()">
+            <button v-if="sendcmd" class=" my-4 rounded-md text-white" id="addrows" @click="addrow()">
               <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100" :width="100"
                 :animationData="PlusX" />
               <i class="fa-solid fa-plus"></i>
@@ -62,12 +62,9 @@
               </tr>
             </tfoot>
           </table>
-
           <div class="ml-[80%] my-8 p-4  ">
             <button class="bg-black w-20 h-12 rounded-md text-white" v-if="sendcmd" @click="submit"> Send <i
                 class="fa-solid fa-paper-plane"></i></button>
-
-
             <button v-else class="w-8" @click='generatePDF'>
               <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoPlay="false" :animationData="download" />
             </button>
@@ -92,7 +89,7 @@ export default {
   inject: ["id_fact"],
   provide() {
     return {
-
+      
       addCmd: this.addCmd,
       updateCmd: this.updateCmd,
       removeCmd: this.removeCmd,
@@ -154,8 +151,9 @@ export default {
         { title: "PRODUIT", dataKey: "PRODUIT" },
         { title: "UNITÉ", dataKey: "UNITE" },
         { title: "QUANTITÉ", dataKey: "QUANTITE" },
-        // { title: "UNITAIRE HT", dataKey: "UNITAIRE HT" },
-        { title: "PRIX TOTAL HT", dataKey: "PRIX" },
+        { title: "UPRIX UNITAIRE HT", dataKey: "PRIXU" },
+        { title: "PRIX TOTAL HT", dataKey: "PRIXT" },
+        
 
       ];
       const doc = new jsPDF({
@@ -208,8 +206,8 @@ export default {
       this.downloadf = res.facture.commands
       console.log(res.facture.commands);
       res.facture.commands.forEach(element => {
-            this.items.push({ categorie: "hhh", PRODUIT: element.product.ref_prdt,
-            QUANTITE:element.quantity, UNITE:element.product.unite, PRIX:element.product.prix_unitaire },)
+            this.items.push({  PRODUIT: element.product.ref_prdt, UNITE:element.product.unite, PRIXU:element.product.prix_unitaire,
+            QUANTITE:element.quantity, PRIXT:element.product.prix_unitaire * element.quantity},)
       });
 
     },
@@ -280,6 +278,9 @@ export default {
 
   },
   computed: {
+    Qte (){
+
+    },
     items() {
       return []
     }

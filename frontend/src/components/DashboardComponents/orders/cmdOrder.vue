@@ -14,7 +14,7 @@
     <tr v-for="order in orders" :key="order.commande_id">
       <td> {{ order.ref_prdt }}</td>
       <td>{{ order.designation }}</td>
-      <td> {{ order.prix_unitaire }}</td>
+      <td> {{ order.prix_unitaire }} . 00</td>
       <td>{{ order.quantity }}</td>
       <td>{{ order.unite }}</td>
       <td>

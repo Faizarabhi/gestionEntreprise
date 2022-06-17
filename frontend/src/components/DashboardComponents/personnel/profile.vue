@@ -1,6 +1,6 @@
     <template>
 
-  <div class="w-full p-8">
+  <div class="w-full p-20">
     <div class="py-8">
       <a href="#adduser" class="inline-flex items-center justify-center  ">
 
@@ -77,8 +77,8 @@
       <div class="modal-box">
         <a href="#" for="my-modal-3"
           class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
-        <h3 class="font-bold text-lg">ADD User!</h3>
-
+        <div class="flex flex-col justify-center items-center">
+        <h3 class="font-bold text-lg text-secondary">ADD User!</h3>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Name</span>
@@ -102,7 +102,7 @@
           <label class="label">
             <span class="label-text">Password </span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+          <input type="password" placeholder="Type here" class="input input-bordered w-full max-w-xs"
             v-model="form.password" />
         </div>
         <div class="form-control w-full max-w-xs">
@@ -113,7 +113,7 @@
             v-model="form.metier" />
         </div>
 
-
+</div>
         <div class="flex items-center justify-around">
           <div class="  text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  ">
             <label for="dropzone-file" class="
@@ -163,7 +163,8 @@
       <div class="modal-box relative">
         <a href="#" for="my-modal-3"
           class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
-        <h3 class="text-lg font-bold">Update Personnel!</h3>
+        <div class="flex flex-col justify-center items-center">
+        <h3 class="text-lg font-bold text-secondary">Update Personnel!</h3>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Name</span>
@@ -187,16 +188,16 @@
           <label class="label">
             <span class="label-text">Password </span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+          <input type="password" placeholder="Type here" class="input input-bordered w-full max-w-xs"
             v-model="form.password" />
         </div>
-        <div class="form-control w-full max-w-xs">
+        <!-- <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">photo </span>
           </label>
           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
             v-model="form.photo" />
-        </div>
+        </div> -->
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">metier </span>
@@ -208,6 +209,7 @@
           <a @click="updatePersonnel(form.id)" href="#" for="my-modal-3"
             class="btn bg-primary border-none hover:bg-scroll-bleu">Update
           </a>
+        </div>
         </div>
       </div>
     </div>
