@@ -7,9 +7,10 @@
                 
             </div>
         <a href="/">
-        <img src="../../../assets/images/logo.svg" :class=" isShow? ' p-12  pt-16 ' : 'pt-4 '" alt="logo ">
+        <img src="../../../assets/images/logo.svg" :class=" isShow? ' p-12  pt-16 ' : 'pt-4 hidden'" alt="logo ">
+        <img src="../../../assets/images/logo1.svg" :class=" isShow? '  hidden ' : 'pt-12 p-2 '" alt="logo ">
         </a>  
-        <div class="menu-items flex flex-col mt-8">
+        <div class="menu-items flex flex-col " :class="isShow? 'mt-8': 'mt-[5rem]'">
             <!-- <router-link to ="/profile" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"> <i class="fa-solid fa-user-helmet-safety"  style="color:#FFAA4C   !important;" ></i></span> <span v-if="isShow" class="" > Personnel  </span></div></router-link> -->
             <router-link to ="/statistic" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span> <span v-if="isShow"  > statistic </span></div></router-link>
             <router-link to ="/orders" class="side-btn " :active-class="isShow? 'active text-bg-bg-bleu' : 'active1'" tag="button"> <div :class="isShow ? 'link-container  pl-16':'pl-4 '"> <span class="pr-4"><i class="fa-solid fa-chart-line"  style="color:#FFAA4C   !important;"></i></span>  <span v-if="isShow"  > Order </span></div></router-link>

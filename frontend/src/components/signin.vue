@@ -4,11 +4,11 @@
       <div class="hidden  flex-1 lg:flex  lg:items-center lg:justify-center   bg-bg-bleu">
         <img src="../assets/images/slide1.svg" class="w-[80%]" alt="" />
       </div>
-      <div class="flex-1 flex  items-center justify-center ">
-        <div class="">
+      <div class="flex-1 flex  items-center justify-center p-12">
+        <div>
+          <label class="mb-2 text-3xl font-bold text-gray-900">Votre espace client
+            <span class="font-medium text-sm">Rabhi Construction</span></label>
           <form @submit.prevent="checkUser">
-            <label class="mb-2 text-3xl font-bold text-gray-900">Votre espace client
-              <span class="font-medium text-sm">Rabhi Construction</span></label>
             <div class="relative">
               <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
@@ -85,12 +85,18 @@ export default {
                 console.log(out);
                 if (data) {
                   this.$cookies.set("idcustomer", data.id);
+                  this.$cookies.set("id", data.id);
                   this.$cookies.set("name", data.name);
                   this.$cookies.set("email", data.email);
                   this.$cookies.set("photo", data.photo);
                   router.push("/facteur");
                 } else {
-                  alert("rak ghalet");
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "mot de pass n'est pas correct",
+
+                  })
                 }
               });
             }
@@ -114,6 +120,7 @@ export default {
               console.log(out);
               if (data) {
                 this.$cookies.set("idadmin", data.id);
+                this.$cookies.set("id", data.id);
                 this.$cookies.set("email", data.email);
                 this.$cookies.set("name", data.name);
                 this.$cookies.set("tel", data.tel);
@@ -126,7 +133,7 @@ export default {
                   icon: 'error',
                   title: 'Oops...',
                   text: 'Password Or Email Went Wrong!',
-                  
+
                 })
               }
             });

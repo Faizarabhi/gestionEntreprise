@@ -5,8 +5,8 @@
 
     <div class="flex w-32 items-center ">
       <div>
-        <a class="cursor-pointer text-dash-bleu p-2.5 rounded" v-on:click="removeCookie"><i
-            class="fa-solid fa-right-from-bracket"></i>
+        <a class="cursor-pointer text-dash-bleu p-2.5 rounded" v-on:click="removeCookie">
+        <i class="fa-solid fa-right-from-bracket"></i>
         </a>
       </div>
       <div class="avatar ml-auto">
@@ -49,6 +49,7 @@ export default {
       // it sets the cookie called `username`
       //  console.log('taha remove');
       this.$cookies.remove("idadmin");
+      this.$cookies.remove("id");
       this.$cookies.remove("email");
       this.$router.push("/login");
     },

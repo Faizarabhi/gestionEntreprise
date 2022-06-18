@@ -2,29 +2,38 @@
   <div class=" w-full p-16 rounded-lg ">
 
     <div class="overflow-x-auto p-8">
-        
-      <table class="table table-compact  w-full  " v-for="(facture, index) in factures" :key="facture.id">
+
+      <table class="table table-compact  w-full " v-for="(facture, index) in factures" :key="facture.id">
         <thead>
 
-        <tr>
-          <th class=" w-[10%]">Ref- {{ facture.id }}</th>
-          <th class="w-2/5">Customer {{ facture.name }}</th>
-          <th class="w-2/5">Date Creation : {{ facture.date_creation }}</th>
-          <th class="w-[10%]" @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
+          <tr>
+            <th class="  w-[10%]" :class=" checked? '  ' : ' bg-vert'" >Ref- {{ facture.id }}</th>
+            <th class="  w-2/5">Customer {{ facture.name }}</th>
+            <th class="  w-2/5">Date Creation : {{ facture.date_creation }}</th>
+            <th class="  w-[10%]"
+              @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
               <span class="inline-flex items-center justify-center  ">
 
-                <vue3-lottie ref="anim" :speed="1"  :playOnHover="true" :autoplay="false" :height="100"
-                              :width="100" :animationData="arrowDownCircle"/>
+                <vue3-lottie ref="anim" :speed="1" :playOnHover="true" :autoplay="false" :height="100" :width="100"
+                  :animationData="arrowDownCircle" />
               </span>
-          </th>
-          <th></th>
+            </th>
+            <th class="  "><input type="checkbox" checked="checked" class="checkbox" /></th>
+            <th class=" ">
+              <div class="form-control">
+                <label class="label cursor-pointer">
+                  
+                  <input type="checkbox" v-on:click="getvert()"  checked="checked" class="checkbox checkbox-primary" />
+                </label>
+              </div>
+            </th>
 
-        </tr>
+          </tr>
         </thead>
 
 
         <tbody>
-        <command v-if="currentFacture === facture.id" :orders="orders"/>
+          <command v-if="currentFacture === facture.id" :orders="orders" />
         </tbody>
 
       </table>
@@ -36,7 +45,7 @@
 import axios from 'axios';
 import command from './cmdOrder.vue'
 import arrowDownCircle from "../../../assets/lottie/arrowDownCircle.json"
-
+let checked= false; 
 export default {
   components: {
     command
@@ -49,6 +58,7 @@ export default {
 
   data() {
     return {
+      
       idfacture: "",
       factures: [],
       currentFacture: undefined,
@@ -63,7 +73,7 @@ export default {
   },
   mounted() {
     this.getAllfacture();
-    
+
   },
   watch: {
     currentFacture(newValue, oldValue) {
@@ -74,26 +84,32 @@ export default {
       } else {
         axios.get(`http://localhost/filrouge/backend/commandController/getCommandsByFacture/${this.currentFacture}`).then(res => {
           this.orders = res.data;
-        console.log(this.orders)
+          console.log(this.orders)
 
         })
       }
     }
   },
   methods: {
-
+    getvert(){
+      checked =!checked
+      if(checked){
+      console.log("oo");}else{
+        console.log("hh");
+      }
+    },
     getAllfacture() {
       console.log();
       axios.get('http://localhost/filrouge/backend/public/FactureController/getAllfacture')
-          .then(res => {
+        .then(res => {
 
-            this.factures = res.data
-            this.id_customer = this.factures[0].customer_id;
-            
-            console.log(this.factures);
-            this.factures.forEach(_ => this.showcmd.value.push(false))
+          this.factures = res.data
+          this.id_customer = this.factures[0].customer_id;
 
-          })
+          console.log(this.factures);
+          this.factures.forEach(_ => this.showcmd.value.push(false))
+
+        })
     },
     // async getCustomer(id_customer) {
 

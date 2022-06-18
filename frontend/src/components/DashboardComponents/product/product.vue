@@ -62,13 +62,14 @@
         <a href="#" for="my-modal-3"
            class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
         <h3 class="font-bold text-lg">ADD PRODUCT!</h3>
+        
         <select v-model="form.id_categorie" class="select select-bordered max-w-xs">
           <option value="default" disabled>Categorie</option>
           <option :value="cat.id" v-for="(cat, i) in categories" :key="i">
             {{ cat.name }}
           </option>
         </select>
-
+<div class="flex flex-col justify-center items-center">
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Reference produit</span>
@@ -94,14 +95,15 @@
           <label class="label">
             <span class="label-text">prix_unitaire</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+          <input type="number" placeholder="Type here" class="input input-bordered w-full max-w-xs"
                  v-model="form.prix_unitaire"/>
+        </div>
         </div>
         <div class="modal-action">
           <a @click="addProduct" href="#" for="my-modal-3"
              class="btn bg-primary border-none hover:bg-scroll-bleu">ADD
           </a>
-        </div>
+          </div>
       </div>
     </div>
 

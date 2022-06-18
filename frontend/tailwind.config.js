@@ -14,6 +14,7 @@ module.exports = {
         // 'bg-bleu': '#121212',
         'bg-bleu': '#F9F9F9',
         'scroll-bleu': '#657093',
+        'vert':'#01D758',
         
       },
     },
