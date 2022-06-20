@@ -5,6 +5,7 @@
     import DashboardView from '../views/DashboardView.vue'
     import CustomerView from '../views/CustomerDashboard/CustomerView.vue'
     import ContactView from '../views/ContactView.vue'
+    import ProductView from '../views/ProductView.vue'
 
 
     const router = createRouter({
@@ -29,6 +30,11 @@
         path: "/signup",
         name: "signup",
         component: SigneupView,
+        },
+        {
+        path: "/products",
+        name: "products",
+        component: ProductView,
         },
         {
         path: "/Customer",

@@ -6,7 +6,7 @@
     <Services/>
     <Slideexp/>
     <call/>
-    <Product/>
+   
     
     <maps/>
     <footeer/>
