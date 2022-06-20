@@ -50,5 +50,9 @@
 
     props: ["orders"],
 
+    methods: {
+      
+    },
+
   }
   </script>

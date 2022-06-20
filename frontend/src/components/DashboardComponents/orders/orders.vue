@@ -7,8 +7,8 @@
         <thead>
 
           <tr>
-            <th class="  w-[10%]" :class=" checked? '  ' : ' bg-vert'" >Ref- {{ facture.id }}</th>
-            <th class="  w-2/5">Customer {{ facture.name }}</th>
+            <th class="  w-[10%]" :class=" checked? 'bg-vert  ' : ''" >Numéro facture - {{ facture.id }}</th>
+            <th class="  w-2/5" >Customer {{ facture.name }}</th>
             <th class="  w-2/5">Date Creation : {{ facture.date_creation }}</th>
             <th class="  w-[10%]"
               @click="currentFacture = currentFacture === facture.id ? undefined : facture.id">
@@ -18,12 +18,12 @@
                   :animationData="arrowDownCircle" />
               </span>
             </th>
-            <th class="  "><input type="checkbox" checked="checked" class="checkbox" /></th>
+            <!-- <th class="  "><input type="checkbox" checked="checked" class="checkbox" /></th> -->
             <th class=" ">
               <div class="form-control">
                 <label class="label cursor-pointer">
                   
-                  <input type="checkbox" v-on:click="getvert()"  checked="checked" class="checkbox checkbox-primary" />
+                  <input type="checkbox" v-on:click="getvert(facture.id)"   class="checkbox checkbox-primary" />
                 </label>
               </div>
             </th>
@@ -46,6 +46,7 @@ import axios from 'axios';
 import command from './cmdOrder.vue'
 import arrowDownCircle from "../../../assets/lottie/arrowDownCircle.json"
 let checked= false; 
+let factureid ;
 export default {
   components: {
     command
@@ -58,7 +59,7 @@ export default {
 
   data() {
     return {
-      
+      checked:false,
       idfacture: "",
       factures: [],
       currentFacture: undefined,
@@ -91,11 +92,13 @@ export default {
     }
   },
   methods: {
-    getvert(){
-      checked =!checked
+    getvert(id){
+      factureid = id;
       if(checked){
-      console.log("oo");}else{
-        console.log("hh");
+      this.checked =!this.checked
+      console.log(factureid);
+      }else{
+        checked =!checked
       }
     },
     getAllfacture() {
@@ -111,17 +114,7 @@ export default {
 
         })
     },
-    // async getCustomer(id_customer) {
-
-    //   const res = await axios.post(
-    //       "http://localhost/filrouge/backend/public/CustomerController/getAll_customer",
-    //   )
-    //   console.log(res.data);
-    //   this.customer = res.data
-    //   console.log(this.customer[0].name);
-
-
-    // },
+  
 
   },
 

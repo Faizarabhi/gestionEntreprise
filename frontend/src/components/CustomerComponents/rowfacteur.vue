@@ -18,10 +18,10 @@
     </select>
   </td>
   <td>
-    <input v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs"/>
+    <input  min="0"  pattern="0+\.[0-9]*[1-9][0-9]*$"  v-model="quantity" type="number" placeholder="Type here" class="input input-bordered input-md max-w-xs"/>
   </td>
   <td> {{ this.product?.unite ?? 0 }}</td>
-  <td>{{ this.product?.prix_unitaire ?? 0 }} .00</td>
+  <td >{{ this.product?.prix_unitaire ?? 0  }} .00</td>
   <td>{{ prix }}</td>
 
   <td  class="inline-flex  " @click="removeCmd(command.id)">
@@ -39,6 +39,11 @@ import TrashData from "../../assets/lottie/trashV2.json"
 
 export default {
 // sendcmd:Boolean,
+computed:{
+		quantity(){
+			return console.log("negative");
+		}
+	},
   props: ["command"],
   inject: ["removeCmd", "updateCmd", "categorie"],
   data() {

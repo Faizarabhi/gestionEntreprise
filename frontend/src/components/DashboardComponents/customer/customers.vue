@@ -106,9 +106,9 @@
                 </label>
               </div>
               <div class="modal-action">
-                <button for="my-modal-3" class="btn bg-primary border-none   hover:bg-scroll-bleu" @click="addUser()">
+                <a href="#" for="my-modal-3" class="btn bg-primary border-none   hover:bg-scroll-bleu" @click="addUser()">
                   ADD
-                </button>
+                </a>
               </div>
             </div>
           </div>

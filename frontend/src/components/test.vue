@@ -48,15 +48,15 @@
                                 class="block py-2 pr-4 pl-3 text-secondary hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:text-secondary md:p-0 text-lg font-normal dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact
                                 Us</a>
                         </li>
-                        <li v-if="id">
-                            
-                            <a href="/login"
-                                class="block py-2 pr-4 pl-3 text-secondary hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:text-secondary md:p-0 text-lg font-normal dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
-                        </li>
-                        <li v-if="!id">
-                            
-                            <a href="/admin"
-                                class="block py-2 pr-4 pl-3 text-secondary hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:text-secondary md:p-0 text-lg font-normal dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Dashboard</a>
+                        <li>
+                            <div v-if="id">
+                                <a href="/admin"
+                                    class="block py-2 pr-4 pl-3 text-secondary hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:text-secondary md:p-0 text-lg font-normal dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Dashboard</a>
+                            </div>
+                            <div v-else>
+                                <a href="/login"
+                                    class="block py-2 pr-4 pl-3 text-secondary hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:text-secondary md:p-0 text-lg font-normal dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -68,8 +68,9 @@
 export default {
     setup() {
 
-    let id = $cookies.get("id") ? true :false;
-    console.log(id);
+        let id = $cookies.get("id") ? true : false;
+        console.log(id);
+        console.log("if true login not in navbar");
 
     }
 }

@@ -31,6 +31,6 @@
                                         <span class="font-medium">Electric</span>
                     </div>
                 </div>
-               </div>
+                </div>
     </div>
 </template>

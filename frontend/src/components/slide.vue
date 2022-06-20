@@ -21,7 +21,7 @@
 
 </div>
 <div class="relative    bottom-32 lg:bottom-12">
-    <div class="hidden md:block bg-bg-bleu lg:w-[28rem] right-0 left-12  h-28 bg-opacity-75  absolute z-40 lg:left-[61rem] bottom-12 text-center pt-7 font-bold text-xl text-secondary">
+    <div class="hidden md:block bg-bg-bleu lg:w-[28rem] right-0 left-12  h-28 bg-opacity-75  absolute z-40 lg:left-[60rem] bottom-12 text-center pt-7 font-bold text-xl text-secondary">
     <h1>Feature Projects</h1>
     <p>The National University of Architecture</p></div>
 <button type="button" class="  flex absolute bottom-[6rem] lg:bottom-7 right-[10rem] lg:right-80 z-30 justify-center items-center px-4 h-full cursor-pointer group" data-carousel-prev="">

@@ -78,7 +78,7 @@
         <a href="#" for="my-modal-3"
           class="btn btn-sm bg-primary border-none btn-circle absolute right-2 hover:bg-scroll-bleu top-2">✕</a>
         <div class="flex flex-col justify-center items-center">
-        <h3 class="font-bold text-lg text-secondary">ADD User!</h3>
+        <h3 class="font-bold text-lg text-secondary">ADD Personnel!</h3>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Name</span>
@@ -149,9 +149,9 @@
             </label>
           </div>
           <div class="modal-action">
-            <button for="my-modal-3" class="btn bg-primary border-none   hover:bg-scroll-bleu" @click="addPersonnel()">
+            <a href="#" for="my-modal-3" class="btn bg-primary border-none   hover:bg-scroll-bleu" @click="addPersonnel()">
               ADD
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -293,7 +293,8 @@ export default {
         this.form)
 
       console.log(user);
-
+  this.personnel.push(this.form);
+      router.push("/profil");
     },
     addPersonnell() {
       fetch(
@@ -314,7 +315,6 @@ export default {
         timer: 1500
       })
       this.getAllPersonnel();
-      router.push("/Personnel");
     },
 
     updatePersonnel() {

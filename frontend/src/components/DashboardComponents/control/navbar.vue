@@ -50,8 +50,11 @@ export default {
       //  console.log('taha remove');
       this.$cookies.remove("idadmin");
       this.$cookies.remove("id");
+      
+      console.log("hello");
+      console.log(this.$cookies.get('id'));
       this.$cookies.remove("email");
-      this.$router.push("/login");
+      this.$router.push("/");
     },
     getImgUrl: getCloudinaryImgUrl,
   },
