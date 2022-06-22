@@ -6,19 +6,8 @@
         <div class="flex items-center justify-center mx-8 ">
             <div class="flex-1 p-20">
                 <h3 class="font-bold text-secondary text-3xl my-5 text-center">Our Local</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui quos laudantium incidunt dicta
-                    nihil ea amet accusantium ipsum optio itaque! Distinctio vitae hic quam perferendis reiciendis
-                    laboriosam
-                    accusantium quas autem.
-                    Sit, aspernatur quod asperiores quia ducimus eligendi quo nam aut consequuntur at, doloribus odit,
-                    accusantium magnam blanditiis eius adipisci ex incidunt libero dolor suscipit rem ratione quis
-                    quibusdam
-                    optio! Temporibus!
-                    Harum dolorem provident deserunt eaque quaerat aliquid amet odit doloribus, dolorum, blanditiis
-                    asperiores,
-                    ratione cum nihil. Impedit voluptatum, magnam eius odit porro, ducimus vero animi odio consequuntur
-                    ea
-                    veritatis nam.
+                <p>For more than 30 years we have been delivering ... world-class construction and we’ve built many lasting relationships along the way. We’ve matured into an industry leader and trusted resource for those seeking quality, innovation and reliability when building in the U.S.
+                    For more than 30 years we have been delivering ... world-class construction and we’ve built many lasting relationships along the way. We’ve matured into an industry leader and trusted resource for those seeking quality, innovation and reliability when building in the U.S.For more than 30 years we have been delivering ... world-class construction and we’ve built many lasting relationships along the way. We’ve matured into an industry leader and trusted resource for those seeking quality, innovation and reliability when building in the U.S.
                 </p>
             </div>
             <div class="flex-1 p-20">

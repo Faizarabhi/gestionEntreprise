@@ -10,7 +10,7 @@ define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
 define('URLROOT', 'http://localhost/filrouge/backend');
 // Site Name
-define('SITENAME', 'jdid');
+define('SITENAME', 'filrouge');
 // App Version
 define('APPVERSION', '1.0.0');
 

@@ -27,7 +27,7 @@
               placeholder="Mot de passe" v-model="form.password" />
             <!-- <input
               type="text"
-              class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 bg-white"
+            class="border border-gray-300 w-48 md:w-96 mt-8 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 bg-white"
               placeholder="Code verification"
             /> -->
             <div class="mt-3">
@@ -127,7 +127,7 @@ export default {
                 this.$cookies.set("metier", data.metier);
                 this.$cookies.set("photo", data.photo);
 
-                router.push("/admin");
+                router.push("/statistic");
               } else {
                 Swal.fire({
                   icon: 'error',

@@ -1,8 +1,8 @@
 <template>
     <div >
         <div  class="sticky top-0 bg-dash-bleu h-screen overflow-hidden" :class=" isShow ? 'w-56   ': 'w-16   ' ">
-            <div class="absolute top-20 -right-3   rotate-90 cursor-row-resize bg-secondary rounded-full text-bg-bleu  text-5xl" :class="isShow? 'z-50 ':'-rotate-90  z-50'"   v-on:click="show">
-                <i class="fa-solid fa-circle-chevron-down "   ></i>
+            <div class="absolute top-20 right-2   rotate-90 bg-secondary rounded-full text-primary  text-5xl" :class="isShow? 'z-50 ':'-rotate-90  z-50'"   v-on:click="show">
+                <i class="fa-solid fa-circle-chevron-down "></i>
                 
                 
             </div>

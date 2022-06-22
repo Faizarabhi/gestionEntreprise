@@ -26,7 +26,7 @@ class facture
     }
     public function getAllfacture()
     {
-        $this->db->query('SELECT facteur.*,customer.name FROM `facteur` INNER JOIN customer ON customer.id = facteur.customer_id	');
+        $this->db->query('SELECT facteur.*,customer.name FROM `facteur` INNER JOIN customer ON customer.id = facteur.customer_id ORDER BY date_creation DESC	');
         try {
             return $this->db->resultSet();
         } catch (PDOException $e) {

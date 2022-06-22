@@ -89,13 +89,13 @@
           <label class="label">
             <span class="label-text">Tel</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel" />
+          <input type="tel" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel" />
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">
             <span class="label-text">Email </span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs"
+          <input type="email" placeholder="Type here" class="input input-bordered w-full max-w-xs"
             v-model="form.email" />
         </div>
         <div class="form-control w-full max-w-xs">
@@ -175,7 +175,7 @@
           <label class="label">
             <span class="label-text">Tel</span>
           </label>
-          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel" />
+          <input type="tel" placeholder="Type here" class="input input-bordered w-full max-w-xs" v-model="form.tel" />
         </div>
         <div class="form-control w-full max-w-xs">
           <label class="label">

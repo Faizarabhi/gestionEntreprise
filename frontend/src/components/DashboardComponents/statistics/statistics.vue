@@ -1,12 +1,12 @@
 <template>
-    <div class="  w-full px-8 mt-4">
+    <div class="  w-full px-4 mt-4">
         <div class="lg:grid flex flex-col">
         <card />
         <div class="lg:grid  md:grid-flow-col lg:gap-4 flex flex-col">
             <Line />
             
                 <div class="lg:row-span-3">
-                    <Dounat />
+                    <!-- <Dounat /> -->
                 </div>
                 <div class="lg:row-span-2">
                     <!-- <LinearScale /> -->

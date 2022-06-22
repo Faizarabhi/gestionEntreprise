@@ -61,8 +61,8 @@ export default defineComponent({
             labels:dataprdt,
             datasets: [
                 {
-                    backgroundColor: ['#41C003', '#E46651', '#00D8FF', '#D16','#4EEE83','#003', '#E41', '#8FF', '#D16','#41B'],
-                    data: [40, 20, 80, 10, 40, 20, 80, 10, 80 ]
+                    backgroundColor: ['#41C003', '#E46651', '#E0D8FF', '#D16','#4EEE83','#EEE223',,'#0AEB83','#1EEE03', '#E41', '#8FF', '#D16','#41B'],
+                    data: [40, 20, 80, 10, 40, 20, 80, 10, 80, 10, 80 ]
                     // data: dataQ.forEach(e=>{data.push(e);})
                 }
             ]

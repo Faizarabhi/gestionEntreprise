@@ -7,7 +7,7 @@
         <thead>
 
           <tr>
-            <th class="  w-[10%]" :class=" checked? 'bg-vert  ' : ''" >Numéro facture - {{ facture.id }}</th>
+            <th class="  w-[10%]"  >Numéro facture - {{ facture.id }}</th>
             <th class="  w-2/5" >Customer {{ facture.name }}</th>
             <th class="  w-2/5">Date Creation : {{ facture.date_creation }}</th>
             <th class="  w-[10%]"

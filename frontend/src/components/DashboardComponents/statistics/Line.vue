@@ -100,8 +100,8 @@ export default defineComponent({
     const getData = () => {
       axios.get("http://localhost/filrouge/backend/FactureController/getMontan").then(res => {
         data = res.data
-        // console.log("res");
-        // console.log(res);
+        console.log("res");
+        console.log(res);
         // console.log("data");
         // console.log(data);
         data.forEach(element => {
@@ -145,9 +145,9 @@ export default defineComponent({
           backgroundColor: '#FFAA4C',
           // dataQ
           data:
-            [507
-              , 57
-              , 594
+            [5999
+              , 4712
+              , 5948
               , 273
               , 259
               , 4501
