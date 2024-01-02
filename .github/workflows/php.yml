@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Validate composer.json and composer.lock
+    - name: Validate composer.json
       run: |
         if [ -f composer.json ]; then
           composer validate --strict
