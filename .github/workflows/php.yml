@@ -19,9 +19,9 @@ jobs:
 
     - name: Validate composer.json
       run: |
-        if [ -f composer.json ]; then
+        if [ -f "../backend/composer.json" ]; then
           composer validate --strict
         else
-          echo "../backend/composer.json not found."
+          echo "composer.json not found."
           exit 1
         fi
